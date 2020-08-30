@@ -1,0 +1,44 @@
+.form-content {
+  border: 2px solid green;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* .tak {
+  overflow: hidden;
+} */
+
+form {
+  display: flex;
+  /* flex-direction: row;
+  flex-wrap: wrap; */
+
+  /* overflow: hidden; */
+
+  transition: 1s ease-in-out;
+
+  border: 1px solid red;
+  width: 300vw;
+  /* position: relative; */
+  /* top: 0; */
+  /* left: 0; */
+}
+
+section {
+  width: 100vw;
+  border: 1px solid blue;
+}
+
+/* .container {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+} */
+
+/* .tej {
+  width: 58vw;
+  border: 1px solid red;
+} */
