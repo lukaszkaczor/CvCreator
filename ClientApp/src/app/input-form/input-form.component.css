@@ -3,27 +3,17 @@
   position: absolute;
   left: 0;
   width: 100%;
+  /* min-height: 50vh; */
   overflow: hidden;
 }
 
-/* .tak {
-  overflow: hidden;
-} */
-
 form {
   display: flex;
-  /* flex-direction: row;
-  flex-wrap: wrap; */
-
-  /* overflow: hidden; */
-
   transition: 1s ease-in-out;
 
   border: 1px solid red;
   width: 300vw;
-  /* position: relative; */
-  /* top: 0; */
-  /* left: 0; */
+
 }
 
 section {
@@ -31,14 +21,19 @@ section {
   border: 1px solid blue;
 }
 
-/* .container {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.item-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 2px solid #262626;
 
-} */
+}
 
-/* .tej {
-  width: 58vw;
-  border: 1px solid red;
-} */
+.item-header {
+  font-size: 2rem;
+}
+
+
+.item-content h5 {
+  font-size: 15px;
+}

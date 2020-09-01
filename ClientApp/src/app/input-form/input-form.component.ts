@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewChecked, AfterViewInit, Input } from '@angular/core';
 import { ImageManager } from '../../Models/ImageManager';
-import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { EducationFormComponent } from '../education-form/education-form.component';
+import { Education } from '../../Models/Education';
+import { DefaultEducation } from '../../Models/DefaultEducation';
 
 @Component({
   selector: 'app-input-form',
@@ -9,11 +11,21 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 })
 export class InputFormComponent implements OnInit {
 
+  @ViewChild(EducationFormComponent, null) child: EducationFormComponent;
+  educationList: Education[] = [];
   value: number = 0;
+
 
   constructor() { }
 
+
   ngOnInit() {
+
+    this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "1", "inzy", "opsi", "spec", "It"));
+    // this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "2", "inzy", "opsi", "spec", "It"));
+    // this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "3", "inzy", "opsi", "spec", "It"));
+    this.child.list = this.educationList;
+
   }
 
   transform() {
@@ -29,11 +41,28 @@ export class InputFormComponent implements OnInit {
     const preview = <HTMLImageElement>document.querySelector('#imgPreview');
     const file = (<HTMLInputElement>document.querySelector('#fileInput')).files[0];
     // const file = (<HTMLInputElement>document.querySelector('input[type=file]')).files[0];
-
     console.log(file);
 
     preview.src = (file != undefined) ? await ImageManager.Encode(file) : preview.src;
 
 
   }
+
+  delete(index) {
+    this.educationList.splice(index, 1);
+  }
+
+  edit(index) {
+    this.child.item = this.educationList[index];
+    this.child.index = index;
+    this.child.show();
+  }
+
+  add() {
+    this.child.item = new DefaultEducation();
+    this.child.index = -1;
+    this.child.show();
+  }
+
+
 }

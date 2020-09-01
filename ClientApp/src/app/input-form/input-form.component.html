@@ -38,11 +38,25 @@
 
     <section>
       <div class="container">
-        <div class="form-group">
-          <label for="email">Education</label>
-          <button class="btn btn-primary">Add</button>
-          <!-- <input type="email" class="form-control" id="email"> -->
+
+
+        <div class="item-group">
+          <h2 class="item-header">Education</h2>
+          <div class="item-content" *ngFor="let item of educationList; let i = index">
+            <div class="btn-container">
+              <button (click)="edit(i)">Edit</button>
+              <button (click)="delete(i)">Delete</button>
+            </div>
+            <h5>Okres: {{item.StartDate | date}} - {{item.EndDate | date}}</h5>
+            <h5>Kierunek: {{ item.CourseOfStudy}} </h5>
+            <h5>Nazwa szkoły: {{ item.SchoolName }}</h5>
+            <h5>Stopień: {{ item.Deegree}}</h5>
+            <h5>Specjalizacja: {{ item.Specialization }}</h5>
+          </div>
         </div>
+        <button class="btn btn-primary" (click)="add()">Add</button>
+
+
       </div>
     </section>
 
@@ -56,3 +70,5 @@
   </form>
 </div>
 <button (click)="transform()">Click</button>
+<!-- <app-education-form [educationList]="educationList"></app-education-form> -->
+<app-education-form></app-education-form>

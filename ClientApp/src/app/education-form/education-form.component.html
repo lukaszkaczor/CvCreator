@@ -1,0 +1,131 @@
+<!-- <form #form="ngForm" (ngSubmit)="submit(form);" class="background"> -->
+<form #form="ngForm" class="background">
+  <div class="content">
+
+    <div class="header">
+      <label for="schoolName">Add education line</label>
+      <!-- <button class="btn btn-primary" (click)="hide()">X</button> -->
+    </div>
+
+    <div class="form-group">
+      <label for="schoolName">School name</label>
+      <input type="text" class="form-control" #schoolName name="schoolName" [ngModel]="item.SchoolName" id="schoolName">
+    </div>
+
+    <div class="form-group">
+      <label for="courseOfStudy">Course of study</label>
+      <input type="text" class="form-control" #courseOfStudy name="courseOfStudy" [ngModel]="item.CourseOfStudy"
+        id="courseOfStudy">
+    </div>
+
+    <div class="form-group">
+      <label for="degree">Degree</label>
+      <input type="text" class="form-control" #degree name="degree" [ngModel]="item.Deegree" id="degree">
+    </div>
+
+    <div class="form-group">
+      <label for="specialization">Specialization</label>
+      <input type="text" class="form-control" #specialization name="specialization" [ngModel]="item.Specialization"
+        id="specialization">
+    </div>
+
+
+    <div class="form-group row">
+      <label for="example-datetime-local-input" class="col-2 col-form-label" for="startDate">From</label>
+      <div class="col-10">
+        <input class="form-control" #startDate name="startDate" [ngModel]="item.StartDate | date:'yyyy-MM-dd'"
+          type="date" name="startDate" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="example-datetime-local-input" class="col-2 col-form-label" for="endDate">To</label>
+      <div class="col-10">
+        <input class="form-control" #endDate name="endDate" [ngModel]="item.EndDate | date:'yyyy-MM-dd'" type="date"
+          name="endDate" />
+      </div>
+    </div>
+
+
+    <div class=" form-check mb-2 mr-sm-2 mb-sm-0">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" #stillStudying name="stillStudying"
+          [ngModel]="item.StillStudying"> Im still studying
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleTextarea">Description</label>
+      <textarea class="form-control" id="exampleTextarea" rows="3" #description name="description"
+        [ngModel]="item.Desctiption"></textarea>
+    </div>
+
+    <div class="header">
+      <button class="btn btn-primary" (click)="submit(form, $event)">Save</button>
+      <button class="btn btn-primary" (click)="hide()">Cancel</button>
+    </div>
+
+  </div>
+</form>
+
+<!-- <div class="background">
+
+
+  <div class="content">
+    <div class="header">
+      <label for="schoolName">Add education line</label>
+      <button class="btn btn-primary" (click)="hide()">X</button>
+    </div>
+    <div class="form-group">
+      <label for="schoolName">School name</label>
+      <input type="text" class="form-control" [(ngModel)]="item.SchoolName" id="schoolName">
+    </div>
+
+    <div class="form-group">
+      <label for="courseOfStudy">Course of study</label>
+      <input type="text" class="form-control" [(ngModel)]="item.CourseOfStudy" id="courseOfStudy">
+    </div>
+
+    <div class="form-group">
+      <label for="degree">Degree</label>
+      <input type="text" class="form-control" [(ngModel)]="item.Deegree" id="degree">
+    </div>
+
+    <div class="form-group">
+      <label for="specialization">Specialization</label>
+      <input type="text" class="form-control" [(ngModel)]="item.Specialization" id="specialization">
+    </div>
+
+    <div class="form-group row">
+      <label for="example-datetime-local-input" class="col-2 col-form-label" for="startDate">From</label>
+      <div class="col-10">
+        <input class="form-control" [ngModel]="item.StartDate | date:'yyyy-MM-dd'" (ngModelChange)="startDate = $event"
+          type="date" name="startDate" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="example-datetime-local-input" class="col-2 col-form-label" for="endDate">To</label>
+      <div class="col-10">
+        <input class="form-control" [ngModel]="item.EndDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event"
+          type="date" name="endDate" />
+      </div>
+    </div>
+
+    <div class=" form-check mb-2 mr-sm-2 mb-sm-0">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="item.StillStudying"> Im still studying
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleTextarea">Description</label>
+      <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="item.Desctiption"></textarea>
+    </div>
+
+    <div class="header">
+      <button class="btn btn-primary">Save</button>
+      <button class="btn btn-primary">Cancel</button>
+    </div>
+  </div>
+</div> -->
