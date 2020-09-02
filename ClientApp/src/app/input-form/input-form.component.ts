@@ -53,13 +53,13 @@ export class InputFormComponent implements OnInit {
   }
 
   edit(index) {
-    this.child.item = this.educationList[index];
+    // this.child.item = this.educationList[index];
     this.child.index = index;
     this.child.show();
   }
 
   add() {
-    this.child.item = new DefaultEducation();
+    // this.child.item = new DefaultEducation();
     this.child.index = -1;
     this.child.show();
   }

@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Education } from '../../Models/Education';
 import { IEducation } from '../../Models/Interfaces/IEducation';
-import { DefaultEducation } from '../../Models/DefaultEducation';
-import { NgForm, FormControl } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
+
 
 
 @Component({
@@ -11,60 +11,128 @@ import { NgForm, FormControl } from '@angular/forms';
   styleUrls: ['./education-form.component.css']
 })
 export class EducationFormComponent implements OnInit {
-
-  public element;
-
-  @Input() item: IEducation;
-  index: number | null;
+  public educationForm;
+  public element: HTMLElement;
+  public formIsInvalid = false;
+  public index: number | null;
   @Input() list: IEducation[];
 
-  constructor() { }
+  constructor(builder: FormBuilder) {
+    this.educationForm = builder.group({
+      schoolName: ['', [Validators.required, Validators.minLength(5)]],
+      courseOfStudy: [''],
+      degree: ['', Validators.required],
+      specialization: [''],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      stillStudying: [false],
+      description: ['']
+    });
+  }
 
   ngOnInit() {
-    this.item = new DefaultEducation();
     this.element = <HTMLElement>document.querySelector(".background");
   }
 
-  submit(form: NgForm, e) {
-    e.preventDefault();
+  submit(event) {
+    event.preventDefault();
+    console.log(this.educationForm)
 
-    let schoolName = form.controls['schoolName'].value;
-    let courseOfStudy = form.controls['courseOfStudy'].value;
-    let deegree = form.controls['degree'].value;
-    let specialization = form.controls['specialization'].value;
-    let startDate = form.controls['startDate'].value;
-    let endDate = form.controls['endDate'].value;
-    let descriptionn = form.controls['description'].value;
-    let stillStudying = form.controls['stillStudying'].value;
-
-
-    let data = new Education(new Date(startDate), new Date(endDate), stillStudying, schoolName, deegree, descriptionn, specialization, courseOfStudy);
-
-    if (this.index == -1) {
-      this.list.push(data);
-    } else {
-      this.list[this.index] = data;
-      // this.item.SchoolName = schoolName;
-      // this.item.CourseOfStudy = courseOfStudy;
-      // this.item.Deegree = deegree;
-      // this.item.Specialization = specialization;
-      // this.item.StartDate = startDate;
-      // this.item.EndDate = endDate;
-      // this.item.Desctiption = descriptionn;
-      // this.item.StillStudying = stillStudying;
+    if (this.educationForm.status === 'INVALID') {
+      this.formIsInvalid = true;
+      return 0;
     }
 
-    form.reset();
-    this.hide();
+    let endDate = this.stillStudying ? null : new Date(this.endDate.value);
+
+    let item = new Education(new Date(this.startDate.value), endDate, this.stillStudying.value, this.schoolName.value,
+      this.degree.value, this.description.value, this.specialization.value, this.courseOfStudy.value)
+
+    this.index == -1 ? this.list.push(item) : this.list[this.index] = item;
+
+    this.hide(event);
+  }
+
+  onCheckboxChange() {
+    this.stillStudying.value ? this.endDate.disable() : this.endDate.enable();
   }
 
 
   show() {
     this.element.style.display = "flex";
+    if (this.index != -1) {
+      this.schoolName = this.list[this.index].SchoolName;
+      this.courseOfStudy = this.list[this.index].CourseOfStudy;
+      this.degree = this.list[this.index].Deegree;
+      this.specialization = this.list[this.index].Specialization;
+      this.startDate = this.list[this.index].StartDate;
+      this.endDate = this.list[this.index].EndDate;
+      this.stillStudying = this.list[this.index].StillStudying;
+      this.description = this.list[this.index].Desctiption;
+    }
   }
 
-  hide() {
+  hide(event) {
+    event.preventDefault();
     this.element.style.display = "none";
-    this.item = new DefaultEducation();
+    this.formIsInvalid = false;
+    this.educationForm.reset();
+  }
+
+
+  get schoolName() {
+    return this.educationForm.get('schoolName');
+  }
+  set schoolName(val) {
+    this.schoolName.setValue(val)
+  }
+
+  get courseOfStudy() {
+    return this.educationForm.get('courseOfStudy');
+  }
+  set courseOfStudy(val) {
+    this.courseOfStudy.setValue(val)
+  }
+
+  get degree() {
+    return this.educationForm.get('degree');
+  }
+  set degree(val) {
+    this.degree.setValue(val)
+  }
+
+  get specialization() {
+    return this.educationForm.get('specialization');
+  }
+  set specialization(val) {
+    this.specialization.setValue(val)
+  }
+
+  get startDate() {
+    return this.educationForm.get('startDate');
+  }
+  set startDate(val) {
+    this.startDate.setValue(val)
+  }
+
+  get endDate() {
+    return this.educationForm.get('endDate');
+  }
+  set endDate(val) {
+    this.endDate.setValue(val)
+  }
+
+  get stillStudying() {
+    return this.educationForm.get('stillStudying');
+  }
+  set stillStudying(val) {
+    this.stillStudying.setValue(val)
+  }
+
+  get description() {
+    return this.educationForm.get('description');
+  }
+  set description(val) {
+    this.description.setValue(val)
   }
 }

@@ -1,15 +1,111 @@
-<!-- <form #form="ngForm" (ngSubmit)="submit(form);" class="background"> -->
+<!-- <form [formGroup]="form">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" formControlName="username">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="text" name="password" id="password" formControlName="password">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> -->
+
+
+
+<form [formGroup]="educationForm" class="background" (ngSubmit)="submit($event)">
+  <div class="content">
+    <div class="header">
+      <label for="schoolName">Add education line</label>
+      <button class="btn btn-primary" (click)="hide($event)">X</button>
+    </div>
+
+    <div class="form-group">
+      <label for="schoolName">School name</label>
+      <input type="text" class="form-control" name="schoolName" id="schoolName" formControlName="schoolName">
+      <div *ngIf="(schoolName.touched && schoolName.invalid) || (formIsInvalid && schoolName.invalid)">
+        <small *ngIf=" schoolName.errors.required" class="form-text warning">This field is required.</small>
+        <small *ngIf="schoolName.errors.minlength" class="form-text warning">This field has to be at
+          least {{ schoolName.errors.minlength.requiredLength }} characters long.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="courseOfStudy">Course of study</label>
+      <input type="text" class="form-control" name="courseOfStudy" id="courseOfStudy" formControlName="courseOfStudy">
+    </div>
+
+    <div class="form-group">
+      <label for="degree">Degree</label>
+      <input type="text" class="form-control" name="degree" id="degree" formControlName="degree">
+      <div *ngIf="(degree.touched && degree.invalid) || (formIsInvalid && degree.invalid)">
+        <small *ngIf="degree.errors.required" class="form-text warning">This field is required.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="specialization">Specialization</label>
+      <input type="text" class="form-control" name="specialization" id="specialization"
+        formControlName="specialization">
+    </div>
+
+
+    <div class="form-group row">
+      <label for="example-datetime-local-input" class="col-2 col-form-label" for="startDate">From</label>
+      <div class="col-10">
+        <input class="form-control" name="startDate" type="date" name="startDate" formControlName="startDate" />
+        <div *ngIf="(startDate.touched && startDate.invalid)  || (formIsInvalid && startDate.invalid)">
+          <small *ngIf="startDate.errors.required" class="form-text warning">This field is required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="example-datetime-local-input" class="col-2 col-form-label" for="endDate">To</label>
+      <div class="col-10">
+        <input class="form-control" name="endDate" type="date" name="endDate" formControlName="endDate" />
+        <div *ngIf="(endDate.touched && endDate.invalid) || (formIsInvalid && endDate.invalid)">
+          <small *ngIf="endDate.errors.required" class="form-text warning">This field is required.</small>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" name="stillStudying" formControlName="stillStudying"
+          (change)="onCheckboxChange()"> Im still
+        studying
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleTextarea">Description</label>
+      <textarea class="form-control" id="exampleTextarea" rows="3" name="description"
+        formControlName="description"></textarea>
+    </div>
+
+    <div class="header">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <!-- <button class="btn btn-primary" type="submit" (click)="submit(form, $event)">Save</button> -->
+      <button class="btn btn-primary" (click)="hide($event)">Cancel</button>
+    </div>
+  </div>
+</form>
+<!-- 
 <form #form="ngForm" class="background">
   <div class="content">
 
     <div class="header">
       <label for="schoolName">Add education line</label>
-      <!-- <button class="btn btn-primary" (click)="hide()">X</button> -->
+      <button class="btn btn-primary" (click)="hide(form)">X</button>
     </div>
 
     <div class="form-group">
       <label for="schoolName">School name</label>
-      <input type="text" class="form-control" #schoolName name="schoolName" [ngModel]="item.SchoolName" id="schoolName">
+      <input type="text" class="form-control" #schoolName name="schoolName" [ngModel]="item.SchoolName" id="schoolName"
+        required minlength="10">
     </div>
 
     <div class="form-group">
@@ -47,7 +143,7 @@
     </div>
 
 
-    <div class=" form-check mb-2 mr-sm-2 mb-sm-0">
+    <div class="form-check mb-2 mr-sm-2 mb-sm-0">
       <label class="form-check-label">
         <input class="form-check-input" type="checkbox" #stillStudying name="stillStudying"
           [ngModel]="item.StillStudying"> Im still studying
@@ -62,70 +158,8 @@
 
     <div class="header">
       <button class="btn btn-primary" (click)="submit(form, $event)">Save</button>
-      <button class="btn btn-primary" (click)="hide()">Cancel</button>
+      <button class="btn btn-primary" (click)="hide(form)">Cancel</button>
     </div>
 
   </div>
-</form>
-
-<!-- <div class="background">
-
-
-  <div class="content">
-    <div class="header">
-      <label for="schoolName">Add education line</label>
-      <button class="btn btn-primary" (click)="hide()">X</button>
-    </div>
-    <div class="form-group">
-      <label for="schoolName">School name</label>
-      <input type="text" class="form-control" [(ngModel)]="item.SchoolName" id="schoolName">
-    </div>
-
-    <div class="form-group">
-      <label for="courseOfStudy">Course of study</label>
-      <input type="text" class="form-control" [(ngModel)]="item.CourseOfStudy" id="courseOfStudy">
-    </div>
-
-    <div class="form-group">
-      <label for="degree">Degree</label>
-      <input type="text" class="form-control" [(ngModel)]="item.Deegree" id="degree">
-    </div>
-
-    <div class="form-group">
-      <label for="specialization">Specialization</label>
-      <input type="text" class="form-control" [(ngModel)]="item.Specialization" id="specialization">
-    </div>
-
-    <div class="form-group row">
-      <label for="example-datetime-local-input" class="col-2 col-form-label" for="startDate">From</label>
-      <div class="col-10">
-        <input class="form-control" [ngModel]="item.StartDate | date:'yyyy-MM-dd'" (ngModelChange)="startDate = $event"
-          type="date" name="startDate" />
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="example-datetime-local-input" class="col-2 col-form-label" for="endDate">To</label>
-      <div class="col-10">
-        <input class="form-control" [ngModel]="item.EndDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event"
-          type="date" name="endDate" />
-      </div>
-    </div>
-
-    <div class=" form-check mb-2 mr-sm-2 mb-sm-0">
-      <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" [(ngModel)]="item.StillStudying"> Im still studying
-      </label>
-    </div>
-
-    <div class="form-group">
-      <label for="exampleTextarea">Description</label>
-      <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="item.Desctiption"></textarea>
-    </div>
-
-    <div class="header">
-      <button class="btn btn-primary">Save</button>
-      <button class="btn btn-primary">Cancel</button>
-    </div>
-  </div>
-</div> -->
+</form> -->

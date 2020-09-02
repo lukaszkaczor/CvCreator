@@ -30,7 +30,13 @@ section {
 }
 
 .item-header {
-  font-size: 2rem;
+  display: flex;
+  /* border: 1px solid red; */
+  /* font-size: 2rem; */
+}
+
+.item-header button {
+  margin-left: 1rem;
 }
 
 
