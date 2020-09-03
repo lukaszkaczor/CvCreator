@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewChecked, AfterViewInit, Input } 
 import { ImageManager } from '../../Models/ImageManager';
 import { EducationFormComponent } from '../education-form/education-form.component';
 import { Education } from '../../Models/Education';
-import { DefaultEducation } from '../../Models/DefaultEducation';
+// import { DefaultEducation } from '../../Models/DefaultEducation';
 
 @Component({
   selector: 'app-input-form',
@@ -15,13 +15,13 @@ export class InputFormComponent implements OnInit {
   educationList: Education[] = [];
   value: number = 0;
 
-
   constructor() { }
 
 
   ngOnInit() {
 
-    this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "1", "inzy", "opsi", "spec", "It"));
+    // this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "12345", "inzy", "opsi", "spec", "It"));
+    this.educationList.push(new Education("school name", "degree", new Date(1, 1, 2005), new Date(1, 5, 2006), false, "course", "spec", "desc"));
     // this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "2", "inzy", "opsi", "spec", "It"));
     // this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "3", "inzy", "opsi", "spec", "It"));
     this.child.list = this.educationList;

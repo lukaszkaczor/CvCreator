@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Education } from '../../Models/Education';
 import { IEducation } from '../../Models/Interfaces/IEducation';
 import { Validators, FormBuilder } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -15,9 +16,13 @@ export class EducationFormComponent implements OnInit {
   public element: HTMLElement;
   public formIsInvalid = false;
   public index: number | null;
+  public startDateIsGreaterThanEndDate2 = false;
+
+  private _datePipe: DatePipe
+
   @Input() list: IEducation[];
 
-  constructor(builder: FormBuilder) {
+  constructor(builder: FormBuilder, datePipe: DatePipe) {
     this.educationForm = builder.group({
       schoolName: ['', [Validators.required, Validators.minLength(5)]],
       courseOfStudy: [''],
@@ -28,6 +33,8 @@ export class EducationFormComponent implements OnInit {
       stillStudying: [false],
       description: ['']
     });
+
+    this._datePipe = datePipe;
   }
 
   ngOnInit() {
@@ -36,17 +43,24 @@ export class EducationFormComponent implements OnInit {
 
   submit(event) {
     event.preventDefault();
-    console.log(this.educationForm)
+
+    if (this.startDateIsGreaterThanEndDate() ||
+      this.isFutureDate(this.startDate.value, this.endDate.value))
+      this.educationForm.status = "INVALID";
 
     if (this.educationForm.status === 'INVALID') {
       this.formIsInvalid = true;
       return 0;
     }
 
-    let endDate = this.stillStudying ? null : new Date(this.endDate.value);
+    console.log(this.endDate.value);
+    let endDate = this.stillStudying.value ? null : new Date(this.endDate.value);
 
-    let item = new Education(new Date(this.startDate.value), endDate, this.stillStudying.value, this.schoolName.value,
-      this.degree.value, this.description.value, this.specialization.value, this.courseOfStudy.value)
+    // let item = new Education(new Date(this.startDate.value), endDate, this.stillStudying.value, this.schoolName.value,
+    //   this.degree.value, this.description.value, this.specialization.value, this.courseOfStudy.value)
+
+    let item = new Education(this.schoolName.value, this.degree.value, new Date(this.startDate.value), endDate, this.stillStudying.value, this.courseOfStudy.value,
+      this.specialization.value, this.description.value)
 
     this.index == -1 ? this.list.push(item) : this.list[this.index] = item;
 
@@ -57,18 +71,24 @@ export class EducationFormComponent implements OnInit {
     this.stillStudying.value ? this.endDate.disable() : this.endDate.enable();
   }
 
-
   show() {
+    this.endDate.enable();
+
     this.element.style.display = "flex";
     if (this.index != -1) {
-      this.schoolName = this.list[this.index].SchoolName;
-      this.courseOfStudy = this.list[this.index].CourseOfStudy;
-      this.degree = this.list[this.index].Deegree;
-      this.specialization = this.list[this.index].Specialization;
-      this.startDate = this.list[this.index].StartDate;
-      this.endDate = this.list[this.index].EndDate;
-      this.stillStudying = this.list[this.index].StillStudying;
-      this.description = this.list[this.index].Desctiption;
+      this.schoolName = this.list[this.index].schoolName;
+      this.courseOfStudy = this.list[this.index].courseOfStudy;
+      this.degree = this.list[this.index].degree;
+      this.specialization = this.list[this.index].specialization;
+      this.startDate = this.transformDate(this.list[this.index].startDate);
+      this.endDate = this.transformDate(this.list[this.index].endDate);
+      this.stillStudying = this.list[this.index].stillStudying;
+      this.description = this.list[this.index].description;
+
+      console.log(this.stillStudying)
+
+      this.stillStudying.value ? this.endDate.disable() : this.endDate.enable();
+
     }
   }
 
@@ -79,6 +99,29 @@ export class EducationFormComponent implements OnInit {
     this.educationForm.reset();
   }
 
+
+  private transformDate(date: Date, format: string = 'yyyy-MM-dd') {
+    return this._datePipe.transform(date, format)
+  }
+
+  public startDateIsGreaterThanEndDate() {
+    if (this.startDate.value == null || this.endDate.value == null) return false;
+    return new Date(this.startDate.value) > new Date(this.endDate.value)
+  }
+
+  public isFutureDate(...dates: string[]): boolean {
+    const today = new Date();
+
+    for (let index in dates) {
+      if (today < new Date(dates[index])) return true;
+    }
+
+    return false;
+  }
+
+  // public futureDate(date: Date): boolean {
+  //   return new Date() < date;
+  // }
 
   get schoolName() {
     return this.educationForm.get('schoolName');

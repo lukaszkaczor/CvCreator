@@ -1,10 +1,10 @@
 export interface IEducation {
-    StartDate: Date;
-    EndDate: Date;
-    StillStudying: boolean;
-    SchoolName: string;
-    Deegree: string;
-    Desctiption: string;
-    Specialization: string;
-    CourseOfStudy: string;
+    startDate: Date;
+    endDate: Date;
+    stillStudying: boolean;
+    schoolName: string;
+    degree: string;
+    description: string;
+    specialization: string;
+    courseOfStudy: string;
 }

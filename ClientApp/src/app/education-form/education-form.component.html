@@ -16,80 +16,97 @@
 
 <form [formGroup]="educationForm" class="background" (ngSubmit)="submit($event)">
   <div class="content">
-    <div class="header">
-      <label for="schoolName">Add education line</label>
-      <button class="btn btn-primary" (click)="hide($event)">X</button>
-    </div>
-
-    <div class="form-group">
-      <label for="schoolName">School name</label>
-      <input type="text" class="form-control" name="schoolName" id="schoolName" formControlName="schoolName">
-      <div *ngIf="(schoolName.touched && schoolName.invalid) || (formIsInvalid && schoolName.invalid)">
-        <small *ngIf=" schoolName.errors.required" class="form-text warning">This field is required.</small>
-        <small *ngIf="schoolName.errors.minlength" class="form-text warning">This field has to be at
-          least {{ schoolName.errors.minlength.requiredLength }} characters long.</small>
+    <div class="form-content">
+      <div class="header">
+        <label for="schoolName">Add education line</label>
+        <button class="btn" (click)="hide($event)">
+          <svg width="1.8em" height="1.8em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="courseOfStudy">Course of study</label>
-      <input type="text" class="form-control" name="courseOfStudy" id="courseOfStudy" formControlName="courseOfStudy">
-    </div>
-
-    <div class="form-group">
-      <label for="degree">Degree</label>
-      <input type="text" class="form-control" name="degree" id="degree" formControlName="degree">
-      <div *ngIf="(degree.touched && degree.invalid) || (formIsInvalid && degree.invalid)">
-        <small *ngIf="degree.errors.required" class="form-text warning">This field is required.</small>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="specialization">Specialization</label>
-      <input type="text" class="form-control" name="specialization" id="specialization"
-        formControlName="specialization">
-    </div>
-
-
-    <div class="form-group row">
-      <label for="example-datetime-local-input" class="col-2 col-form-label" for="startDate">From</label>
-      <div class="col-10">
-        <input class="form-control" name="startDate" type="date" name="startDate" formControlName="startDate" />
-        <div *ngIf="(startDate.touched && startDate.invalid)  || (formIsInvalid && startDate.invalid)">
-          <small *ngIf="startDate.errors.required" class="form-text warning">This field is required.</small>
+      <div class="form-group">
+        <label for="schoolName">School name</label>
+        <input type="text" class="form-control" name="schoolName" id="schoolName"
+          [class.border-danger]="schoolName.invalid && schoolName.touched" formControlName="schoolName">
+        <div *ngIf="(schoolName.touched && schoolName.invalid) || (formIsInvalid && schoolName.invalid)">
+          <small *ngIf=" schoolName.errors.required" class="form-text warning">This field is required.</small>
+          <small *ngIf="schoolName.errors.minlength" class="form-text warning">This field has to be at
+            least {{ schoolName.errors.minlength.requiredLength }} characters long.</small>
         </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="example-datetime-local-input" class="col-2 col-form-label" for="endDate">To</label>
-      <div class="col-10">
-        <input class="form-control" name="endDate" type="date" name="endDate" formControlName="endDate" />
-        <div *ngIf="(endDate.touched && endDate.invalid) || (formIsInvalid && endDate.invalid)">
-          <small *ngIf="endDate.errors.required" class="form-text warning">This field is required.</small>
-        </div>
-
+      <div class="form-group">
+        <label for="courseOfStudy">Course of study</label>
+        <input type="text" class="form-control" name="courseOfStudy" id="courseOfStudy" formControlName="courseOfStudy">
       </div>
-    </div>
 
-    <div class="form-check mb-2 mr-sm-2 mb-sm-0">
-      <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" name="stillStudying" formControlName="stillStudying"
-          (change)="onCheckboxChange()"> Im still
-        studying
-      </label>
-    </div>
+      <div class="form-group">
+        <label for="degree">Degree</label>
+        <input type="text" class="form-control" name="degree" id="degree" formControlName="degree"
+          [class.border-danger]="degree.invalid && degree.touched">
+        <div *ngIf="(degree.touched && degree.invalid) || (formIsInvalid && degree.invalid)">
+          <small *ngIf="degree.errors.required" class="form-text warning">This field is required.</small>
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="exampleTextarea">Description</label>
-      <textarea class="form-control" id="exampleTextarea" rows="3" name="description"
-        formControlName="description"></textarea>
-    </div>
+      <div class="form-group">
+        <label for="specialization">Specialization</label>
+        <input type="text" class="form-control" name="specialization" id="specialization"
+          formControlName="specialization">
+      </div>
 
-    <div class="header">
-      <button class="btn btn-primary" type="submit">Save</button>
-      <!-- <button class="btn btn-primary" type="submit" (click)="submit(form, $event)">Save</button> -->
-      <button class="btn btn-primary" (click)="hide($event)">Cancel</button>
+
+      <div class="form-group">
+        <label for="startDate">From</label>
+        <div>
+          <input class="form-control" name="startDate" type="date" name="startDate" formControlName="startDate"
+            [class.border-danger]="(startDate.invalid && startDate.touched) || startDateIsGreaterThanEndDate()" />
+          <small *ngIf="isFutureDate(this.startDate.value)" class="form-text warning">It cant be a future date.</small>
+          <div *ngIf="(startDate.touched && startDate.invalid)  || (formIsInvalid && startDate.invalid)">
+            <small *ngIf="startDate.errors.required" class="form-text warning">This field is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="endDate">To</label>
+        <div>
+          <input class="form-control" name="endDate" type="date" name="endDate" formControlName="endDate"
+            [class.border-danger]="(endDate.invalid &&  startDate.touched ) || startDateIsGreaterThanEndDate()" />
+          <small *ngIf="startDateIsGreaterThanEndDate()" class="form-text warning">Start date cant be greater than end
+            date.</small>
+          <small *ngIf="isFutureDate(this.endDate.value)" class="form-text warning">It cant be a future date.</small>
+          <div *ngIf="(endDate.touched && endDate.invalid) || (formIsInvalid && endDate.invalid)">
+            <small *ngIf="endDate.errors.required" class="form-text warning">This field is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="stillStudying" formControlName="stillStudying"
+            (change)="onCheckboxChange()"> Im still
+          studying
+        </label>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <label for="exampleTextarea">Description</label>
+        <textarea class="form-control" id="exampleTextarea" rows="3" name="description"
+          formControlName="description"></textarea>
+      </div>
+
+      <div class="header">
+        <button class="btn btn-success" type="submit">Save</button>
+        <!-- <button class="btn btn-primary" type="submit" (click)="submit(form, $event)">Save</button> -->
+        <button class="btn btn-secondary" (click)="hide($event)">Cancel</button>
+      </div>
     </div>
   </div>
 </form>
