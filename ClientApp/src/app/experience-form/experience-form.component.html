@@ -1,0 +1,119 @@
+<h2>Work experience <button class="btn btn-primary" (click)="add()">Add</button></h2>
+
+<div class="item-content" *ngFor="let item of experienceList; let i = index">
+  <div class="btn-container">
+    <button class="btn" (click)="edit(i)">
+
+      <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+        <path fill-rule="evenodd"
+          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+      </svg>
+
+    </button>
+    <button class="btn" (click)="delete(i)">
+      <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+        <path fill-rule="evenodd"
+          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+      </svg>
+    </button>
+  </div>
+  <h5>Okres: {{item.startDate | date}} - {{(item.stillWorking) ? "teraz" : item.endDate | date}}</h5>
+  <h5>Stanowisko: {{ item.workplace }}</h5>
+  <h5>Firma: {{ item.business}} </h5>
+  <h5>Lokalizacja: {{ item.localization }}</h5>
+  <h5>Opis: {{ item.description}}</h5>
+</div>
+
+
+<form id="experienceForm" class="background" [formGroup]="experienceForm" (ngSubmit)="onSubmit($event)">
+
+  <div class="content">
+    <div class="form-content">
+      <div class="header">
+        <label>Add experience</label>
+        <button class="btn" (click)="hide($event)">
+          <svg width="1.8em" height="1.8em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label for="workplace">Workplace *</label>
+        <input type="text" class="form-control" name="workplace" id="workplace" formControlName="workplace"
+          [class.border-danger]="workplace.invalid && workplace.touched">
+        <div *ngIf="(workplace.touched && workplace.invalid)  || (formIsInvalid && workplace.invalid)">
+          <small *ngIf="startDate.errors.required" class="form-text warning">This field is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="business">Business</label>
+        <input type="text" class="form-control" name="business" id="business" formControlName="business">
+      </div>
+
+      <div class="form-group">
+        <label for="localization">Localization</label>
+        <input type="text" class="form-control" name="localization" id="localization" formControlName="localization">
+      </div>
+
+
+      <div class="form-group">
+        <label for="startDate">Start date *</label>
+        <div>
+          <input class="form-control" name="startDate" type="date" name="startDate" formControlName="startDate"
+            [class.border-danger]="startDate.invalid && startDate.touched" />
+          <small *ngIf="dateManager.isFutureDate(this.startDate.value)" class="form-text warning">It cant be a future
+            date.</small>
+          <div *ngIf="(startDate.touched && startDate.invalid)  || (formIsInvalid && startDate.invalid)">
+            <small *ngIf="startDate.errors.required" class="form-text warning">This field is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="endDate">End date *</label>
+        <div>
+          <input class="form-control" name="endDate" type="date" name="endDate" formControlName="endDate"
+            [class.border-danger]="endDate.invalid && endDate.touched" />
+          <small *ngIf="dateManager.startDateIsGreaterThanEndDate(this.startDate.value, this.endDate.value)"
+            class="form-text warning">Start date cant be greater than end
+            date.</small>
+          <small *ngIf="dateManager.isFutureDate(this.endDate.value)" class="form-text warning">It cant be a future
+            date.</small>
+          <div *ngIf="(endDate.touched && endDate.invalid) || (formIsInvalid && endDate.invalid)">
+            <small *ngIf="endDate.errors.required" class="form-text warning">This field is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="stillWorking" formControlName="stillWorking"> Im still
+          working
+        </label>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <label for="exampleTextarea">Description</label>
+        <textarea class="form-control" id="exampleTextarea" rows="3" name="description"
+          formControlName="description"></textarea>
+      </div>
+
+      <div class="header">
+        <button class="btn btn-success" type="submit">Save</button>
+        <button class="btn btn-secondary" (click)="hide($event)">Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>

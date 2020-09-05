@@ -1,0 +1,46 @@
+.background {
+  /* display: flex; */
+  display: none;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  /* border: 5px solid red; */
+
+  background: rgba(0, 0, 0, .5);
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.content {
+  /* display: flex; */
+  width: 25%;
+  height: 90%;
+  /* max-height: 90%; */
+  overflow: hidden;
+  margin: 0 auto;
+  border: 2px solid #252525;
+  border-radius: 1rem;
+
+  background: whitesmoke;
+}
+
+.form-content {
+  /* border: 1px solid red; */
+  padding: 1rem;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.warning {
+  color: crimson;
+}

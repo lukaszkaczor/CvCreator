@@ -16,6 +16,8 @@ import { InputFormComponent } from './input-form/input-form.component';
 import { EducationFormComponent } from './education-form/education-form.component';
 import { DatePipe } from '@angular/common';
 import { LanguagesFormComponent } from './languages-form/languages-form.component';
+import { ExperienceFormComponent } from './experience-form/experience-form.component';
+import { DateManager } from '../Models/DateManager';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { LanguagesFormComponent } from './languages-form/languages-form.componen
     FetchDataComponent,
     InputFormComponent,
     EducationFormComponent,
-    LanguagesFormComponent
+    LanguagesFormComponent,
+    ExperienceFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,7 +46,8 @@ import { LanguagesFormComponent } from './languages-form/languages-form.componen
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
-    DatePipe
+    DatePipe,
+    DateManager
   ],
   bootstrap: [AppComponent]
 })
