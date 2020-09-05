@@ -119,6 +119,10 @@ export class EducationFormComponent implements OnInit {
     return false;
   }
 
+  public getDegreeList(): string[] {
+    return ['podstawowe', 'zawodowe', 'średnie', 'licencjat', 'inżynier', 'magister', 'magister inżynier',
+      'lekarz medycyny', 'studia podyplomowe', 'dokotrat', 'doktor hab.', 'profesor'];
+  }
   // public futureDate(date: Date): boolean {
   //   return new Date() < date;
   // }

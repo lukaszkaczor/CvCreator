@@ -11,7 +11,7 @@ import { Education } from '../../Models/Education';
 })
 export class InputFormComponent implements OnInit {
 
-  @ViewChild(EducationFormComponent, null) child: EducationFormComponent;
+  @ViewChild(EducationFormComponent, null) educationForm: EducationFormComponent;
   educationList: Education[] = [];
   value: number = 0;
 
@@ -21,10 +21,10 @@ export class InputFormComponent implements OnInit {
   ngOnInit() {
 
     // this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "12345", "inzy", "opsi", "spec", "It"));
-    this.educationList.push(new Education("school name", "degree", new Date(1, 1, 2005), new Date(1, 5, 2006), false, "course", "spec", "desc"));
+    this.educationList.push(new Education("school name", "średnie", new Date(1, 1, 2005), new Date(1, 5, 2006), false, "course", "spec", "desc"));
     // this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "2", "inzy", "opsi", "spec", "It"));
     // this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "3", "inzy", "opsi", "spec", "It"));
-    this.child.list = this.educationList;
+    this.educationForm.list = this.educationList;
 
   }
 
@@ -54,14 +54,14 @@ export class InputFormComponent implements OnInit {
 
   edit(index) {
     // this.child.item = this.educationList[index];
-    this.child.index = index;
-    this.child.show();
+    this.educationForm.index = index;
+    this.educationForm.show();
   }
 
-  add() {
+  addEducation() {
     // this.child.item = new DefaultEducation();
-    this.child.index = -1;
-    this.child.show();
+    this.educationForm.index = -1;
+    this.educationForm.show();
   }
 
 

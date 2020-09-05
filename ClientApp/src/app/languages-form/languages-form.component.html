@@ -1,0 +1,35 @@
+<div class="item-header">
+  <h2>Languages</h2>
+</div>
+<div class="item-content">
+  <h5 *ngFor="let item of languagesList; let i = index">{{item.language}} - {{item.level}}
+    <button class="btn btn-danger" (click)="delete(i)">X</button></h5>
+
+  <form [formGroup]="languagesForm" (ngSubmit)="submit()">
+    <div class="form-group row">
+      <div>
+        <label for="language">Language *</label>
+        <input type="text" class="form-control" name="language" id="language" formControlName="language"
+          [class.border-danger]="language.invalid && language.touched">
+        <div *ngIf="(language.touched && language.invalid)  || (formIsInvalid && language.invalid)">
+          <small *ngIf="language.errors.required" class="form-text warning">This field is required.</small>
+        </div>
+      </div>
+
+      <div>
+        <label for="languageLevel">Level *</label>
+        <select class="form-control" id="languageLevel" name="languageLevel" formControlName="languageLevel"
+          [class.border-danger]="languageLevel.invalid && languageLevel.touched">
+          <option *ngFor="let item of getLanguageLevels()" value="{{item}}">{{item}}</option>
+        </select>
+
+        <div *ngIf="(languageLevel.touched && languageLevel.invalid) || (formIsInvalid && languageLevel.invalid)">
+          <small *ngIf="languageLevel.errors.required" class="form-text warning">This field is required.</small>
+        </div>
+      </div>
+      <h6 *ngIf="languageIsInTheList()" class="warning">This language is already on the list</h6>
+    </div>
+    <button class="btn btn-success">+ Add new language</button>
+  </form>
+
+</div>

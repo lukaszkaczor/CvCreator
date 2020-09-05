@@ -15,6 +15,7 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { InputFormComponent } from './input-form/input-form.component';
 import { EducationFormComponent } from './education-form/education-form.component';
 import { DatePipe } from '@angular/common';
+import { LanguagesFormComponent } from './languages-form/languages-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DatePipe } from '@angular/common';
     CounterComponent,
     FetchDataComponent,
     InputFormComponent,
-    EducationFormComponent
+    EducationFormComponent,
+    LanguagesFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

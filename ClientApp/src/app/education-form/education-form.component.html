@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-group">
-        <label for="schoolName">School name</label>
+        <label for="schoolName">School name *</label>
         <input type="text" class="form-control" name="schoolName" id="schoolName"
           [class.border-danger]="schoolName.invalid && schoolName.touched" formControlName="schoolName">
         <div *ngIf="(schoolName.touched && schoolName.invalid) || (formIsInvalid && schoolName.invalid)">
@@ -45,9 +45,14 @@
       </div>
 
       <div class="form-group">
-        <label for="degree">Degree</label>
-        <input type="text" class="form-control" name="degree" id="degree" formControlName="degree"
-          [class.border-danger]="degree.invalid && degree.touched">
+        <label for="degree">Degree *</label>
+        <!-- <input type="text" class="form-control" name="degree" id="degree" formControlName="degree"
+          [class.border-danger]="degree.invalid && degree.touched"> -->
+
+        <select class="form-control" id="degree" name="degree" formControlName="degree">
+          <option *ngFor="let item of getDegreeList()" value="{{item}}">{{item}}</option>
+        </select>
+
         <div *ngIf="(degree.touched && degree.invalid) || (formIsInvalid && degree.invalid)">
           <small *ngIf="degree.errors.required" class="form-text warning">This field is required.</small>
         </div>
@@ -61,7 +66,7 @@
 
 
       <div class="form-group">
-        <label for="startDate">From</label>
+        <label for="startDate">Start date *</label>
         <div>
           <input class="form-control" name="startDate" type="date" name="startDate" formControlName="startDate"
             [class.border-danger]="(startDate.invalid && startDate.touched) || startDateIsGreaterThanEndDate()" />
@@ -73,7 +78,7 @@
       </div>
 
       <div class="form-group">
-        <label for="endDate">To</label>
+        <label for="endDate">End date *</label>
         <div>
           <input class="form-control" name="endDate" type="date" name="endDate" formControlName="endDate"
             [class.border-danger]="(endDate.invalid &&  startDate.touched ) || startDateIsGreaterThanEndDate()" />
