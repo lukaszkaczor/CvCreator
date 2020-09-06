@@ -88,6 +88,7 @@
 .button-cancel {
   width: 100%;
   padding: .5rem 1rem;
+  transition: .4s ease;
 }
 
 .button-save {
@@ -96,7 +97,22 @@
   color: green;
 }
 
+.button-save:hover {
+  background: green;
+  color: whitesmoke;
+}
+
 .button-cancel {
   border: 2px solid orange;
   color: orange;
+}
+
+.button-save:hover {
+  background: green;
+  color: whitesmoke;
+}
+
+.button-cancel:hover {
+  background: orange;
+  color: whitesmoke;
 }
