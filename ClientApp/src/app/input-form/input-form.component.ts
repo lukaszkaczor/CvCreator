@@ -3,6 +3,7 @@ import { ImageManager } from '../../Models/ImageManager';
 import { EducationFormComponent } from '../education-form/education-form.component';
 import { Education } from '../../Models/Education';
 // import { DefaultEducation } from '../../Models/DefaultEducation';
+import { ExperienceFormComponent } from '../experience-form/experience-form.component';
 
 @Component({
   selector: 'app-input-form',
@@ -12,6 +13,7 @@ import { Education } from '../../Models/Education';
 export class InputFormComponent implements OnInit {
 
   @ViewChild(EducationFormComponent, null) educationForm: EducationFormComponent;
+  @ViewChild(ExperienceFormComponent, null) experienceForm: ExperienceFormComponent;
   educationList: Education[] = [];
   value: number = 0;
 
@@ -24,7 +26,7 @@ export class InputFormComponent implements OnInit {
     this.educationList.push(new Education("school name", "średnie", new Date(1, 1, 2005), new Date(1, 5, 2006), false, "course", "spec", "desc"));
     // this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "2", "inzy", "opsi", "spec", "It"));
     // this.educationList.push(new Education(new Date(1992, 1, 1), new Date(1995, 1, 1), false, "3", "inzy", "opsi", "spec", "It"));
-    this.educationForm.list = this.educationList;
+    // this.educationForm.list = this.educationList;
 
   }
 
@@ -36,6 +38,9 @@ export class InputFormComponent implements OnInit {
     form.style.transform = `translate(-${this.value}vw)`;
   }
 
+  addExperience() {
+    this.experienceForm.add();
+  }
 
   async readFile() {
     const preview = <HTMLImageElement>document.querySelector('#imgPreview');

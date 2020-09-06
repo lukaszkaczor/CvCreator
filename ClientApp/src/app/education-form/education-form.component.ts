@@ -1,29 +1,30 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Education } from '../../Models/Education';
 import { IEducation } from '../../Models/Interfaces/IEducation';
-import { Validators, FormBuilder } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { FixedForm } from '../../Models/FixedForm';
+import { DateManager } from '../../Models/DateManager';
 
 
 
 @Component({
-  selector: 'app-education-form',
+  selector: 'education-form',
   templateUrl: './education-form.component.html',
   styleUrls: ['./education-form.component.css']
 })
-export class EducationFormComponent implements OnInit {
-  public educationForm;
-  public element: HTMLElement;
-  public formIsInvalid = false;
-  public index: number | null;
-  public startDateIsGreaterThanEndDate2 = false;
+export class EducationFormComponent extends FixedForm implements OnInit {
 
-  private _datePipe: DatePipe
+
+  public dateManager: DateManager;
 
   @Input() list: IEducation[];
 
-  constructor(builder: FormBuilder, datePipe: DatePipe) {
-    this.educationForm = builder.group({
+  constructor(builder: FormBuilder) {
+    super();
+
+    this.dateManager = new DateManager();
+
+    this.form = builder.group({
       schoolName: ['', [Validators.required, Validators.minLength(5)]],
       courseOfStudy: [''],
       degree: ['', Validators.required],
@@ -33,151 +34,112 @@ export class EducationFormComponent implements OnInit {
       stillStudying: [false],
       description: ['']
     });
-
-    this._datePipe = datePipe;
   }
 
   ngOnInit() {
-    this.element = <HTMLElement>document.querySelector(".background");
-  }
+    this.element = <HTMLElement>document.querySelector("#educationForm");
 
-  submit(event) {
-    event.preventDefault();
-
-    if (this.startDateIsGreaterThanEndDate() ||
-      this.isFutureDate(this.startDate.value, this.endDate.value))
-      this.educationForm.status = "INVALID";
-
-    if (this.educationForm.status === 'INVALID') {
-      this.formIsInvalid = true;
-      return 0;
-    }
-
-    console.log(this.endDate.value);
-    let endDate = this.stillStudying.value ? null : new Date(this.endDate.value);
-
-    // let item = new Education(new Date(this.startDate.value), endDate, this.stillStudying.value, this.schoolName.value,
-    //   this.degree.value, this.description.value, this.specialization.value, this.courseOfStudy.value)
-
-    let item = new Education(this.schoolName.value, this.degree.value, new Date(this.startDate.value), endDate, this.stillStudying.value, this.courseOfStudy.value,
-      this.specialization.value, this.description.value)
-
-    this.index == -1 ? this.list.push(item) : this.list[this.index] = item;
-
-    this.hide(event);
+    this.objectList.push(new Education('name', 'deg', new Date(), new Date()))
   }
 
   onCheckboxChange() {
     this.stillStudying.value ? this.endDate.disable() : this.endDate.enable();
+    console.log(this.stillStudying.value)
   }
 
-  show() {
+  onSubmit(event) {
+
+    if (this.dateManager.isFutureDate(this.startDate.value, this.endDate.value) ||
+      this.dateManager.startDateIsGreaterThanEndDate(this.startDate.value, this.endDate.value)) {
+      this.form.setErrors({ 'invalid': true })
+      return 0;
+    }
+
+    let item = new Education(this.schoolName.value, this.degree.value, this.startDate.value, this.endDate.value,
+      this.stillStudying.value, this.courseOfStudy.value, this.specialization.value, this.description.value)
+
+    super.onSubmit(event, item);
+  }
+
+  add() {
     this.endDate.enable();
-
-    this.element.style.display = "flex";
-    if (this.index != -1) {
-      this.schoolName = this.list[this.index].schoolName;
-      this.courseOfStudy = this.list[this.index].courseOfStudy;
-      this.degree = this.list[this.index].degree;
-      this.specialization = this.list[this.index].specialization;
-      this.startDate = this.transformDate(this.list[this.index].startDate);
-      this.endDate = this.transformDate(this.list[this.index].endDate);
-      this.stillStudying = this.list[this.index].stillStudying;
-      this.description = this.list[this.index].description;
-
-      console.log(this.stillStudying)
-
-      this.stillStudying.value ? this.endDate.disable() : this.endDate.enable();
-
-    }
+    super.add();
   }
 
-  hide(event) {
-    event.preventDefault();
-    this.element.style.display = "none";
-    this.formIsInvalid = false;
-    this.educationForm.reset();
+  public edit(index: any) {
+    this.index = index;
+
+    this.schoolName = this.objectList[index].schoolName as AbstractControl;
+    this.degree = this.objectList[index].degree as AbstractControl;
+    this.courseOfStudy = this.objectList[index].courseOfStudy as AbstractControl;
+    this.specialization = this.objectList[index].specialization as AbstractControl;
+    this.startDate = this.dateManager.transformDate(this.objectList[index].startDate) as unknown as AbstractControl;
+    this.endDate = this.dateManager.transformDate(this.objectList[index].endDate) as unknown as AbstractControl;
+    this.stillStudying = this.objectList[index].stillStudying as AbstractControl;
+    this.description = this.objectList[index].description as AbstractControl;
+
+    this.stillStudying.value ? this.endDate.disable() : this.endDate.enable();
+    this.show();
   }
 
-
-  private transformDate(date: Date, format: string = 'yyyy-MM-dd') {
-    return this._datePipe.transform(date, format)
-  }
-
-  public startDateIsGreaterThanEndDate() {
-    if (this.startDate.value == null || this.endDate.value == null) return false;
-    return new Date(this.startDate.value) > new Date(this.endDate.value)
-  }
-
-  public isFutureDate(...dates: string[]): boolean {
-    const today = new Date();
-
-    for (let index in dates) {
-      if (today < new Date(dates[index])) return true;
-    }
-
-    return false;
-  }
 
   public getDegreeList(): string[] {
     return ['podstawowe', 'zawodowe', 'średnie', 'licencjat', 'inżynier', 'magister', 'magister inżynier',
       'lekarz medycyny', 'studia podyplomowe', 'dokotrat', 'doktor hab.', 'profesor'];
   }
-  // public futureDate(date: Date): boolean {
-  //   return new Date() < date;
-  // }
+
 
   get schoolName() {
-    return this.educationForm.get('schoolName');
+    return this.form.get('schoolName');
   }
   set schoolName(val) {
     this.schoolName.setValue(val)
   }
 
   get courseOfStudy() {
-    return this.educationForm.get('courseOfStudy');
+    return this.form.get('courseOfStudy');
   }
   set courseOfStudy(val) {
     this.courseOfStudy.setValue(val)
   }
 
   get degree() {
-    return this.educationForm.get('degree');
+    return this.form.get('degree');
   }
   set degree(val) {
     this.degree.setValue(val)
   }
 
   get specialization() {
-    return this.educationForm.get('specialization');
+    return this.form.get('specialization');
   }
   set specialization(val) {
     this.specialization.setValue(val)
   }
 
   get startDate() {
-    return this.educationForm.get('startDate');
+    return this.form.get('startDate');
   }
   set startDate(val) {
     this.startDate.setValue(val)
   }
 
   get endDate() {
-    return this.educationForm.get('endDate');
+    return this.form.get('endDate');
   }
   set endDate(val) {
     this.endDate.setValue(val)
   }
 
   get stillStudying() {
-    return this.educationForm.get('stillStudying');
+    return this.form.get('stillStudying');
   }
   set stillStudying(val) {
     this.stillStudying.setValue(val)
   }
 
   get description() {
-    return this.educationForm.get('description');
+    return this.form.get('description');
   }
   set description(val) {
     this.description.setValue(val)

@@ -1,38 +1,27 @@
-/* modal */
-
 .background {
   /* display: flex; */
   display: none;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  /* border: 5px solid red; */
-
-  background: rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, .2);
   position: fixed;
   left: 0;
   top: 0;
 }
 
 .content {
-  /* display: flex; */
-  width: 25%;
-  height: 90%;
-  /* max-height: 90%; */
-  overflow: hidden;
+  width: 25rem;
+  max-height: 90%;
+  overflow: auto;
   margin: 0 auto;
   border: 2px solid #252525;
-  border-radius: 1rem;
 
   background: whitesmoke;
 }
 
 .form-content {
-  /* border: 1px solid red; */
   padding: 1rem;
-
-  overflow-y: auto;
-  overflow-x: hidden;
   height: 100%;
   width: 100%;
 }
@@ -45,4 +34,69 @@
 
 .warning {
   color: crimson;
+}
+
+.mainHeader {
+  font-size: 24px;
+  border-bottom: 2px solid #262626;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item {
+  width: 75%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, .3);
+}
+
+.item-info {
+  font-size: 14px;
+}
+
+.button {
+  border: none;
+  margin-left: .5rem;
+  background: none;
+}
+
+.button-add {
+  margin-bottom: 1rem;
+  border: 2px solid #262626;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  transition: .4s ease;
+}
+
+.button-add:hover {
+  color: whitesmoke;
+  background: #262626;
+}
+
+.button-save,
+.button-cancel {
+  width: 100%;
+  padding: .5rem 1rem;
+}
+
+.button-save {
+  border: 2px solid green;
+  margin: 0;
+  color: green;
+}
+
+.button-cancel {
+  border: 2px solid orange;
+  color: orange;
 }

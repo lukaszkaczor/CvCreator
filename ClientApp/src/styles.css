@@ -24,3 +24,7 @@ code {
   animation: none !important;
   transition: none !important;
 }
+
+body {
+  position: relative;
+}

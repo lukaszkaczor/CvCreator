@@ -1,13 +1,33 @@
-.form-content {
+#mainForm {
+  border: 1px solid red;
+  width: 300vw;
+  position: absolute;
+  left: 0;
+
+  height: 500px;
+  transform: translate(0);
+}
+
+section {
+  width: 100vw;
+  border: 1px solid blue;
+}
+
+.container {
+  border: 1px solid green;
+}
+
+
+
+/* .form-content {
   border: 2px solid green;
   position: absolute;
   left: 0;
   width: 100%;
-  /* min-height: 50vh; */
   overflow: hidden;
 }
 
-form {
+#mainForm {
   display: flex;
   transition: 1s ease-in-out;
 
@@ -31,8 +51,6 @@ section {
 
 .item-header {
   display: flex;
-  /* border: 1px solid red; */
-  /* font-size: 2rem; */
 }
 
 .item-header button {
@@ -43,3 +61,7 @@ section {
 .item-content h5 {
   font-size: 15px;
 }
+
+.item-group {
+  position: relative;
+} */

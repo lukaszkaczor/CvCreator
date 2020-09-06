@@ -1,42 +1,55 @@
-<h2>Work experience <button class="btn btn-primary" (click)="add()">Add</button></h2>
+<h2 class="mainHeader">Doświadczenie zawodowe</h2>
 
-<div class="item-content" *ngFor="let item of experienceList; let i = index">
-  <div class="btn-container">
-    <button class="btn" (click)="edit(i)">
+<div class="item-list">
+  <div class="item" *ngFor="let item of objectList; let i = index">
+    <div class="item-header">
+      <button class="button" (click)="edit(i)">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+          <path fill-rule="evenodd"
+            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+        </svg>
+      </button>
+      <button class="button" (click)="remove(i)">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+          <path fill-rule="evenodd"
+            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+        </svg>
+      </button>
+    </div>
 
-      <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-        <path fill-rule="evenodd"
-          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-      </svg>
 
-    </button>
-    <button class="btn" (click)="delete(i)">
-      <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-        <path fill-rule="evenodd"
-          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-      </svg>
-    </button>
+    <h5 class="item-info">Okres: {{item.startDate | date}} - {{(item.stillWorking) ? "teraz" : item.endDate | date}}
+    </h5>
+    <h5 class="item-info">Stanowisko: {{ item.workplace }}</h5>
+    <h5 class="item-info">Firma: {{item.business}}</h5>
+    <h5 class="item-info">Lokalizacja: {{item.localization}}</h5>
+    <h5 class="item-info">Opis: {{item.description}}</h5>
   </div>
-  <h5>Okres: {{item.startDate | date}} - {{(item.stillWorking) ? "teraz" : item.endDate | date}}</h5>
-  <h5>Stanowisko: {{ item.workplace }}</h5>
-  <h5>Firma: {{ item.business}} </h5>
-  <h5>Lokalizacja: {{ item.localization }}</h5>
-  <h5>Opis: {{ item.description}}</h5>
+
+  <button class="button button-add" (click)="add()"><svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16"
+      class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd"
+        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+    </svg>
+    Dodaj pozycję
+  </button>
 </div>
 
 
-<form id="experienceForm" class="background" [formGroup]="experienceForm" (ngSubmit)="onSubmit($event)">
+
+
+<form id="experienceForm" class="background" [formGroup]="form" (ngSubmit)="onSubmit($event)">
 
   <div class="content">
     <div class="form-content">
       <div class="header">
-        <label>Add experience</label>
+        <h5>Doświadczenie zawodowe</h5>
         <button class="btn" (click)="hide($event)">
           <svg width="1.8em" height="1.8em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
@@ -47,72 +60,77 @@
       </div>
 
       <div class="form-group">
-        <label for="workplace">Workplace *</label>
+        <label for="workplace">Stanowisko *</label>
         <input type="text" class="form-control" name="workplace" id="workplace" formControlName="workplace"
-          [class.border-danger]="workplace.invalid && workplace.touched">
-        <div *ngIf="(workplace.touched && workplace.invalid)  || (formIsInvalid && workplace.invalid)">
-          <small *ngIf="startDate.errors.required" class="form-text warning">This field is required.</small>
+          [class.border-danger]="workplace.touched && workplace.invalid">
+        <div *ngIf="(workplace.touched && workplace.invalid)  || (formSubmitted && workplace.invalid)">
+          <small *ngIf="workplace.errors.required" class="form-text warning">To pole jest wymagane.</small>
+          <small *ngIf="workplace.errors.minlength" class="form-text warning">Nazwa stanowiska musi zawierać
+            przynajmniej
+            {{ workplace.errors.minlength.requiredLength}}
+            znaków.</small>
         </div>
       </div>
 
+
       <div class="form-group">
-        <label for="business">Business</label>
+        <label for="business">Firma</label>
         <input type="text" class="form-control" name="business" id="business" formControlName="business">
       </div>
 
       <div class="form-group">
-        <label for="localization">Localization</label>
+        <label for="localization">Lokalizacja</label>
         <input type="text" class="form-control" name="localization" id="localization" formControlName="localization">
       </div>
 
 
       <div class="form-group">
-        <label for="startDate">Start date *</label>
+        <label for="startDate">Data rozpoczęcia *</label>
         <div>
           <input class="form-control" name="startDate" type="date" name="startDate" formControlName="startDate"
             [class.border-danger]="startDate.invalid && startDate.touched" />
-          <small *ngIf="dateManager.isFutureDate(this.startDate.value)" class="form-text warning">It cant be a future
-            date.</small>
-          <div *ngIf="(startDate.touched && startDate.invalid)  || (formIsInvalid && startDate.invalid)">
-            <small *ngIf="startDate.errors.required" class="form-text warning">This field is required.</small>
+          <small *ngIf="dateManager.isFutureDate(this.startDate.value)" class="form-text warning">Data rozpoczęcia nie
+            może być z przyszłości.</small>
+          <div *ngIf="(startDate.touched && startDate.invalid)  || (formSubmitted && startDate.invalid)">
+            <small *ngIf="startDate.errors.required" class="form-text warning">To pole jest wymagane.</small>
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="endDate">End date *</label>
+        <label for="endDate">Data zakończenia *</label>
         <div>
-          <input class="form-control" name="endDate" type="date" name="endDate" formControlName="endDate"
+          <input class="form-control" name="endDate" type="date" formControlName="endDate"
             [class.border-danger]="endDate.invalid && endDate.touched" />
           <small *ngIf="dateManager.startDateIsGreaterThanEndDate(this.startDate.value, this.endDate.value)"
-            class="form-text warning">Start date cant be greater than end
-            date.</small>
-          <small *ngIf="dateManager.isFutureDate(this.endDate.value)" class="form-text warning">It cant be a future
-            date.</small>
-          <div *ngIf="(endDate.touched && endDate.invalid) || (formIsInvalid && endDate.invalid)">
-            <small *ngIf="endDate.errors.required" class="form-text warning">This field is required.</small>
+            class="form-text warning">Data rozpoczęcia nie może być "większa" niż data zakończenia.</small>
+          <small *ngIf="dateManager.isFutureDate(this.endDate.value)" class="form-text warning">Data zakończenia nie
+            może być z przyszłości.</small>
+          <div *ngIf="(endDate.touched && endDate.invalid) || (formSubmitted && endDate.invalid)">
+            <small *ngIf="endDate.errors.required" class="form-text warning">To pole jest wymagane.</small>
           </div>
         </div>
       </div>
 
       <div class="form-check mb-2 mr-sm-2 mb-sm-0">
         <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" name="stillWorking" formControlName="stillWorking"> Im still
-          working
+          <input class="form-check-input" type="checkbox" id="stillWorking" name="stillWorking"
+            formControlName="stillWorking" (change)="onCheckboxChange()">Nadal
+          pracuję
         </label>
       </div>
 
       <hr>
 
       <div class="form-group">
-        <label for="exampleTextarea">Description</label>
+        <label for="exampleTextarea">Opis</label>
         <textarea class="form-control" id="exampleTextarea" rows="3" name="description"
           formControlName="description"></textarea>
       </div>
 
       <div class="header">
-        <button class="btn btn-success" type="submit">Save</button>
-        <button class="btn btn-secondary" (click)="hide($event)">Cancel</button>
+        <button class="button button-save" type="submit">Zapisz</button>
+        <button class="button button-cancel" (click)="hide($event)">Anuluj</button>
       </div>
     </div>
   </div>

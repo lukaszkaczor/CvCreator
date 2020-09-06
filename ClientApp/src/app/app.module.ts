@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -18,6 +18,9 @@ import { DatePipe } from '@angular/common';
 import { LanguagesFormComponent } from './languages-form/languages-form.component';
 import { ExperienceFormComponent } from './experience-form/experience-form.component';
 import { DateManager } from '../Models/DateManager';
+import { DataService } from './input-form/data.service';
+import { ExperienceListComponent } from './experience-list/experience-list.component';
+import { ExperienceComponent } from './Components/experience/experience.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { DateManager } from '../Models/DateManager';
     InputFormComponent,
     EducationFormComponent,
     LanguagesFormComponent,
-    ExperienceFormComponent
+    ExperienceFormComponent,
+    ExperienceListComponent,
+    ExperienceComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,6 +45,7 @@ import { DateManager } from '../Models/DateManager';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'create', component: InputFormComponent },
+      { path: 'experience', component: ExperienceComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
@@ -47,7 +53,8 @@ import { DateManager } from '../Models/DateManager';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
     DatePipe,
-    DateManager
+    DateManager,
+    DataService
   ],
   bootstrap: [AppComponent]
 })
