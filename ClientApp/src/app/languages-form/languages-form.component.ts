@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Language } from '../../Models/Language';
+import { StorageHelper } from '../../Models/StorageHelper';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'languages-form',
@@ -13,14 +15,19 @@ export class LanguagesFormComponent implements OnInit {
   public formIsInvalid;
   public languagesList: Language[] = [];
 
+  private _storage: StorageHelper;
+
   constructor(builder: FormBuilder) {
     this.languagesForm = builder.group({
       language: ['', Validators.required],
       languageLevel: ['', Validators.required]
     })
+
+    this._storage = new StorageHelper('languageList')
   }
 
   ngOnInit() {
+    this.languagesList = this._storage.get()
   }
 
   submit() {
@@ -35,10 +42,13 @@ export class LanguagesFormComponent implements OnInit {
       this.languagesList.push(new Language(this.language.value, this.languageLevel.value));
       this.languagesForm.reset();
     }
+
+    this._storage.set(this.languagesList)
   }
 
   delete(index) {
     this.languagesList.splice(index, 1);
+    this._storage.set(this.languagesList)
   }
 
   public languageIsInTheList() {

@@ -4,6 +4,7 @@ import { IEducation } from '../../Models/Interfaces/IEducation';
 import { Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { FixedForm } from '../../Models/FixedForm';
 import { DateManager } from '../../Models/DateManager';
+import { StorageHelper } from '../../Models/StorageHelper';
 
 
 
@@ -13,16 +14,21 @@ import { DateManager } from '../../Models/DateManager';
   styleUrls: ['./education-form.component.css']
 })
 export class EducationFormComponent extends FixedForm implements OnInit {
+  // public objectList: Education[];
+  // list: Education[];
 
 
   public dateManager: DateManager;
+  // private _storage: StorageHelper;
 
-  @Input() list: IEducation[];
+
+  // @Input() list: IEducation[];
 
   constructor(builder: FormBuilder) {
-    super();
+    super(new StorageHelper('educationList'));
 
     this.dateManager = new DateManager();
+    // this._storage = new StorageHelper('educationList');
 
     this.form = builder.group({
       schoolName: ['', [Validators.required, Validators.minLength(5)]],
@@ -38,8 +44,8 @@ export class EducationFormComponent extends FixedForm implements OnInit {
 
   ngOnInit() {
     this.element = <HTMLElement>document.querySelector("#educationForm");
-
-    this.objectList.push(new Education('name', 'deg', new Date(), new Date()))
+    // this.objectList.push(new Education('name', 'deg', new Date(), new Date()))
+    // console.log(this._storage.get());
   }
 
   onCheckboxChange() {
@@ -58,7 +64,10 @@ export class EducationFormComponent extends FixedForm implements OnInit {
     let item = new Education(this.schoolName.value, this.degree.value, this.startDate.value, this.endDate.value,
       this.stillStudying.value, this.courseOfStudy.value, this.specialization.value, this.description.value)
 
+
+
     super.onSubmit(event, item);
+    // this.list
   }
 
   add() {
@@ -69,14 +78,14 @@ export class EducationFormComponent extends FixedForm implements OnInit {
   public edit(index: any) {
     this.index = index;
 
-    this.schoolName = this.objectList[index].schoolName as AbstractControl;
-    this.degree = this.objectList[index].degree as AbstractControl;
-    this.courseOfStudy = this.objectList[index].courseOfStudy as AbstractControl;
-    this.specialization = this.objectList[index].specialization as AbstractControl;
+    this.schoolName = this.objectList[index].schoolName as unknown as AbstractControl;
+    this.degree = this.objectList[index].degree as unknown as AbstractControl;
+    this.courseOfStudy = this.objectList[index].courseOfStudy as unknown as AbstractControl;
+    this.specialization = this.objectList[index].specialization as unknown as AbstractControl;
     this.startDate = this.dateManager.transformDate(this.objectList[index].startDate) as unknown as AbstractControl;
     this.endDate = this.dateManager.transformDate(this.objectList[index].endDate) as unknown as AbstractControl;
-    this.stillStudying = this.objectList[index].stillStudying as AbstractControl;
-    this.description = this.objectList[index].description as AbstractControl;
+    this.stillStudying = this.objectList[index].stillStudying as unknown as AbstractControl;
+    this.description = this.objectList[index].description as unknown as AbstractControl;
 
     this.stillStudying.value ? this.endDate.disable() : this.endDate.enable();
     this.show();

@@ -1,6 +1,5 @@
-import { WorkExperience } from './WorkExperience';
-import { Education } from './Education';
 import { FormGroup } from '@angular/forms';
+import { IStorage } from './Interfaces/IStorage';
 
 export abstract class FixedForm {
 
@@ -8,11 +7,14 @@ export abstract class FixedForm {
     public formSubmitted = false;
     public index: number;
     private _element: HTMLElement;
+    private _storage: IStorage;
 
     public objectList = [];
 
-    constructor() {
 
+    constructor(storage: IStorage) {
+        this._storage = storage;
+        this.objectList = this._storage.get() ? this._storage.get() : [];
     }
 
     public abstract edit(index);
@@ -26,6 +28,7 @@ export abstract class FixedForm {
 
         this.hide(event);
         this.form.reset();
+        this._storage.set(this.objectList);
     }
 
     public show(value: string = "flex"): void {
@@ -39,7 +42,8 @@ export abstract class FixedForm {
     }
 
     public remove(index): void {
-        this.objectList.splice(index, 1)
+        this.objectList.splice(index, 1);
+        this._storage.set(this.objectList);
     }
 
     public add(): void {

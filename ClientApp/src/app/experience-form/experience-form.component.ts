@@ -4,6 +4,7 @@ import { FixedForm } from '../../Models/FixedForm';
 import { WorkExperience } from '../../Models/WorkExperience';
 import { DateManager } from '../../Models/DateManager';
 import { DatePipe } from '@angular/common';
+import { StorageHelper } from 'src/Models/StorageHelper';
 
 @Component({
   selector: 'experience-form',
@@ -15,7 +16,7 @@ export class ExperienceFormComponent extends FixedForm implements OnInit {
   public dateManager: DateManager;
 
   constructor(builder: FormBuilder) {
-    super();
+    super(new StorageHelper('experienceList'));
     this.dateManager = new DateManager();
 
     this.form = builder.group({
@@ -31,7 +32,7 @@ export class ExperienceFormComponent extends FixedForm implements OnInit {
 
   ngOnInit() {
     this.element = <HTMLElement>document.querySelector("#experienceForm");
-    this.objectList.push(new WorkExperience('workplace', new Date(), new Date()));
+    // this.objectList.push(new WorkExperience('workplace', new Date(), new Date()));
   }
 
   onCheckboxChange() {
