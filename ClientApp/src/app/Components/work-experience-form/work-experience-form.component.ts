@@ -1,17 +1,17 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
-import { FixedForm } from '../../Models/FixedForm';
-import { WorkExperience } from '../../Models/WorkExperience';
-import { DateManager } from '../../Models/DateManager';
-import { DatePipe } from '@angular/common';
+import { FixedFormModel } from '../../../Models/FixedFormModel';
+import { WorkExperience } from '../../../Models/WorkExperience';
+import { DateManager } from '../../../Models/DateManager';
 import { StorageHelper } from 'src/Models/StorageHelper';
+import { IWorkExperience } from '../../../Models/Interfaces/IWorkExperience';
 
 @Component({
   selector: 'experience-form',
-  templateUrl: './experience-form.component.html',
-  styleUrls: ['./experience-form.component.css']
+  templateUrl: './work-experience-form.component.html',
+  styleUrls: ['./work-experience-form.component.css']
 })
-export class ExperienceFormComponent extends FixedForm implements OnInit {
+export class ExperienceFormComponent extends FixedFormModel implements OnInit {
 
   public dateManager: DateManager;
 
@@ -31,8 +31,7 @@ export class ExperienceFormComponent extends FixedForm implements OnInit {
   }
 
   ngOnInit() {
-    this.element = <HTMLElement>document.querySelector("#experienceForm");
-    // this.objectList.push(new WorkExperience('workplace', new Date(), new Date()));
+    this.element = <HTMLElement>document.querySelector("#workExperienceForm");
   }
 
   onCheckboxChange() {
@@ -48,8 +47,10 @@ export class ExperienceFormComponent extends FixedForm implements OnInit {
       return 0;
     }
 
-    let item = new WorkExperience(this.workplace.value, this.startDate.value, this.endDate.value,
-      this.business.value, this.localization.value, this.stillWorking.value, this.description.value);
+    let item: IWorkExperience = {
+      workplace: this.workplace.value, startDate: this.startDate.value, endDate: this.endDate.value,
+      business: this.business.value, localization: this.localization.value, stillWorking: this.stillWorking.value, description: this.description.value
+    };
     super.onSubmit(event, item);
   }
 

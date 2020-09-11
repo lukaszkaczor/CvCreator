@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../input-form/data.service';
+
 import { Data } from '@angular/router';
 
 @Component({
@@ -10,13 +10,12 @@ export class HomeComponent implements OnInit {
 
 
   message: string;
-  constructor(private data: DataService) {
+  constructor() {
 
 
   }
 
   ngOnInit(): void {
-    this.data.currentMessage.subscribe(message => this.message = this.message);
   }
 
   value = "siema moredo";

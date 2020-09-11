@@ -1,10 +1,10 @@
 <h2 class="mainHeader">Znajomość języków</h2>
 
 <div class="item-list">
-  <div class="item-row" *ngFor="let item of languagesList; let i = index">
+  <div class="item-row" *ngFor="let item of objectList; let i = index">
     <p class="item-info">{{ item.language}} - {{ item.level }}</p>
 
-    <button class="button" (click)="delete(i)">
+    <button class="button" (click)="remove(i)">
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
         <path
@@ -15,7 +15,7 @@
     </button>
   </div>
 
-  <form [formGroup]="languagesForm">
+  <form [formGroup]="form">
     <div class="row">
 
       <div>
@@ -28,21 +28,21 @@
       </div>
 
       <div>
-        <label for="languageLevel">Poziom *</label>
-        <select class="form-control" id="languageLevel" name="languageLevel" formControlName="languageLevel"
-          [class.border-danger]="languageLevel.invalid && languageLevel.touched">
+        <label for="level">Poziom *</label>
+        <select class="form-control" id="level" name="level" formControlName="level"
+          [class.border-danger]="level.invalid && level.touched">
           <option *ngFor="let item of getLanguageLevels()" value="{{item}}">{{item}}</option>
         </select>
 
-        <div *ngIf="(languageLevel.touched && languageLevel.invalid) || (formIsInvalid && languageLevel.invalid)">
-          <small *ngIf="languageLevel.errors.required" class="form-text warning">To pole jest wymagane.</small>
+        <div *ngIf="(level.touched && level.invalid) || (formIsInvalid && level.invalid)">
+          <small *ngIf="level.errors.required" class="form-text warning">To pole jest wymagane.</small>
         </div>
       </div>
 
       <h6 *ngIf="languageIsInTheList()" class="warning">Ten język jest już na liście.</h6>
     </div>
   </form>
-  <button class="button button-add" (click)="submit()"><svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16"
+  <button class="button button-add" (click)="onSubmit($event)"><svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16"
       class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd"
         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
