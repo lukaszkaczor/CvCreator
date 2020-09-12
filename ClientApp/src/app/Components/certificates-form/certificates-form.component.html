@@ -59,14 +59,15 @@
 
       <div class="form-group">
         <label for="name">Nazwa *</label>
-        <input type="text" class="form-control" name="name" id="name" formControlName="name">
-        <!-- <div *ngIf="(workplace.touched && workplace.invalid)  || (formSubmitted && workplace.invalid)">
-          <small *ngIf="workplace.errors.required" class="form-text warning">To pole jest wymagane.</small>
-          <small *ngIf="workplace.errors.minlength" class="form-text warning">Nazwa stanowiska musi zawierać
+        <input type="text" class="form-control" name="name" id="name" formControlName="name"
+          [class.border-danger]="(name.invalid && name.touched) || (formSubmitted && name.invalid)">
+        <div *ngIf="(name.touched && name.invalid)  || (formSubmitted && name.invalid)">
+          <small *ngIf="name.errors.required" class="form-text warning">To pole jest wymagane.</small>
+          <small *ngIf="name.errors.minlength" class="form-text warning">Nazwa certyfikatu musi zawierać
             przynajmniej
-            {{ workplace.errors.minlength.requiredLength}}
-            znaków.</small>
-        </div> -->
+            {{ name.errors.minlength.requiredLength}}
+            znaki.</small>
+        </div>
       </div>
 
 

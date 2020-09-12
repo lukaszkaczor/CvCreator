@@ -8,8 +8,6 @@
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 99;
-
 }
 
 .content {
@@ -61,6 +59,10 @@
   margin-bottom: 1rem;
   padding: 1rem;
   background: rgba(0, 0, 0, .3);
+}
+
+.bg-transparent {
+  background: transparent;
 }
 
 .item-info {

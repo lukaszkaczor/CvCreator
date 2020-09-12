@@ -1,0 +1,66 @@
+<h2 class="mainHeader">Dane personalne</h2>
+
+
+<form [formGroup]="form">
+
+  <div class="item-list">
+    <div class="item bg-transparent">
+      <div class="header">
+        <h5>Dane podstawowe</h5>
+      </div>
+
+
+      <div class="form-group">
+        <label for="firstName">Imię *</label>
+        <input type="text" class="form-control" name="firstName" id="firstName" formControlName="firstName"
+          [class.border-danger]="(firstName.invalid && firstName.touched) || (formSubmitted && firstName.invalid)">
+
+        <div *ngIf="(firstName.touched && firstName.invalid) || (formSubmitted && firstName.invalid)">
+          <small *ngIf="firstName.errors.required" class="form-text warning">To pole jest wymagane.</small>
+          <small *ngIf="firstName.errors.minlength" class="form-text warning">Nazwa stanowiska musi zawierać
+            przynajmniej
+            {{ firstName.errors.minlength.requiredLength}}
+            znaków.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Nazwisko *</label>
+        <input type="text" class="form-control" name="lastName" id="lastName" formControlName="lastName"
+          [class.border-danger]="(lastName.invalid && lastName.touched) || (formSubmitted && lastName.invalid)">
+
+        <div *ngIf="(lastName.touched && lastName.invalid) || (formSubmitted && lastName.invalid)">
+          <small *ngIf="lastName.errors.required" class="form-text warning">To pole jest wymagane.</small>
+          <small *ngIf="lastName.errors.minlength" class="form-text warning">Nazwa stanowiska musi zawierać
+            przynajmniej
+            {{ lastName.errors.minlength.requiredLength}}
+            znaków.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Data urodzenia *</label>
+        <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth" formControlName="dateOfBirth"
+          [class.border-danger]="(dateOfBirth.invalid && dateOfBirth.touched) || (formSubmitted && dateOfBirth.invalid)">
+
+        <small *ngIf="dateManager.isFutureDate(this.dateOfBirth.value)" class="form-text warning">Data urodzenia nie
+          może być z przyszłości.</small>
+        <div *ngIf="(dateOfBirth.touched && dateOfBirth.invalid) || (formSubmitted && dateOfBirth.invalid)">
+          <small *ngIf="dateOfBirth.errors.required" class="form-text warning">To pole jest wymagane.</small>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="button button-add" (click)="onSubmit($event)"><svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16"
+        class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+      </svg>
+      Zapisz
+    </button>
+  </div>
+
+
+
+</form>

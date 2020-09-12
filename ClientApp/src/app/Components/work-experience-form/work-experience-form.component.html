@@ -62,7 +62,7 @@
       <div class="form-group">
         <label for="workplace">Stanowisko *</label>
         <input type="text" class="form-control" name="workplace" id="workplace" formControlName="workplace"
-          [class.border-danger]="workplace.touched && workplace.invalid">
+          [class.border-danger]="(workplace.touched && workplace.invalid) || (formSubmitted && workplace.invalid)">
         <div *ngIf="(workplace.touched && workplace.invalid)  || (formSubmitted && workplace.invalid)">
           <small *ngIf="workplace.errors.required" class="form-text warning">To pole jest wymagane.</small>
           <small *ngIf="workplace.errors.minlength" class="form-text warning">Nazwa stanowiska musi zawierać
@@ -88,7 +88,7 @@
         <label for="startDate">Data rozpoczęcia *</label>
         <div>
           <input class="form-control" name="startDate" type="date" name="startDate" formControlName="startDate"
-            [class.border-danger]="startDate.invalid && startDate.touched" />
+            [class.border-danger]="(startDate.invalid && startDate.touched) || (formSubmitted && startDate.invalid)" />
           <small *ngIf="dateManager.isFutureDate(this.startDate.value)" class="form-text warning">Data rozpoczęcia nie
             może być z przyszłości.</small>
           <div *ngIf="(startDate.touched && startDate.invalid)  || (formSubmitted && startDate.invalid)">
@@ -101,7 +101,8 @@
         <label for="endDate">Data zakończenia *</label>
         <div>
           <input class="form-control" name="endDate" type="date" formControlName="endDate"
-            [class.border-danger]="endDate.invalid && endDate.touched" />
+            [class.border-danger]="(endDate.invalid && endDate.touched) || (formSubmitted && endDate.invalid)" />
+
           <small *ngIf="dateManager.startDateIsGreaterThanEndDate(this.startDate.value, this.endDate.value)"
             class="form-text warning">Data rozpoczęcia nie może być "większa" niż data zakończenia.</small>
           <small *ngIf="dateManager.isFutureDate(this.endDate.value)" class="form-text warning">Data zakończenia nie

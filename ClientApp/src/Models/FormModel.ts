@@ -4,7 +4,8 @@ import { IStorage } from "./Interfaces/IStorage";
 export class FormModel {
     public form: FormGroup;
     public objectList = [];
-    public index: number;
+    public index: number = -1;
+    public resetFormAfterSubmit: boolean = true;
 
     private _storage: IStorage;
 
@@ -16,7 +17,7 @@ export class FormModel {
     public onSubmit(event: Event, item: any) {
         this.index == -1 ? this.objectList.push(item) : this.objectList[this.index] = item;
         this._storage.set(this.objectList);
-        this.form.reset();
+        if (this.resetFormAfterSubmit) this.form.reset();
     }
 
     public remove(index): void {

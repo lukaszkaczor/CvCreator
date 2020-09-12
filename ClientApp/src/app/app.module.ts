@@ -18,6 +18,10 @@ import { DateManager } from '../Models/DateManager';
 import { ExperienceComponent } from './Components/experience/experience.component';
 import { CertificatesFormComponent } from './Components/certificates-form/certificates-form.component';
 import { StepMenuComponent } from './Components/step-menu/step-menu.component';
+import { PersonalDataComponent } from './Components/personal-data/personal-data.component';
+import { PersonalDataFormComponent } from './Components/personal-data-form/personal-data-form.component';
+import { ContactDataFormComponent } from './Components/contact-data-form/contact-data-form.component';
+import { AddressFormComponent } from './Components/address-form/address-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { StepMenuComponent } from './Components/step-menu/step-menu.component';
     WorkExperienceFormComponent,
     ExperienceComponent,
     CertificatesFormComponent,
-    StepMenuComponent
+    StepMenuComponent,
+    PersonalDataComponent,
+    PersonalDataFormComponent,
+    ContactDataFormComponent,
+    AddressFormComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,6 +48,7 @@ import { StepMenuComponent } from './Components/step-menu/step-menu.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'experience', component: ExperienceComponent },
+      { path: 'personaldata', component: PersonalDataComponent },
     ])
   ],
   providers: [
