@@ -13,10 +13,11 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { EducationFormComponent } from './Components/education-form/education-form.component';
 import { DatePipe } from '@angular/common';
 import { LanguagesFormComponent } from './Components/languages-form/languages-form.component';
-import { ExperienceFormComponent } from './Components/work-experience-form/work-experience-form.component';
+import { WorkExperienceFormComponent } from './Components/work-experience-form/work-experience-form.component';
 import { DateManager } from '../Models/DateManager';
 import { ExperienceComponent } from './Components/experience/experience.component';
 import { CertificatesFormComponent } from './Components/certificates-form/certificates-form.component';
+import { StepMenuComponent } from './Components/step-menu/step-menu.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { CertificatesFormComponent } from './Components/certificates-form/certif
     HomeComponent,
     EducationFormComponent,
     LanguagesFormComponent,
-    ExperienceFormComponent,
+    WorkExperienceFormComponent,
     ExperienceComponent,
-    CertificatesFormComponent
+    CertificatesFormComponent,
+    StepMenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

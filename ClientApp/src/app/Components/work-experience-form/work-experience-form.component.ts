@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { FixedFormModel } from '../../../Models/FixedFormModel';
-import { WorkExperience } from '../../../Models/WorkExperience';
 import { DateManager } from '../../../Models/DateManager';
 import { StorageHelper } from 'src/Models/StorageHelper';
 import { IWorkExperience } from '../../../Models/Interfaces/IWorkExperience';
@@ -11,7 +10,7 @@ import { IWorkExperience } from '../../../Models/Interfaces/IWorkExperience';
   templateUrl: './work-experience-form.component.html',
   styleUrls: ['./work-experience-form.component.css']
 })
-export class ExperienceFormComponent extends FixedFormModel implements OnInit {
+export class WorkExperienceFormComponent extends FixedFormModel implements OnInit {
 
   public dateManager: DateManager;
 
