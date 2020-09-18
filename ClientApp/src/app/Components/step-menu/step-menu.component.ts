@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'step-menu',
   templateUrl: './step-menu.component.html',
@@ -9,7 +10,8 @@ export class StepMenuComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
 
+  ngOnInit() {
+
+  }
 }

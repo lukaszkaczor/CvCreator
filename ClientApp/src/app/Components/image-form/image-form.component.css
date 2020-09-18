@@ -1,0 +1,46 @@
+.box {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.mainHeader {
+  font-size: 24px;
+  border-bottom: 2px solid #262626;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* button {
+  margin-bottom: 1rem;
+} */
+#fileInput {
+  margin-bottom: 1rem;
+}
+
+.imgHolder {
+  /* border: 1px solid red; */
+  position: relative;
+  width: 40%;
+}
+
+.imgHolder img {
+  width: 100%;
+}
+
+.imgHolder button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  border: none;
+  border-radius: 50%;
+  background: crimson;
+  color: white;
+  position: absolute;
+  top: .5em;
+  right: .5em;
+}

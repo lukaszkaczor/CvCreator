@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { FormModel } from '../../../Models/FormModel';
 import { StorageHelper } from '../../../Models/StorageHelper';
 import { DateManager } from '../../../Models/DateManager';
 import { IBasicData } from '../../../Models/Interfaces/IBasicData';
-import { POINT_CONVERSION_COMPRESSED } from 'constants';
 
 @Component({
   selector: 'personal-data-form',

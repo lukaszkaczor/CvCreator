@@ -22,6 +22,9 @@ import { PersonalDataComponent } from './Components/personal-data/personal-data.
 import { PersonalDataFormComponent } from './Components/personal-data-form/personal-data-form.component';
 import { ContactDataFormComponent } from './Components/contact-data-form/contact-data-form.component';
 import { AddressFormComponent } from './Components/address-form/address-form.component';
+import { ImageFormComponent } from './Components/image-form/image-form.component';
+import { SkillsComponent } from './Components/skills/skills.component';
+import { SkillsFormComponent } from './Components/skills-form/skills-form.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { AddressFormComponent } from './Components/address-form/address-form.com
     PersonalDataFormComponent,
     ContactDataFormComponent,
     AddressFormComponent,
+    ImageFormComponent,
+    SkillsComponent,
+    SkillsFormComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,8 +53,9 @@ import { AddressFormComponent } from './Components/address-form/address-form.com
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'experience', component: ExperienceComponent },
-      { path: 'personaldata', component: PersonalDataComponent },
+      { path: 'creator/experience', component: ExperienceComponent },
+      { path: 'creator/personalData', component: PersonalDataComponent },
+      { path: 'creator/skills', component: SkillsComponent },
     ])
   ],
   providers: [

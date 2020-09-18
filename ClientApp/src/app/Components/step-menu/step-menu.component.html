@@ -1,23 +1,23 @@
-<div class="content">
-  <div class="item">
-    <button>1</button>
-    <a href="#">Dane podstawowe</a>
-  </div>
+<div class="content" id="tak">
+  <a class="item" [routerLink]="['/creator/personalData']">
+    <div class="circle" [routerLinkActive]="['active']">1</div>
+    <h3>Dane podstawowe</h3>
+  </a>
 
 
-  <div class="item">
-    <button>2</button>
-    <a href="#">Doświadczenie</a>
-  </div>
+  <a class="item" [routerLink]="['/creator/experience']">
+    <div class="circle" [routerLinkActive]="['active']">2</div>
+    <h3>Doświadczenie</h3>
+  </a>
 
-  <div class="item">
-    <button>3</button>
-    <a href="#">Umiejętności</a>
-  </div>
+  <a class="item" [routerLink]="['/creator/skills']">
+    <div class="circle" [routerLinkActive]="['active']">3</div>
+    <h3>Umiejętności</h3>
+  </a>
 
 
-  <div class="item">
-    <button>4</button>
-    <a href="#">Pobierz CV</a>
-  </div>
+  <a class="item">
+    <div class="circle" [routerLinkActive]="['active']">4</div>
+    <h3>Pobierz CV</h3>
+  </a>
 </div>

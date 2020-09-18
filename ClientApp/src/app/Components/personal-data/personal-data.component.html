@@ -1,6 +1,16 @@
 <step-menu></step-menu>
 
 <div class="content">
+
+  <section>
+    <image-form class="form"></image-form>
+    <div class="sideMenu">
+      <div class="description">
+        Dodaj swoje biznesowe zdjęcie. Dzięki niemu rekruter łatwiej Cię zapamięta i rozpozna przed rozmową.
+      </div>
+    </div>
+  </section>
+
   <section>
     <personal-data-form class="form"></personal-data-form>
     <div class="sideMenu">
@@ -25,7 +35,6 @@
 
 
   <section>
-    <button>wróć</button>
-    <button>dalej</button>
+    <button [routerLink]="['/creator/experience']" class="nextPageButton">Przejdź dalej</button>
   </section>
 </div>

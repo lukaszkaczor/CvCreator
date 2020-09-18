@@ -40,7 +40,9 @@
   </section>
 
   <section>
-    <button>wróć</button>
-    <button>dalej</button>
+    <div class="buttonHolder">
+      <button class="previousPageButton" [routerLink]="['/creator/personalData']">Wróć</button>
+      <button class="nextPageButton" [routerLink]="['/creator/skills']">Przejdź dalej</button>
+    </div>
   </section>
 </div>
