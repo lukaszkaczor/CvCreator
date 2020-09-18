@@ -25,6 +25,7 @@ import { AddressFormComponent } from './Components/address-form/address-form.com
 import { ImageFormComponent } from './Components/image-form/image-form.component';
 import { SkillsComponent } from './Components/skills/skills.component';
 import { SkillsFormComponent } from './Components/skills-form/skills-form.component';
+import { HobbyFormComponent } from './Components/hobby-form/hobby-form.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { SkillsFormComponent } from './Components/skills-form/skills-form.compon
     ImageFormComponent,
     SkillsComponent,
     SkillsFormComponent,
+    HobbyFormComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
