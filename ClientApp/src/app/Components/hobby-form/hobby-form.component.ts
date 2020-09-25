@@ -1,39 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { FormModel } from '../../../Models/FormModel';
-import { StorageHelper } from '../../../Models/StorageHelper';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { FormModel } from "../../../Models/FormModel";
+import { StorageHelper } from "../../../Models/StorageHelper";
+import { FormBuilder } from "@angular/forms";
+import { ModelType } from "src/Models/Enums/ModelType";
+import { StorageKey } from "../../../Models/StorageKey";
 
 @Component({
-  selector: 'hobby-form',
-  templateUrl: './hobby-form.component.html',
-  styleUrls: ['./hobby-form.component.css']
+  selector: "hobby-form",
+  templateUrl: "./hobby-form.component.html",
+  styleUrls: ["./hobby-form.component.css"],
 })
 export class HobbyFormComponent extends FormModel implements OnInit {
-
   constructor(builder: FormBuilder) {
-    super(new StorageHelper('hobbies'));
+    super(new StorageHelper(StorageKey.Hobbies), ModelType.Object);
     this.index = 0;
     this.resetFormAfterSubmit = false;
 
     this.form = builder.group({
-      hobby: [''],
-    })
+      hobby: [""],
+    });
   }
 
   ngOnInit() {
-    if (this.objectList.length > 0)
-      this.hobby = this.objectList[0].hobby;
+    if (this.data != null) this.hobby = this.data.hobby;
   }
 
-
   onSubmit(event) {
-    super.onSubmit(event, { hobby: this.hobby.value })
+    super.onSubmit(event, { hobby: this.hobby.value });
   }
 
   get hobby() {
-    return this.form.get('hobby');
+    return this.form.get("hobby");
   }
-
 
   set hobby(val) {
     this.hobby.setValue(val);

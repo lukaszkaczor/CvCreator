@@ -1,5 +1,6 @@
-<form #form="ngForm" (ngSubmit)="submit(form)">
-  <input ngModel name="name" #name="ngModel">
-  <input ngModel name="schoolname" #name2="ngModel">
-  <input type="submit" value="szykaj">
-</form>
+<ul>
+  <li [routerLink]="['/creator/personalData']">Personal data</li>
+  <li [routerLink]="['/creator/experience']"> Experience</li>
+  <li [routerLink]="['/creator/skills']"> Skills</li>
+  <li [routerLink]="['/creator/summary']"> Summary</li>
+</ul>

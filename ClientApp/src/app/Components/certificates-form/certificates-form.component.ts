@@ -1,48 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { FixedFormModel } from '../../../Models/FixedFormModel';
-import { StorageHelper } from '../../../Models/StorageHelper';
-import { FormBuilder, Validators } from '@angular/forms';
-import { DateManager } from '../../../Models/DateManager';
-import { ICertificate } from '../../../Models/Interfaces/ICertificate';
+import { Component, OnInit } from "@angular/core";
+import { FixedFormModel } from "../../../Models/FixedFormModel";
+import { StorageHelper } from "../../../Models/StorageHelper";
+import { FormBuilder, Validators } from "@angular/forms";
+import { DateManager } from "../../../Models/DateManager";
+import { ICertificate } from "../../../Models/Interfaces/ICertificate";
+import { ModelType } from "src/Models/Enums/ModelType";
+import { StorageKey } from "../../../Models/StorageKey";
 
 @Component({
-  selector: 'certificates-form',
-  templateUrl: './certificates-form.component.html',
-  styleUrls: ['./certificates-form.component.css']
+  selector: "certificates-form",
+  templateUrl: "./certificates-form.component.html",
+  styleUrls: ["./certificates-form.component.css"],
 })
-export class CertificatesFormComponent extends FixedFormModel implements OnInit {
-
+export class CertificatesFormComponent
+  extends FixedFormModel
+  implements OnInit {
   public dateManager: DateManager;
 
-
   constructor(builder: FormBuilder) {
-    super(new StorageHelper('certificatesList'));
+    super(new StorageHelper(StorageKey.Certificates), ModelType.Array);
 
     this.dateManager = new DateManager();
 
     this.form = builder.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      organizer: [''],
-      date: [''],
-      description: ['']
-    })
+      name: ["", [Validators.required, Validators.minLength(3)]],
+      organizer: [""],
+      date: [""],
+      description: [""],
+    });
   }
 
   edit(index) {
     this.index = index;
 
-    this.name = this.objectList[index].name;
-    this.organizer = this.objectList[index].organizer;
-    this.date = this.objectList[index].date;
-    this.description = this.objectList[index].description;
+    this.name = this.data[index].name;
+    this.organizer = this.data[index].organizer;
+    this.date = this.data[index].date;
+    this.description = this.data[index].description;
 
     this.show();
   }
 
   onSubmit(event) {
-
     if (this.dateManager.isFutureDate(this.date.value)) {
-      this.form.setErrors({ 'invalid': true })
+      this.form.setErrors({ invalid: true });
       return 0;
     }
 
@@ -50,8 +51,8 @@ export class CertificatesFormComponent extends FixedFormModel implements OnInit 
       name: this.name.value,
       organizer: this.organizer.value,
       date: this.dateManager.transformDate(this.date.value),
-      description: this.description.value
-    }
+      description: this.description.value,
+    };
 
     super.onSubmit(event, item);
   }
@@ -60,33 +61,31 @@ export class CertificatesFormComponent extends FixedFormModel implements OnInit 
     this.element = <HTMLElement>document.querySelector("#certificatesForm");
   }
 
-
   get name() {
-    return this.form.get('name');
+    return this.form.get("name");
   }
   set name(val) {
-    this.name.setValue(val)
+    this.name.setValue(val);
   }
 
   get organizer() {
-    return this.form.get('organizer');
+    return this.form.get("organizer");
   }
   set organizer(val) {
-    this.organizer.setValue(val)
+    this.organizer.setValue(val);
   }
 
   get date() {
-    return this.form.get('date');
+    return this.form.get("date");
   }
   set date(val) {
-    this.date.setValue(val)
+    this.date.setValue(val);
   }
 
   get description() {
-    return this.form.get('description');
+    return this.form.get("description");
   }
   set description(val) {
-    this.description.setValue(val)
+    this.description.setValue(val);
   }
-
 }

@@ -1,16 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Validators, FormBuilder, AbstractControl } from '@angular/forms';
-import { FixedFormModel } from '../../../Models/FixedFormModel';
-import { DateManager } from '../../../Models/DateManager';
-import { StorageHelper } from '../../../Models/StorageHelper';
-import { IEducation } from '../../../Models/Interfaces/IEducation';
-
-
+import { Component, OnInit, Input } from "@angular/core";
+import { Validators, FormBuilder, AbstractControl } from "@angular/forms";
+import { FixedFormModel } from "../../../Models/FixedFormModel";
+import { DateManager } from "../../../Models/DateManager";
+import { StorageHelper } from "../../../Models/StorageHelper";
+import { IEducation } from "../../../Models/Interfaces/IEducation";
+import { ModelType } from "../../../Models/Enums/ModelType";
+import { StorageKey } from "../../../Models/StorageKey";
 
 @Component({
-  selector: 'education-form',
-  templateUrl: './education-form.component.html',
-  styleUrls: ['./education-form.component.css']
+  selector: "education-form",
+  templateUrl: "./education-form.component.html",
+  styleUrls: ["./education-form.component.css"],
 })
 export class EducationFormComponent extends FixedFormModel implements OnInit {
   // public objectList: Education[];
@@ -19,24 +19,23 @@ export class EducationFormComponent extends FixedFormModel implements OnInit {
   public dateManager: DateManager;
   // private _storage: StorageHelper;
 
-
   // @Input() list: IEducation[];
 
   constructor(builder: FormBuilder) {
-    super(new StorageHelper('educationList'));
+    super(new StorageHelper(StorageKey.Education), ModelType.Array);
 
     this.dateManager = new DateManager();
     // this._storage = new StorageHelper('educationList');
 
     this.form = builder.group({
-      schoolName: ['', [Validators.required, Validators.minLength(5)]],
-      courseOfStudy: [''],
-      degree: ['', Validators.required],
-      specialization: [''],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      schoolName: ["", [Validators.required, Validators.minLength(5)]],
+      courseOfStudy: [""],
+      degree: ["", Validators.required],
+      specialization: [""],
+      startDate: ["", Validators.required],
+      endDate: ["", Validators.required],
       stillStudying: [false],
-      description: ['']
+      description: [""],
     });
   }
 
@@ -46,27 +45,33 @@ export class EducationFormComponent extends FixedFormModel implements OnInit {
 
   onCheckboxChange() {
     this.stillStudying.value ? this.endDate.disable() : this.endDate.enable();
-    console.log(this.stillStudying.value)
+    console.log(this.stillStudying.value);
   }
 
   onSubmit(event) {
-
-    if (this.dateManager.isFutureDate(this.startDate.value, this.endDate.value) ||
-      this.dateManager.startDateIsGreaterThanEndDate(this.startDate.value, this.endDate.value)) {
-      this.form.setErrors({ 'invalid': true })
+    if (
+      this.dateManager.isFutureDate(this.startDate.value, this.endDate.value) ||
+      this.dateManager.startDateIsGreaterThanEndDate(
+        this.startDate.value,
+        this.endDate.value
+      )
+    ) {
+      this.form.setErrors({ invalid: true });
       return 0;
     }
 
     let item: IEducation = {
-      schoolName: this.schoolName.value, degree: this.degree.value,
-      startDate: this.startDate.value, endDate: this.endDate.value,
-      stillStudying: this.stillStudying.value, courseOfStudy: this.courseOfStudy.value,
-      specialization: this.specialization.value, description: this.description.value
-    }
+      schoolName: this.schoolName.value,
+      degree: this.degree.value,
+      startDate: this.startDate.value,
+      endDate: this.endDate.value,
+      stillStudying: this.stillStudying.value,
+      courseOfStudy: this.courseOfStudy.value,
+      specialization: this.specialization.value,
+      description: this.description.value,
+    };
     // let item:IEducation = new Education(this.schoolName.value, this.degree.value, this.startDate.value, this.endDate.value,
     //   this.stillStudying.value, this.courseOfStudy.value, this.specialization.value, this.description.value)
-
-
 
     super.onSubmit(event, item);
   }
@@ -79,79 +84,93 @@ export class EducationFormComponent extends FixedFormModel implements OnInit {
   public edit(index: any) {
     this.index = index;
 
-    this.schoolName = this.objectList[index].schoolName;
-    this.degree = this.objectList[index].degree;
-    this.courseOfStudy = this.objectList[index].courseOfStudy;
-    this.specialization = this.objectList[index].specialization;
-    this.startDate = this.dateManager.transformDate(this.objectList[index].startDate) as unknown as AbstractControl;
-    this.endDate = this.dateManager.transformDate(this.objectList[index].endDate) as unknown as AbstractControl;
-    this.stillStudying = this.objectList[index].stillStudying;
-    this.description = this.objectList[index].description;
+    this.schoolName = this.data[index].schoolName;
+    this.degree = this.data[index].degree;
+    this.courseOfStudy = this.data[index].courseOfStudy;
+    this.specialization = this.data[index].specialization;
+    this.startDate = (this.dateManager.transformDate(
+      this.data[index].startDate
+    ) as unknown) as AbstractControl;
+    this.endDate = (this.dateManager.transformDate(
+      this.data[index].endDate
+    ) as unknown) as AbstractControl;
+    this.stillStudying = this.data[index].stillStudying;
+    this.description = this.data[index].description;
 
     this.stillStudying.value ? this.endDate.disable() : this.endDate.enable();
     this.show();
   }
 
-
   public getDegreeList(): string[] {
-    return ['podstawowe', 'zawodowe', 'średnie', 'licencjat', 'inżynier', 'magister', 'magister inżynier',
-      'lekarz medycyny', 'studia podyplomowe', 'dokotrat', 'doktor hab.', 'profesor'];
+    return [
+      "podstawowe",
+      "zawodowe",
+      "średnie",
+      "licencjat",
+      "inżynier",
+      "magister",
+      "magister inżynier",
+      "lekarz medycyny",
+      "studia podyplomowe",
+      "dokotrat",
+      "doktor hab.",
+      "profesor",
+    ];
   }
-
 
   get schoolName() {
-    return this.form.get('schoolName');
+    return this.form.get("schoolName");
   }
   set schoolName(val) {
-    this.schoolName.setValue(val)
+    this.schoolName.setValue(val);
   }
 
   get courseOfStudy() {
-    return this.form.get('courseOfStudy');
+    return this.form.get("courseOfStudy");
   }
   set courseOfStudy(val) {
-    this.courseOfStudy.setValue(val)
+    this.courseOfStudy.setValue(val);
   }
 
   get degree() {
-    return this.form.get('degree');
+    return this.form.get("degree");
   }
   set degree(val) {
-    this.degree.setValue(val)
+    this.degree.setValue(val);
   }
 
   get specialization() {
-    return this.form.get('specialization');
+    return this.form.get("specialization");
   }
   set specialization(val) {
-    this.specialization.setValue(val)
+    this.specialization.setValue(val);
   }
 
   get startDate() {
-    return this.form.get('startDate');
+    return this.form.get("startDate");
   }
   set startDate(val) {
-    this.startDate.setValue(val)
+    this.startDate.setValue(val);
   }
 
   get endDate() {
-    return this.form.get('endDate');
+    return this.form.get("endDate");
   }
   set endDate(val) {
-    this.endDate.setValue(val)
+    this.endDate.setValue(val);
   }
 
   get stillStudying() {
-    return this.form.get('stillStudying');
+    return this.form.get("stillStudying");
   }
   set stillStudying(val) {
-    this.stillStudying.setValue(val)
+    this.stillStudying.setValue(val);
   }
 
   get description() {
-    return this.form.get('description');
+    return this.form.get("description");
   }
   set description(val) {
-    this.description.setValue(val)
+    this.description.setValue(val);
   }
 }

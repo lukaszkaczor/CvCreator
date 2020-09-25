@@ -1,108 +1,181 @@
 <h2 class="mainHeader">Szkolenia, kursy, certyfikaty</h2>
 
 <div class="item-list">
-  <div class="item" *ngFor="let item of objectList; let i = index">
+  <div class="item" *ngFor="let item of data; let i = index">
     <div class="item-header">
       <button class="button" (click)="edit(i)">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="1em"
+          height="1em"
+          viewBox="0 0 16 16"
+          class="bi bi-pencil-square"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
-            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-          <path fill-rule="evenodd"
-            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+          />
         </svg>
       </button>
       <button class="button" (click)="remove(i)">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="1em"
+          height="1em"
+          viewBox="0 0 16 16"
+          class="bi bi-trash"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
-            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-          <path fill-rule="evenodd"
-            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+          />
         </svg>
       </button>
     </div>
 
-
     <h5 class="item-info">Stanowisko: {{ item.name }}</h5>
-    <h5 class="item-info">Firma: {{item.organizer}}</h5>
-    <h5 class="item-info">Lokalizacja: {{item.date}}</h5>
-    <h5 class="item-info">Opis: {{item.description}}</h5>
+    <h5 class="item-info">Firma: {{ item.organizer }}</h5>
+    <h5 class="item-info">Lokalizacja: {{ item.date }}</h5>
+    <h5 class="item-info">Opis: {{ item.description }}</h5>
   </div>
 
-  <button class="button button-add" (click)="add()"><svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16"
-      class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd"
-        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+  <button class="button button-add" (click)="add()">
+    <svg
+      width="1.6rem"
+      height="1.6rem"
+      viewBox="0 0 16 16"
+      class="bi bi-plus"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+      />
     </svg>
     Dodaj pozycję
   </button>
 </div>
 
-
-
-
-<form id="certificatesForm" class="background" [formGroup]="form" (ngSubmit)="onSubmit($event)">
-
+<form
+  id="certificatesForm"
+  class="background"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit($event)"
+>
   <div class="content">
     <div class="form-content">
       <div class="header">
         <h5>Szkolenia, kursy, certyfikaty</h5>
         <button class="btn" (click)="hide($event)">
-          <svg width="1.8em" height="1.8em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+          <svg
+            width="1.8em"
+            height="1.8em"
+            viewBox="0 0 16 16"
+            class="bi bi-x"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+            />
           </svg>
         </button>
       </div>
 
       <div class="form-group">
         <label for="name">Nazwa *</label>
-        <input type="text" class="form-control" name="name" id="name" formControlName="name"
-          [class.border-danger]="(name.invalid && name.touched) || (formSubmitted && name.invalid)">
-        <div *ngIf="(name.touched && name.invalid)  || (formSubmitted && name.invalid)">
-          <small *ngIf="name.errors.required" class="form-text warning">To pole jest wymagane.</small>
-          <small *ngIf="name.errors.minlength" class="form-text warning">Nazwa certyfikatu musi zawierać
-            przynajmniej
-            {{ name.errors.minlength.requiredLength}}
-            znaki.</small>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="name"
+          formControlName="name"
+          [class.border-danger]="
+            (name.invalid && name.touched) || (formSubmitted && name.invalid)
+          "
+        />
+        <div
+          *ngIf="
+            (name.touched && name.invalid) || (formSubmitted && name.invalid)
+          "
+        >
+          <small *ngIf="name.errors.required" class="form-text warning"
+            >To pole jest wymagane.</small
+          >
+          <small *ngIf="name.errors.minlength" class="form-text warning"
+            >Nazwa certyfikatu musi zawierać przynajmniej
+            {{ name.errors.minlength.requiredLength }}
+            znaki.</small
+          >
         </div>
       </div>
 
-
       <div class="form-group">
         <label for="organizer">Organizator</label>
-        <input type="text" class="form-control" name="organizer" id="organizer" formControlName="organizer">
+        <input
+          type="text"
+          class="form-control"
+          name="organizer"
+          id="organizer"
+          formControlName="organizer"
+        />
       </div>
-
-
 
       <div class="form-group">
         <label for="date">Data uczestnictwa</label>
         <div>
-          <input class="form-control" name="date" type="date" formControlName="date" />
+          <input
+            class="form-control"
+            name="date"
+            type="date"
+            formControlName="date"
+          />
 
-          <small *ngIf="dateManager.isFutureDate(this.date.value)" class="form-text warning">Data zakończenia nie
-            może być z przyszłości.</small>
-          <div *ngIf="(date.touched && date.invalid) || (formSubmitted && date.invalid)">
-            <small *ngIf="date.errors.required" class="form-text warning">To pole jest wymagane.</small>
+          <small
+            *ngIf="dateManager.isFutureDate(this.date.value)"
+            class="form-text warning"
+            >Data zakończenia nie może być z przyszłości.</small
+          >
+          <div
+            *ngIf="
+              (date.touched && date.invalid) || (formSubmitted && date.invalid)
+            "
+          >
+            <small *ngIf="date.errors.required" class="form-text warning"
+              >To pole jest wymagane.</small
+            >
           </div>
         </div>
       </div>
 
-
-      <hr>
+      <hr />
 
       <div class="form-group">
         <label for="exampleTextarea">Opis</label>
-        <textarea class="form-control" id="exampleTextarea" rows="3" name="description"
-          formControlName="description"></textarea>
+        <textarea
+          class="form-control"
+          id="exampleTextarea"
+          rows="3"
+          name="description"
+          formControlName="description"
+        ></textarea>
       </div>
 
       <div class="header">
         <button class="button button-save" type="submit">Zapisz</button>
-        <button class="button button-cancel" (click)="hide($event)">Anuluj</button>
+        <button class="button button-cancel" (click)="hide($event)">
+          Anuluj
+        </button>
       </div>
     </div>
   </div>
