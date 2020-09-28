@@ -12,6 +12,7 @@ import { IAddress } from "../../../Models/Interfaces/IAddress";
 import { IBasicData } from "../../../Models/Interfaces/IBasicData";
 import { CVData } from "../../../Models/CVData";
 import { ListSelector } from "../../../Models/ListSelector";
+import { RemoveIfEmptySelector } from "../../../Models/RemoveIfEmptySelector";
 
 @Component({
   selector: "cv-preview",
@@ -30,11 +31,15 @@ export class CvPreviewComponent implements OnInit {
     const mainSelectorsWithData: MainSelector[] = CVData.getData();
     // console.log(StorageHelper.getItem(StorageKey.PersonalImage));
     const languages = <ILanguage[]>StorageHelper.getItem(StorageKey.Languages);
+    const education = <IEducation[]>StorageHelper.getItem(StorageKey.Education);
 
     const template = new Template(
       this._template,
       mainSelectorsWithData,
-      new ListSelector("@languagesList", languages)
+      new ListSelector("@languagesList", languages),
+      new ListSelector("@educationList", education),
+      new RemoveIfEmptySelector("@educationList", education),
+      new RemoveIfEmptySelector("@languagesList", languages)
     );
 
     let content = document.querySelector("#nodeToRenderAsPDF");
@@ -48,7 +53,7 @@ export class CvPreviewComponent implements OnInit {
   }
 
   private setStyles() {
-    var css = HtmlTemplateService.getStyles(),
+    let css = HtmlTemplateService.getStyles(),
       head = document.head || document.getElementsByTagName("head")[0],
       style = document.createElement("style");
 

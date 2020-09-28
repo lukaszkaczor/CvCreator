@@ -189,7 +189,7 @@ export class HtmlTemplateService {
             <h5 class="contactLineInfo">github.com/lukaszkaczor</h5>
           </div>
   
-          <h3 class="contactHeader">Języki</h3>
+          <h3 class="contactHeader" @removeIfEmpty="@languagesList" >Języki</h3 @removeIfEmpty="@languagesList" >
   
           < class="contactLine" @list="@languagesList">
             <h4 class="contactLineHeader">@language</h4>
@@ -214,19 +214,20 @@ export class HtmlTemplateService {
   
       <section id="mainSection">
         <div class="mainContent">
-          <div class="caption">Wykształcenie</div>
-  
-          <div class="infoSectionLine">
+          <div class="caption" @removeIfEmpty="@educationList" >Wykształcenie</ @removeIfEmpty="@educationList" div>
+          
+
+          <div class="infoSectionLine" @list="@educationList">
             <div class="infoSectionHeader">
-              Państwowa Wyższa Szkoła Zawodowa im. Stanisława Pigonia w Krośnie
+              @schoolName
             </div>
   
-            <div class="sectionInfo">Lata studiów: 2016-2020</div>
-            <div class="sectionInfo">Kierunek: Informatyka</div>
+            <div class="sectionInfo">Lata studiów: @startDate-@endDate</div>
+            <div class="sectionInfo">Kierunek: @courseOfStudy</div>
             <div class="sectionInfo">
-              Specjalizacja: Technologie internetowe i bazy danych
+              Specjalizacja: @specialization
             </div>
-          </div>
+          </ @list="@educationList" div>
   
           <div class="caption">Umiejętności</div>
   
