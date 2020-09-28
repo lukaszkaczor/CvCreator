@@ -1,12 +1,19 @@
 import { ISelector } from "./Interfaces/ISelector";
+import { IFunctionSelector } from "./Interfaces/IFunctionSelector";
 
 export class Template {
   private _template: string;
   private _selectors: ISelector[];
+  private _functionSelectors: IFunctionSelector[];
 
-  constructor(template: string, ...mainSelectors: ISelector[]) {
+  constructor(
+    template: string,
+    mainSelectors: ISelector[],
+    ...functionSelectors: IFunctionSelector[]
+  ) {
     this._template = template;
     this._selectors = mainSelectors;
+    this._functionSelectors = functionSelectors;
   }
 
   public get template(): string {
@@ -51,5 +58,11 @@ export class Template {
       }
       this._template = this.deleteSelectors(this._selectors[i].name);
     }
+
+    this._functionSelectors.forEach((element) => {
+      this._template = element.execute(this._template);
+    });
+
+    return this._template;
   }
 }
