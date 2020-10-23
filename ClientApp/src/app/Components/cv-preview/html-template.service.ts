@@ -231,54 +231,13 @@ export class HtmlTemplateService {
   
           <div class="caption">Umiejętności</div>
   
-          <div class="infoSectionLine">
-            <div class="infoSectionHeader">Technologie</div>
+          <div class="infoSectionLine" @list="@skillsList">
+            <div class="infoSectionHeader">@tag</div>
   
-            <div class="sectionInfo">C#</div>
-            <div class="sectionInfo">SQL i relacyjne bazy danych</div>
-            <div class="sectionInfo">Entity Framework / Framework Core</div>
-            <div class="sectionInfo">LINQ</div>
-            <div class="sectionInfo">HTML, CSS</div>
-            <div class="sectionInfo">Podstawy TypeScript/JavaScript, jQuery</div>
-            <div class="sectionInfo">
-              Doświadczenie w tworzeniu aplikacji w ASP.NET MVC (.NET Framework i
-              .NET Core)
-            </div>
-            <div class="sectionInfo">
-              Podstawy Microsoft Azure, doświadczenie z usługami: DevOps -
-              Pipelines, Web App, SQL Database, Functions App, Storage, Virtual
-              Machines
-            </div>
-          </div>
+            <div class="sectionInfo">@skill</div>
+        
+          </ @list="@skillsList" div>
   
-          <div class="infoSectionLine">
-            <div class="infoSectionHeader">W trakcie nauki</div>
-  
-            <div class="sectionInfo">Angular</div>
-            <div class="sectionInfo">Testy jednostkowe (framework nUnit)</div>
-            <div class="sectionInfo">Java/Android</div>
-          </div>
-  
-          <div class="infoSectionLine">
-            <div class="infoSectionHeader">Bazy danych</div>
-  
-            <div class="sectionInfo">Microsoft SQL Server</div>
-            <div class="sectionInfo">PostgreSQL</div>
-          </div>
-  
-          <div class="infoSectionLine">
-            <div class="infoSectionHeader">Narzędzia</div>
-  
-            <div class="sectionInfo">Visual Studio 2019, ReSharper</div>
-            <div class="sectionInfo">SQL Server Management Studio</div>
-            <div class="sectionInfo">GIT</div>
-          </div>
-  
-          <!-- <div class="infoSectionLine">
-            <div class="infoSectionHeader">Inne</div>
-  
-            <div class="sectionInfo">Prawo jazdy kat. B</div>
-          </div> -->
   
           <p id="agreement">
             Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb

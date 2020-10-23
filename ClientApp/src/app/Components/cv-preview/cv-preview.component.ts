@@ -13,6 +13,7 @@ import { IBasicData } from "../../../Models/Interfaces/IBasicData";
 import { CVData } from "../../../Models/CVData";
 import { ListSelector } from "../../../Models/ListSelector";
 import { RemoveIfEmptySelector } from "../../../Models/RemoveIfEmptySelector";
+import { ITagWithSkills } from "../../../Models/Interfaces/ITagWithSkills";
 
 @Component({
   selector: "cv-preview",
@@ -32,14 +33,16 @@ export class CvPreviewComponent implements OnInit {
     // console.log(StorageHelper.getItem(StorageKey.PersonalImage));
     const languages = <ILanguage[]>StorageHelper.getItem(StorageKey.Languages);
     const education = <IEducation[]>StorageHelper.getItem(StorageKey.Education);
+    const skills = <ITagWithSkills[]>StorageHelper.getItem(StorageKey.Skills);
 
     const template = new Template(
       this._template,
       mainSelectorsWithData,
       new ListSelector("@languagesList", languages),
       new ListSelector("@educationList", education),
-      new RemoveIfEmptySelector("@educationList", education),
-      new RemoveIfEmptySelector("@languagesList", languages)
+      new ListSelector("@skillsList", skills)
+      // new RemoveIfEmptySelector("@educationList", education),
+      // new RemoveIfEmptySelector("@languagesList", languages)
     );
 
     let content = document.querySelector("#nodeToRenderAsPDF");

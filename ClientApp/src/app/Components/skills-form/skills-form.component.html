@@ -2,7 +2,9 @@
 
 <div class="item-list">
   <div class="item-row" *ngFor="let item of data; let i = index">
-    <p class="item-info">{{ item.skill }}</p>
+    <h1>{{ item.tag }}</h1>
+
+    <p class="item-info" *ngFor="let i of item.skills">{{ i }}</p>
 
     <button class="button" (click)="remove(i)">
       <svg
@@ -24,9 +26,23 @@
     </button>
   </div>
 
+  <div style="border: 2px solid red; width: 100%">
+    <h1>{{ tag.value }}</h1>
+    <p *ngFor="let item of skillsList">{{ item }}</p>
+  </div>
+
   <form [formGroup]="form">
     <div class="row">
-      <!-- <div> -->
+      <label for="tag">Tag</label>
+      <input
+        type="text"
+        class="form-control"
+        name="tag"
+        id="tag"
+        formControlName="tag"
+        [class.border-danger]="skill.invalid && skill.touched"
+      />
+
       <label for="skill">Wpisz swoje umiejętności *</label>
       <input
         type="text"
@@ -36,6 +52,7 @@
         formControlName="skill"
         [class.border-danger]="skill.invalid && skill.touched"
       />
+      <button (click)="addToSkillsList()">dodaj</button>
       <div
         *ngIf="
           (skill.touched && skill.invalid) || (formIsInvalid && skill.invalid)
@@ -45,7 +62,6 @@
           >To pole jest wymagane.</small
         >
       </div>
-      <!-- </div> -->
     </div>
   </form>
   <button class="button button-add" (click)="onSubmit($event)">
@@ -62,6 +78,6 @@
         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
       />
     </svg>
-    Dodaj pozycję
+    Zapisz
   </button>
 </div>
