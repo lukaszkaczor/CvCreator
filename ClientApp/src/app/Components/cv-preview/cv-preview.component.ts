@@ -40,9 +40,9 @@ export class CvPreviewComponent implements OnInit {
       mainSelectorsWithData,
       new ListSelector("@languagesList", languages),
       new ListSelector("@educationList", education),
-      new ListSelector("@skillsList", skills)
-      // new RemoveIfEmptySelector("@educationList", education),
-      // new RemoveIfEmptySelector("@languagesList", languages)
+      new ListSelector("@skillsList", skills),
+      new RemoveIfEmptySelector("@educationList", education),
+      new RemoveIfEmptySelector("@languagesList", languages)
     );
 
     let content = document.querySelector("#nodeToRenderAsPDF");

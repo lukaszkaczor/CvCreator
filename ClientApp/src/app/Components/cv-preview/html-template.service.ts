@@ -232,9 +232,10 @@ export class HtmlTemplateService {
           <div class="caption">Umiejętności</div>
   
           <div class="infoSectionLine" @list="@skillsList">
-            <div class="infoSectionHeader">@tag</div>
-  
-            <div class="sectionInfo">@skill</div>
+          <div class="infoSectionHeader" @nonRepeat>@tag</div>
+          
+          <div class="sectionInfo">@skill</div>
+
         
           </ @list="@skillsList" div>
   
