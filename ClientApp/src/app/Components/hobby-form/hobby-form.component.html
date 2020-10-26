@@ -1,4 +1,21 @@
-<h2 class="mainHeader">Zainteresowania</h2>
+<h2 class="header">Zainteresowania</h2>
+
+<form class="input-form" [formGroup]="form">
+  <div class="item-list">
+    <div class="input-group">
+      <textarea
+        class="input-text width-100"
+        placeholder="Wymień swoje zainteresowania"
+        id="hobby"
+        name="hobby"
+        formControlName="hobby"
+        (focusout)="onSubmit($event)"
+      ></textarea>
+    </div>
+  </div>
+</form>
+
+<!-- <h2 class="mainHeader">Zainteresowania</h2>
 
 <div class="item-list">
 
@@ -8,4 +25,4 @@
       formControlName="hobby" (focusout)="onSubmit($event)"></textarea>
   </form>
 
-</div>
+</div> -->

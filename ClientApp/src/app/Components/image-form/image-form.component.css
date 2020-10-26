@@ -1,6 +1,46 @@
-.box {
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap");
+
+.header {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+
+  padding: 10px 0;
+  letter-spacing: 3px;
+  text-align: center;
+  border-bottom: 1px solid #1c1c1c;
+  font-size: 25px;
+}
+
+.input-form {
+  /* border: 1px solid red; */
   display: flex;
-  /* justify-content: center; */
+  flex-direction: column;
+}
+
+.input-box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 50px 0;
+  /* height: 200px; */
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.image-box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* border: 2px solid green; */
+}
+
+.image-box img {
+  width: 25%;
+}
+/* .box {
+  display: flex;
   align-items: center;
   flex-direction: column;
   padding: 1rem;
@@ -13,15 +53,12 @@
   margin-bottom: 1rem;
 }
 
-/* button {
-  margin-bottom: 1rem;
-} */
+
 #fileInput {
   margin-bottom: 1rem;
 }
 
 .imgHolder {
-  /* border: 1px solid red; */
   position: relative;
   width: 40%;
 }
@@ -43,4 +80,4 @@
   position: absolute;
   top: .5em;
   right: .5em;
-}
+} */

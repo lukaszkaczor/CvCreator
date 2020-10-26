@@ -1,31 +1,33 @@
 <step-menu></step-menu>
 
-
 <div class="content">
   <section>
-    <skills-form class="form"></skills-form>
-    <div class="sideMenu">
-      <div class="description">
-        Pokaż swoje mocne strony. Wpisz umiejętności, które pasują do oczekiwań pracodawcy opisanych w ogłoszeniu.
-      </div>
-    </div>
+    <skills-form></skills-form>
+    <p>
+      Pokaż swoje mocne strony. Wpisz umiejętności, które pasują do oczekiwań
+      pracodawcy opisanych w ogłoszeniu.
+    </p>
   </section>
 
   <section>
     <hobby-form class="form"></hobby-form>
-    <div class="sideMenu">
-      <div class="description">
-        Zainteresowania i pasje wiele mówią o Twoim charakterze i mogą rekruterowi pomóc ocenić, czy łatwo odnajdziesz
-        się w nowym zespole. Pamiętaj: pisz konkretnie - lepiej wpisać np. "współczesna literatura francuska" niż
-        "książki".
-      </div>
-    </div>
+
+    <p>
+      Zainteresowania i pasje wiele mówią o Twoim charakterze i mogą rekruterowi
+      pomóc ocenić, czy łatwo odnajdziesz się w nowym zespole. Pamiętaj: pisz
+      konkretnie - lepiej wpisać np. "współczesna literatura francuska" niż
+      "książki".
+    </p>
   </section>
 
   <section>
-    <div class="buttonHolder">
-      <button class="previousPageButton" [routerLink]="['/creator/experience']">Wróć</button>
-      <button class="nextPageButton" [routerLink]="['/creator/summary']">Przejdź dalej</button>
+    <div class="button-holder">
+      <button class="previousPageButton" [routerLink]="['/creator/experience']">
+        Wróć
+      </button>
+      <button class="nextPageButton" [routerLink]="['/creator/summary']">
+        Przejdź dalej
+      </button>
     </div>
   </section>
 </div>

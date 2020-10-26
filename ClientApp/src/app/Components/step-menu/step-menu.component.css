@@ -1,6 +1,6 @@
 .content {
   display: flex;
-
+  margin-top: 50px;
   position: relative;
   justify-content: space-between;
   align-items: center;
@@ -11,18 +11,18 @@
 }
 
 .content::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
-  background: #57a5f8;
-  width: 100%;
+  background: #1c1c1c;
+  width: 99%;
   height: 1px;
   z-index: 1;
 }
 
 .item {
   display: flex;
-  background: white;
+  background: whitesmoke;
   /* justify-content: space-around; */
   align-items: center;
   /* width: 100%; */
@@ -39,8 +39,8 @@
   height: 40px;
   border-radius: 50%;
   background: none;
-  border: 2px solid #57a5f8;
-  color: #57a5f8;
+  border: 1px solid #1c1c1c;
+  color: #1c1c1c;
 }
 
 .item:nth-of-type(2),
@@ -50,6 +50,8 @@
 }
 
 h3 {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
   display: flex;
   font-size: 16px;
   color: #000;
@@ -61,6 +63,6 @@ a:hover {
 }
 
 .active {
-  background: #57a5f8;
+  background: #1c1c1c;
   color: whitesmoke;
 }

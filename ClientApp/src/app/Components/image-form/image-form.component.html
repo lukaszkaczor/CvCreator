@@ -1,4 +1,22 @@
-<h2 class="mainHeader">Zdjęcie</h2>
+<h2 class="header">Zdjęcie</h2>
+
+<div class="input-form">
+  <div class="input-box">
+    <input type="file" id="fileInput" *ngIf="imgIsNull" (change)="readFile()" />
+  </div>
+
+  <div class="image-box">
+    <button *ngIf="!imgIsNull" (click)="remove()">X</button>
+
+    <img
+      src="../../assets/person placeholder.jpg"
+      id="imgPreview"
+      alt="Image preview..."
+    />
+  </div>
+</div>
+
+<!-- <h2 class="mainHeader">Zdjęcie</h2>
 
 <div class="box">
   <input type="file" id="fileInput" *ngIf="imgIsNull" (change)="readFile()">
@@ -12,4 +30,4 @@
     </button>
     <img src="../../assets/person placeholder.jpg" id="imgPreview" alt="Image preview...">
   </div>
-</div>
+</div> -->

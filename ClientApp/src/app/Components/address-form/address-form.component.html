@@ -1,46 +1,97 @@
-<h2 class="mainHeader">Miejsce zamieszkania</h2>
+<h2 class="header">Miejsce zamieszkania</h2>
 
+<form class="input-form" [formGroup]="form">
+  <div class="item-list">
+    <div class="input-group">
+      <label for="country">Kraj</label>
+      <input
+        type="text"
+        class="input-text"
+        name="country"
+        id="country"
+        formControlName="country"
+      />
+    </div>
 
-<form [formGroup]="form">
+    <div class="input-group">
+      <label for="city">Miejscowość *</label>
+      <input
+        type="text"
+        class="input-text"
+        name="city"
+        id="city"
+        formControlName="city"
+        [class.border-danger]="
+          (city.invalid && city.touched) || (formSubmitted && city.invalid)
+        "
+      />
+    </div>
 
+    <button class="button-add" (click)="onSubmit($event)">Zapisz</button>
+  </div>
+</form>
+
+<!-- <form [formGroup]="form">
   <div class="item-list">
     <div class="item bg-transparent">
-      <!-- <div class="header">
-        <h5>Dane podstawowe</h5>
-      </div> -->
-
+    
 
       <div class="form-group">
         <label for="country">Kraj</label>
-        <input type="text" class="form-control" name="country" id="country" formControlName="country">
+        <input
+          type="text"
+          class="form-control"
+          name="country"
+          id="country"
+          formControlName="country"
+        />
       </div>
 
       <div class="form-group">
         <label for="city">Miejscowość *</label>
-        <input type="text" class="form-control" name="city" id="city" formControlName="city"
-          [class.border-danger]="(city.invalid && city.touched) || (formSubmitted && city.invalid)">
+        <input
+          type="text"
+          class="form-control"
+          name="city"
+          id="city"
+          formControlName="city"
+          [class.border-danger]="
+            (city.invalid && city.touched) || (formSubmitted && city.invalid)
+          "
+        />
 
-        <div *ngIf="(city.touched && city.invalid) || (formSubmitted && city.invalid)">
-          <small *ngIf="city.errors.required" class="form-text warning">To pole jest wymagane.</small>
-          <small *ngIf="city.errors.minlength" class="form-text warning">Nazwa miasta musi zawierać
-            przynajmniej
-            {{ city.errors.minlength.requiredLength}}
-            znaków.</small>
+        <div
+          *ngIf="
+            (city.touched && city.invalid) || (formSubmitted && city.invalid)
+          "
+        >
+          <small *ngIf="city.errors.required" class="form-text warning"
+            >To pole jest wymagane.</small
+          >
+          <small *ngIf="city.errors.minlength" class="form-text warning"
+            >Nazwa miasta musi zawierać przynajmniej
+            {{ city.errors.minlength.requiredLength }}
+            znaków.</small
+          >
         </div>
       </div>
-
-
     </div>
 
-    <button class="button button-add" (click)="onSubmit($event)"><svg width="1.6rem" height="1.6rem" viewBox="0 0 16 16"
-        class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd"
-          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+    <button class="button button-add" (click)="onSubmit($event)">
+      <svg
+        width="1.6rem"
+        height="1.6rem"
+        viewBox="0 0 16 16"
+        class="bi bi-plus"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+        />
       </svg>
       Zapisz
     </button>
   </div>
-
-
-
-</form>
+</form> -->

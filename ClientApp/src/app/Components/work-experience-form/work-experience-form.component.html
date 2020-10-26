@@ -1,72 +1,53 @@
-<h2 class="mainHeader">Doświadczenie zawodowe</h2>
+<h2 class="header">Doświadczenie zawodowe</h2>
 
-<div class="item-list">
+<div class="item-list margin-top-50">
   <div class="item" *ngFor="let item of data; let i = index">
     <div class="item-header">
-      <button class="button" (click)="edit(i)">
+      <button class="button btn-icon" (click)="edit(i)">
         <svg
-          width="1em"
-          height="1em"
+          width="20px"
+          height="20px"
           viewBox="0 0 16 16"
-          class="bi bi-pencil-square"
+          class="bi bi-pen"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
-          />
-          <path
             fill-rule="evenodd"
-            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+            d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"
           />
         </svg>
       </button>
-      <button class="button" (click)="remove(i)">
+      <button class="button btn-icon" (click)="remove(i)">
         <svg
-          width="1em"
-          height="1em"
+          width="30px"
+          height="30px"
           viewBox="0 0 16 16"
-          class="bi bi-trash"
+          class="bi bi-x"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-          />
-          <path
             fill-rule="evenodd"
-            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
           />
         </svg>
       </button>
     </div>
 
-    <h5 class="item-info">
-      Okres: {{ item.startDate | date }} -
-      {{ item.stillWorking ? "teraz" : (item.endDate | date) }}
-    </h5>
-    <h5 class="item-info">Stanowisko: {{ item.workplace }}</h5>
-    <h5 class="item-info">Firma: {{ item.business }}</h5>
-    <h5 class="item-info">Lokalizacja: {{ item.localization }}</h5>
-    <h5 class="item-info">Opis: {{ item.description }}</h5>
+    <div class="item-info">
+      <h5>
+        Okres: {{ item.startDate | date }} -
+        {{ item.stillWorking ? "teraz" : (item.endDate | date) }}
+      </h5>
+      <h5>Stanowisko: {{ item.workplace }}</h5>
+      <h5>Firma: {{ item.business }}</h5>
+      <h5>Lokalizacja: {{ item.localization }}</h5>
+      <h5>Opis: {{ item.description }}</h5>
+    </div>
   </div>
 
-  <button class="button button-add" (click)="add()">
-    <svg
-      width="1.6rem"
-      height="1.6rem"
-      viewBox="0 0 16 16"
-      class="bi bi-plus"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-      />
-    </svg>
-    Dodaj pozycję
-  </button>
+  <button class="button-add" (click)="add()">Dodaj pozycję</button>
 </div>
 
 <form
@@ -75,32 +56,17 @@
   [formGroup]="form"
   (ngSubmit)="onSubmit($event)"
 >
-  <div class="content">
-    <div class="form-content">
-      <div class="header">
-        <h5>Doświadczenie zawodowe</h5>
-        <button class="btn" (click)="hide($event)">
-          <svg
-            width="1.8em"
-            height="1.8em"
-            viewBox="0 0 16 16"
-            class="bi bi-x"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-            />
-          </svg>
-        </button>
+  <div class="input-form-hidden">
+    <div class="item-list">
+      <div class="input-group width-100 margin-0">
+        <h2 class="inner-header">Doświadczenie zawodowe</h2>
       </div>
 
-      <div class="form-group">
+      <div class="input-group margin-top-s">
         <label for="workplace">Stanowisko *</label>
         <input
           type="text"
-          class="form-control"
+          class="input-text"
           name="workplace"
           id="workplace"
           formControlName="workplace"
@@ -126,122 +92,116 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="input-group margin-top-s">
         <label for="business">Firma</label>
         <input
           type="text"
-          class="form-control"
+          class="input-text"
           name="business"
           id="business"
           formControlName="business"
         />
       </div>
 
-      <div class="form-group">
+      <div class="input-group margin-top-s">
         <label for="localization">Lokalizacja</label>
         <input
           type="text"
-          class="form-control"
+          class="input-text"
           name="localization"
           id="localization"
           formControlName="localization"
         />
       </div>
 
-      <div class="form-group">
+      <div class="input-group margin-top-s">
         <label for="startDate">Data rozpoczęcia *</label>
-        <div>
-          <input
-            class="form-control"
-            name="startDate"
-            type="date"
-            name="startDate"
-            formControlName="startDate"
-            [class.border-danger]="
-              (startDate.invalid && startDate.touched) ||
-              (formSubmitted && startDate.invalid)
-            "
-          />
-          <small
-            *ngIf="dateManager.isFutureDate(this.startDate.value)"
-            class="form-text warning"
-            >Data rozpoczęcia nie może być z przyszłości.</small
+        <input
+          class="input-text"
+          name="startDate"
+          type="date"
+          name="startDate"
+          formControlName="startDate"
+          [class.border-danger]="
+            (startDate.invalid && startDate.touched) ||
+            (formSubmitted && startDate.invalid)
+          "
+        />
+        <small
+          *ngIf="dateManager.isFutureDate(this.startDate.value)"
+          class="form-text warning"
+          >Data rozpoczęcia nie może być z przyszłości.</small
+        >
+        <div
+          *ngIf="
+            (startDate.touched && startDate.invalid) ||
+            (formSubmitted && startDate.invalid)
+          "
+        >
+          <small *ngIf="startDate.errors.required" class="form-text warning"
+            >To pole jest wymagane.</small
           >
-          <div
-            *ngIf="
-              (startDate.touched && startDate.invalid) ||
-              (formSubmitted && startDate.invalid)
-            "
-          >
-            <small *ngIf="startDate.errors.required" class="form-text warning"
-              >To pole jest wymagane.</small
-            >
-          </div>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="input-group margin-top-s">
         <label for="endDate">Data zakończenia *</label>
-        <div>
-          <input
-            class="form-control"
-            name="endDate"
-            type="date"
-            formControlName="endDate"
-            [class.border-danger]="
-              (endDate.invalid && endDate.touched) ||
-              (formSubmitted && endDate.invalid)
-            "
-          />
 
-          <small
-            *ngIf="
-              dateManager.startDateIsGreaterThanEndDate(
-                this.startDate.value,
-                this.endDate.value
-              )
-            "
-            class="form-text warning"
-            >Data rozpoczęcia nie może być "większa" niż data
-            zakończenia.</small
+        <input
+          class="input-text"
+          name="endDate"
+          type="date"
+          formControlName="endDate"
+          [class.border-danger]="
+            (endDate.invalid && endDate.touched) ||
+            (formSubmitted && endDate.invalid)
+          "
+        />
+
+        <small
+          *ngIf="
+            dateManager.startDateIsGreaterThanEndDate(
+              this.startDate.value,
+              this.endDate.value
+            )
+          "
+          class="form-text warning"
+          >Data rozpoczęcia nie może być "większa" niż data zakończenia.</small
+        >
+        <small
+          *ngIf="dateManager.isFutureDate(this.endDate.value)"
+          class="form-text warning"
+          >Data zakończenia nie może być z przyszłości.</small
+        >
+        <div
+          *ngIf="
+            (endDate.touched && endDate.invalid) ||
+            (formSubmitted && endDate.invalid)
+          "
+        >
+          <small *ngIf="endDate.errors.required" class="form-text warning"
+            >To pole jest wymagane.</small
           >
-          <small
-            *ngIf="dateManager.isFutureDate(this.endDate.value)"
-            class="form-text warning"
-            >Data zakończenia nie może być z przyszłości.</small
-          >
-          <div
-            *ngIf="
-              (endDate.touched && endDate.invalid) ||
-              (formSubmitted && endDate.invalid)
-            "
-          >
-            <small *ngIf="endDate.errors.required" class="form-text warning"
-              >To pole jest wymagane.</small
-            >
-          </div>
         </div>
       </div>
 
-      <div class="form-check mb-2 mr-sm-2 mb-sm-0">
-        <label class="form-check-label">
+      <div class="input-group margin-top-s">
+        <div class="checkbox-group">
           <input
-            class="form-check-input"
             type="checkbox"
+            class="input-checkbox"
             id="stillWorking"
             name="stillWorking"
             formControlName="stillWorking"
             (change)="onCheckboxChange()"
-          />Nadal pracuję
-        </label>
+          />
+          <label for="stillWorking"> Nadal pracuję </label>
+        </div>
       </div>
-
-      <hr />
-
-      <div class="form-group">
+      <div class="input-group margin-top-s">
         <label for="exampleTextarea">Opis</label>
         <textarea
-          class="form-control"
+          class="input-text"
           id="exampleTextarea"
           rows="3"
           name="description"
@@ -249,11 +209,13 @@
         ></textarea>
       </div>
 
-      <div class="header">
-        <button class="button button-save" type="submit">Zapisz</button>
-        <button class="button button-cancel" (click)="hide($event)">
-          Anuluj
-        </button>
+      <div class="input-group margin-top-s">
+        <div class="button-holder">
+          <button class="button btn-save" type="submit">Zapisz</button>
+          <button class="button btn-cancel" (click)="hide($event)">
+            Anuluj
+          </button>
+        </div>
       </div>
     </div>
   </div>

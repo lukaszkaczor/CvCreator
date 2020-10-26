@@ -1,5 +1,101 @@
-.background {
-  /* display: flex; */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap");
+
+.header {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+
+  padding: 10px 0;
+  letter-spacing: 3px;
+  text-align: center;
+  border-bottom: 1px solid #1c1c1c;
+  font-size: 25px;
+}
+
+.input-form {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-group {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  /* align-items: center; */
+}
+
+label {
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  font-size: 13px;
+  margin: 0;
+}
+
+.input-text {
+  /* width: 50%; */
+  padding: 5px 10px;
+  border: 1px solid #1c1c1c;
+  outline: none;
+}
+
+.input-text:focus {
+  outline: 2px solid black;
+}
+
+.input-box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 50px 0;
+  /* height: 200px; */
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.image-box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* border: 2px solid green; */
+}
+
+.image-box img {
+  width: 25%;
+}
+
+.button-add {
+  display: flex;
+  align-items: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  margin-top: 50px;
+  padding: 10px 20px;
+  background: white;
+  border: 1px solid #1c1c1c;
+  font-size: 20px;
+
+  transition: 0.3s;
+}
+
+.button-add:hover {
+  background-color: #1c1c1c;
+  color: white;
+}
+
+.warning {
+  color: crimson;
+}
+
+/* .background {
   display: none;
   align-items: center;
   width: 100vw;
@@ -119,4 +215,4 @@
 .button-cancel:hover {
   background: orange;
   color: whitesmoke;
-}
+} */
