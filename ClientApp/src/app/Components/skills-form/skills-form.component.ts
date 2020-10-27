@@ -55,6 +55,10 @@ export class SkillsFormComponent extends FormModel implements OnInit {
     this.skillsList = [];
   }
 
+  alert() {
+    alert("coming soon");
+  }
+
   get skill() {
     return this.form.get("skill");
   }

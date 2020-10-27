@@ -3,7 +3,7 @@
 <div class="item-list margin-top-50">
   <div class="item" *ngFor="let item of data; let i = index">
     <div class="item-header">
-      <button class="button btn-icon">
+      <button class="button btn-icon" (click)="alert()">
         <svg
           width="20px"
           height="20px"
@@ -38,8 +38,36 @@
     <div class="item-info">
       <h5>{{ item.tag }}</h5>
       <div class="item-desc">
-        <p class="item-info" *ngFor="let i of item.skills">{{ i.skill }}</p>
+        <div class="item-info" *ngFor="let skill of item.skills; let i = index">
+          <hr *ngIf="i < item.skills.length && i != 0" />
+          {{ skill.skill }}
+        </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="item-list margin-top-50">
+  <div class="item border-warning" *ngIf="skillsList.length > 0">
+    <div class="item-info">
+      <h5>{{ tag.value }}</h5>
+      <div class="item-desc" *ngFor="let item of skillsList; let i = index">
+        <div class="item-info">
+          <div class="box-with-button-grid">
+            <p>{{ item.skill }}</p>
+            <button class="button btn-icon">-</button>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="item-desc" *ngFor="let item of skillsList; let i = index">
+        <div class="item-info">
+          <div class="box-with-button">
+            <hr *ngIf="i < skillsList.length && i != 0" />
+            <label>{{ item.skill }}</label>
+            <button class="button-in-box">s</button>
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -60,14 +88,18 @@
 
     <div class="input-group">
       <label for="skill">Wpisz swoje umiejętności *</label>
-      <input
-        type="text"
-        class="input-text"
-        name="skill"
-        id="skill"
-        formControlName="skill"
-        [class.border-danger]="skill.invalid && skill.touched"
-      />
+      <div class="box-with-button">
+        <input
+          type="text"
+          class="input-text"
+          name="skill"
+          id="skill"
+          formControlName="skill"
+          [class.border-danger]="skill.invalid && skill.touched"
+        />
+
+        <button class="button-in-box" (click)="addToSkillsList()">+</button>
+      </div>
       <div
         *ngIf="
           (skill.touched && skill.invalid) || (formIsInvalid && skill.invalid)

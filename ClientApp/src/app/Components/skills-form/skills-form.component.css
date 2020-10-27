@@ -47,6 +47,7 @@ label {
   padding: 5px 10px;
   border: 1px solid #1c1c1c;
   outline: none;
+  width: 100%;
 }
 
 .input-text:focus {
@@ -221,12 +222,34 @@ label {
 }
 
 .item-desc {
-  /* width: 80%; */
-  padding: 0 20px;
+  padding: 0 0 0 20px;
   margin: 0 auto;
-  /* border: 1px solid red; */
 }
 
-.item-list p {
+.item-list div {
   font-size: 14px;
 }
+
+.box-with-button {
+  display: flex;
+  justify-content: space-between;
+  /* text-align: left; */
+}
+
+.box-with-button-grid {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.button-in-box {
+  background: white;
+  border: 2px solid #1c1c1c;
+  border-left: 1px solid #1c1c1c;
+  width: 50px;
+}
+
+/* .button-absolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+} */

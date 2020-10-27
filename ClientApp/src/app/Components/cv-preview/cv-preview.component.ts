@@ -63,4 +63,8 @@ export class CvPreviewComponent implements OnInit {
     head.appendChild(style);
     style.appendChild(document.createTextNode(css));
   }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({ behavior: "smooth" });
+  }
 }
