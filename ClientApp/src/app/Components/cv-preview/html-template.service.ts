@@ -163,7 +163,7 @@ export class HtmlTemplateService {
     // <h1>@takjest</h1>
     // </div @tak="@address">`;
 
-    return `<div id="nodeToRenderAsPDF">
+    return `
     <div id="content">
       <section id="sideMenu">
         <img src="" alt="" id="prev-img" />
@@ -251,7 +251,7 @@ export class HtmlTemplateService {
         </div>
       </section>
     </div>
-  </div>
+ 
   `;
   }
 }

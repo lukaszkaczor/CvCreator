@@ -6,8 +6,7 @@
   justify-content: space-around;
   align-items: center;
   height: 80vh;
-  /* border: 1px solid red; */
-  margin-bottom: 200px;
+  /* margin-bottom: 200px; */
 }
 
 .header {
@@ -44,7 +43,39 @@
 #nodeToRenderAsPDF {
   width: 793px;
   height: 1122px;
+}
 
-  margin: 100px 0;
-  padding: 100px 0;
+.background {
+  /* overflow: hidden; */
+
+  position: absolute;
+  left: -100vw;
+  top: 0;
+  width: 100vw;
+
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+
+  transition: 0.5s ease-in-out;
+}
+
+.show {
+  /* height: 100vh; */
+  background: rgba(0, 0, 0, 0.5);
+  left: 50%;
+  top: 0;
+
+  transform: translateX(-50%);
+}
+
+.exit-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 20px;
+  background: white;
+  border: 1px solid #1c1c1c;
 }

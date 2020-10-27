@@ -2,7 +2,7 @@
   <h1 class="header">Twoje CV jest już gotowe!</h1>
 
   <div class="button-holder">
-    <button class="btn-icon">
+    <button class="btn-icon" (click)="download()">
       <svg
         width="1em"
         height="1em"
@@ -22,7 +22,7 @@
       </svg>
     </button>
 
-    <button class="btn-icon">
+    <button class="btn-icon" (click)="alert()">
       <svg
         width="1em"
         height="1em"
@@ -41,7 +41,7 @@
         />
       </svg>
     </button>
-    <button class="btn-icon">
+    <button class="btn-icon" (click)="alert()">
       <svg
         width="1em"
         height="1em"
@@ -62,6 +62,8 @@
     </button>
   </div>
 
+  <button class="checkout-button" (click)="scroll(tej)">ZOBACZ</button>
+
   <div>
     <h1 class="header">Wybierz styl swojego cv</h1>
     <label for="">
@@ -81,11 +83,12 @@
       Typ
     </label>
   </div>
-
-  <button class="checkout-button" (click)="scroll(target)">ZOBACZ</button>
 </div>
 
-<div #target id="nodeToRenderAsPDF"></div>
+<div class="background" #tej>
+  <button class="exit-btn" (click)="scroll(tej)">Exit</button>
+  <div id="nodeToRenderAsPDF" #target></div>
+</div>
 <!-- <div id="nodeToRenderAsPDF">
   <div id="content">
     <section id="sideMenu">

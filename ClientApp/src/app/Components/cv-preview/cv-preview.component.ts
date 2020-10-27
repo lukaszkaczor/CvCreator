@@ -1,19 +1,18 @@
 import { Component, OnInit, enableProdMode } from "@angular/core";
-import { IWorkExperience } from "../../../Models/Interfaces/IWorkExperience";
 import { IEducation } from "../../../Models/Interfaces/IEducation";
 import { ILanguage } from "../../../Models/Interfaces/ILanguage";
-import { ICertificate } from "../../../Models/Interfaces/ICertificate";
 import { HtmlTemplateService } from "./html-template.service";
 import { Template } from "../../../Models/Template";
 import { MainSelector } from "../../../Models/MainSelector";
 import { StorageHelper } from "../../../Models/StorageHelper";
 import { StorageKey } from "../../../Models/StorageKey";
-import { IAddress } from "../../../Models/Interfaces/IAddress";
-import { IBasicData } from "../../../Models/Interfaces/IBasicData";
 import { CVData } from "../../../Models/CVData";
 import { ListSelector } from "../../../Models/ListSelector";
 import { RemoveIfEmptySelector } from "../../../Models/RemoveIfEmptySelector";
 import { ITagWithSkills } from "../../../Models/Interfaces/ITagWithSkills";
+
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 @Component({
   selector: "cv-preview",
@@ -22,6 +21,7 @@ import { ITagWithSkills } from "../../../Models/Interfaces/ITagWithSkills";
 })
 export class CvPreviewComponent implements OnInit {
   private _template: string;
+  private _element: HTMLElement;
 
   constructor() {
     this._template = HtmlTemplateService.getTemplate();
@@ -29,6 +29,7 @@ export class CvPreviewComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this._element = document.querySelector("#nodeToRenderAsPDF");
     const mainSelectorsWithData: MainSelector[] = CVData.getData();
     // console.log(StorageHelper.getItem(StorageKey.PersonalImage));
     const languages = <ILanguage[]>StorageHelper.getItem(StorageKey.Languages);
@@ -64,7 +65,32 @@ export class CvPreviewComponent implements OnInit {
     style.appendChild(document.createTextNode(css));
   }
 
+  download() {
+    const filename = "CV.pdf";
+    const quality = 4.5; //4.5
+    // const element: HTMLElement = document.querySelector("#nodeToRenderAsPDF");
+
+    html2canvas(this._element, {
+      scale: quality,
+    }).then((canvas) => {
+      const pdf = new jsPDF("p", "mm", "a4", true);
+
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
+
+      pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, width, height);
+
+      pdf.save(filename);
+    });
+  }
+
   scroll(el: HTMLElement) {
-    el.scrollIntoView({ behavior: "smooth" });
+    // el.scrollIntoView({ behavior: "smooth" });
+    // this._element.classList.toggle("hide");
+    el.classList.toggle("show");
+  }
+
+  alert() {
+    alert("Work in progress.");
   }
 }
