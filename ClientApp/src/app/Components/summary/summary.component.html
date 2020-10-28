@@ -1,8 +1,18 @@
 <step-menu></step-menu>
 
 <div class="content">
-  <cv-preview class="preview"></cv-preview>
+  <section class="content__section">
+    <cv-preview></cv-preview>
+  </section>
+
+  <section class="content__section">
+    <div class="button-holder button-holder--single-btn">
+      <button
+        [routerLink]="['/creator/skills']"
+        class="button-holder__button button-holder__button--single button-holder__button--prev"
+      >
+        Wróć
+      </button>
+    </div>
+  </section>
 </div>
-<!-- <div class="content">
-</div> -->
-<!-- <div id="box"></div> -->

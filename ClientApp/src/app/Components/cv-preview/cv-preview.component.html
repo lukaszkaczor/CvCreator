@@ -1,8 +1,8 @@
-<div class="content">
+<div class="box">
   <h1 class="header">Twoje CV jest już gotowe!</h1>
 
   <div class="button-holder">
-    <button class="btn-icon" (click)="download()">
+    <button class="btn-icon" (click)="execute(true)">
       <svg
         width="1em"
         height="1em"
@@ -19,6 +19,26 @@
           fill-rule="evenodd"
           d="M8 6a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 10.293V6.5A.5.5 0 0 1 8 6z"
         />
+      </svg>
+    </button>
+
+    <button class="btn-icon" (click)="execute(false)">
+      <svg
+        width="1em"
+        height="1em"
+        viewBox="0 0 16 16"
+        class="bi bi-printer"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11 2H5a1 1 0 0 0-1 1v2H3V3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h-1V3a1 1 0 0 0-1-1zm3 4H2a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1v1H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z"
+        />
+        <path
+          fill-rule="evenodd"
+          d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM5 8a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H5z"
+        />
+        <path d="M3 7.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
       </svg>
     </button>
 
@@ -62,153 +82,45 @@
     </button>
   </div>
 
-  <button class="checkout-button" (click)="scroll(tej)">ZOBACZ</button>
+  <button class="checkout-button" (click)="scroll(background)">Podgląd</button>
 
   <div>
     <h1 class="header">Wybierz styl swojego cv</h1>
     <label for="">
       <input type="radio" name="" id="" />
-      Typ
+      Typ1
     </label>
     <label for="">
       <input type="radio" name="" id="" />
-      Typ
+      Typ2
     </label>
     <label for="">
       <input type="radio" name="" id="" />
-      Typ
+      Typ3
     </label>
     <label for="">
       <input type="radio" name="" id="" />
-      Typ
+      Typ4
     </label>
   </div>
 </div>
 
-<div class="background" #tej>
-  <button class="exit-btn" (click)="scroll(tej)">Exit</button>
+<div class="background" #background>
+  <button class="exit-btn" (click)="scroll(background)">
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 16 16"
+      class="bi bi-x"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+      />
+    </svg>
+  </button>
+
   <div id="nodeToRenderAsPDF" #target></div>
 </div>
-<!-- <div id="nodeToRenderAsPDF">
-  <div id="content">
-    <section id="sideMenu">
-      <img src="" alt="" id="prev-img" />
-
-      <h4 class="name" id="prev-firstName"></h4>
-      <h4 class="name" id="prev-lastName"></h4>
-      <div class="contact">
-        <h3 class="contactHeader">Kontakt</h3>
-
-        <div class="contactLine">
-          <h4 class="contactLineHeader">Adres</h4>
-          <h5 class="contactLineInfo" id="prev-address">@address</h5>
-        </div>
-        <div class="contactLine">
-          <h4 class="contactLineHeader">Email</h4>
-          <h5 class="contactLineInfo" id="prev-email">@email</h5>
-        </div>
-        <div class="contactLine">
-          <h4 class="contactLineHeader">Telefon</h4>
-          <h5 class="contactLineInfo" id="prev-phoneNumber">@phoneNumber</h5>
-        </div>
-        <div class="contactLine">
-          <h4 class="contactLineHeader">GitHub</h4>
-          <h5 class="contactLineInfo">github.com/lukaszkaczor</h5>
-        </div>
-
-        <h3 class="contactHeader">Języki</h3>
-
-        <div class="contactLine">
-          <h4 class="contactLineHeader">Angielski</h4>
-          <h5 class="contactLineInfo">poziom B2</h5>
-        </div>
-
-        <h3 class="contactHeader">Zainteresowania</h3>
-
-        <div class="contactLine">
-          <h5 class="contactLineInfo">programowanie</h5>
-          <h5 class="contactLineInfo">motoryzacja</h5>
-        </div>
-
-        <h3 class="contactHeader">Inne</h3>
-
-        <div class="contactLine">
-          <h4 class="contactLineHeader">Prawo jazdy</h4>
-          <h5 class="contactLineInfo">kategoria B</h5>
-        </div>
-      </div>
-    </section>
-
-    <section id="mainSection">
-      <div class="mainContent">
-        <div class="caption">Wykształcenie</div>
-
-        <div class="infoSectionLine">
-          <div class="infoSectionHeader">
-            Państwowa Wyższa Szkoła Zawodowa im. Stanisława Pigonia w Krośnie
-          </div>
-
-          <div class="sectionInfo">Lata studiów: 2016-2020</div>
-          <div class="sectionInfo">Kierunek: Informatyka</div>
-          <div class="sectionInfo">
-            Specjalizacja: Technologie internetowe i bazy danych
-          </div>
-        </div>
-
-        <div class="caption">Umiejętności</div>
-
-        <div class="infoSectionLine">
-          <div class="infoSectionHeader">Technologie</div>
-
-          <div class="sectionInfo">C#</div>
-          <div class="sectionInfo">SQL i relacyjne bazy danych</div>
-          <div class="sectionInfo">Entity Framework / Framework Core</div>
-          <div class="sectionInfo">LINQ</div>
-          <div class="sectionInfo">HTML, CSS</div>
-          <div class="sectionInfo">Podstawy TypeScript/JavaScript, jQuery</div>
-          <div class="sectionInfo">
-            Doświadczenie w tworzeniu aplikacji w ASP.NET MVC (.NET Framework i
-            .NET Core)
-          </div>
-          <div class="sectionInfo">
-            Podstawy Microsoft Azure, doświadczenie z usługami: DevOps -
-            Pipelines, Web App, SQL Database, Functions App, Storage, Virtual
-            Machines
-          </div>
-        </div>
-
-        <div class="infoSectionLine">
-          <div class="infoSectionHeader">W trakcie nauki</div>
-
-          <div class="sectionInfo">Angular</div>
-          <div class="sectionInfo">Testy jednostkowe (framework nUnit)</div>
-          <div class="sectionInfo">Java/Android</div>
-        </div>
-
-        <div class="infoSectionLine">
-          <div class="infoSectionHeader">Bazy danych</div>
-
-          <div class="sectionInfo">Microsoft SQL Server</div>
-          <div class="sectionInfo">PostgreSQL</div>
-        </div>
-
-        <div class="infoSectionLine">
-          <div class="infoSectionHeader">Narzędzia</div>
-
-          <div class="sectionInfo">Visual Studio 2019, ReSharper</div>
-          <div class="sectionInfo">SQL Server Management Studio</div>
-          <div class="sectionInfo">GIT</div>
-        </div>
-
-        <p id="agreement">
-          Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb
-          niezbędnych do realizacji procesu rekrutacji zgodnie z Rozporządzeniem
-          Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016
-          r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych
-          osobowych i w sprawie swobodnego przepływu takich danych oraz
-          uchylenia dyrektywy 95/46/WE (RODO).
-        </p>
-      </div>
-    </section>
-  </div>
-</div> -->

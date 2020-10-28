@@ -1,1 +1,5 @@
 @import url("./../../Style/main-page.css");
+
+* {
+  cursor: default;
+}

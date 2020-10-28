@@ -1,40 +1,58 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap");
 
-.content {
+* {
+  cursor: default;
+}
+
+.box {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 80vh;
-  /* margin-bottom: 200px; */
+  min-height: 80vh;
+  width: 100%;
 }
 
 .header {
   font-family: "Nunito", sans-serif;
 
-  font-size: 35px;
+  font-size: 25px;
 }
 
 .button-holder {
-  display: flex;
-  justify-content: space-around;
-  width: 40%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
+  justify-items: center;
+
+  grid-gap: 10px;
+  /* grid-row-gap: 25px; */
+  width: 100%;
 }
 
 .btn-icon {
+  width: 100%;
+  height: 100%;
   padding: 30px;
-  background: white;
   border: none;
-  border: 2px solid #1c1c1c;
+  outline: none;
+}
+
+.btn-icon:hover svg {
+  /* transform: translateY(-5px) scale(1.2); */
+  transform: scale(1.2);
 }
 
 .btn-icon svg {
   width: 30px;
   height: 30px;
+  transition: 0.3s;
 }
 
 .checkout-button {
-  padding: 20px 150px;
+  display: none;
+  padding: 20px 100px;
+  width: 100%;
   background: rgb(10, 98, 124);
   color: white;
   border: none;
@@ -46,12 +64,11 @@
 }
 
 .background {
-  /* overflow: hidden; */
-
   position: absolute;
-  left: -100vw;
+  width: 1920px;
+  left: -2000px;
   top: 0;
-  width: 100vw;
+  height: 110%;
 
   z-index: 9999;
 
@@ -63,7 +80,6 @@
 }
 
 .show {
-  /* height: 100vh; */
   background: rgba(0, 0, 0, 0.5);
   left: 50%;
   top: 0;
@@ -71,11 +87,48 @@
   transform: translateX(-50%);
 }
 
+svg {
+  cursor: pointer;
+}
+
 .exit-btn {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 20px;
+  top: 100px;
+  right: 100px;
+  /* padding: 20px; */
+  width: 60px;
+  height: 60px;
   background: white;
   border: 1px solid #1c1c1c;
+  outline: none;
+}
+
+.exit-btn svg {
+  width: 40px;
+  height: 40px;
+}
+
+@media (min-width: 768px) {
+  /* .box {
+    width: 50%;
+  } */
+}
+
+@media (min-width: 993px) {
+  .checkout-button {
+    display: flex;
+  }
+
+  .header {
+    font-size: 35px;
+  }
+
+  .button-holder,
+  .checkout-button {
+    width: 50%;
+  }
 }
