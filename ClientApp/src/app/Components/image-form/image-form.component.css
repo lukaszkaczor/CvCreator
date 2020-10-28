@@ -1,83 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap");
-
-.header {
-  font-family: "Nunito", sans-serif;
-  font-weight: lighter;
-
-  padding: 10px 0;
-  letter-spacing: 3px;
-  text-align: center;
-  border-bottom: 1px solid #1c1c1c;
-  font-size: 25px;
-}
-
-.input-form {
-  /* border: 1px solid red; */
-  display: flex;
-  flex-direction: column;
-}
-
-.input-box {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 50px 0;
-  /* height: 200px; */
-}
-
-.flex-column {
-  flex-direction: column;
-}
+@import url("../../Style/subpage.css");
 
 .image-box {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  /* border: 2px solid green; */
-}
-
-.image-box img {
-  width: 25%;
-}
-/* .box {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 1rem;
-}
-
-.mainHeader {
-  font-size: 24px;
-  border-bottom: 2px solid #262626;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-}
-
-
-#fileInput {
-  margin-bottom: 1rem;
-}
-
-.imgHolder {
   position: relative;
-  width: 40%;
+  width: 70%;
+  margin: 0 auto;
 }
 
-.imgHolder img {
+img {
   width: 100%;
 }
 
-.imgHolder button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 1.5em;
-  width: 1.5em;
-  border: none;
-  border-radius: 50%;
-  background: crimson;
-  color: white;
+.input-group button {
   position: absolute;
-  top: .5em;
-  right: .5em;
-} */
+  right: 0;
+  top: 0;
+
+  background: crimson;
+  border: none;
+  width: 30px;
+  height: 30px;
+}
+
+button svg {
+  width: 30px;
+  height: 30px;
+  color: white;
+}

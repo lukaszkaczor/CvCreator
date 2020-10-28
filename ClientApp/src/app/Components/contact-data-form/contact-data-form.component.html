@@ -1,37 +1,40 @@
 <h2 class="header">Dane kontaktowe</h2>
 
-<form [formGroup]="form">
-  <div class="item-list">
+<form class="form" [formGroup]="form">
+  <div class="form__list">
     <div class="input-group">
-      <label for="phoneNumber">Numer telefonu *</label>
+      <label class="input-group__label" for="phoneNumber"
+        >Numer telefonu *</label
+      >
       <input
         type="text"
-        class="input-text"
+        class="input-group__input--text"
         name="phoneNumber"
         id="phoneNumber"
         formControlName="phoneNumber"
       />
 
       <div
+        class="input-group__warnings"
         *ngIf="
           (phoneNumber.touched && phoneNumber.invalid) ||
           (formSubmitted && phoneNumber.invalid)
         "
       >
-        <small *ngIf="phoneNumber.errors.required" class="form-text warning"
+        <small *ngIf="phoneNumber.errors.required"
           >To pole jest wymagane.</small
         >
-        <small *ngIf="phoneNumber.errors.minlength" class="form-text warning"
+        <small *ngIf="phoneNumber.errors.minlength"
           >Nieprawidłowy numer telefonu.</small
         >
       </div>
     </div>
 
     <div class="input-group">
-      <label for="email">Email *</label>
+      <label class="input-group__label" for="email">Email *</label>
       <input
         type="text"
-        class="input-text"
+        class="input-group__input--text"
         name="email"
         id="email"
         formControlName="email"
@@ -41,20 +44,21 @@
       />
 
       <div
+        class="input-group__warnings"
         *ngIf="
           (email.touched && email.invalid) || (formSubmitted && email.invalid)
         "
       >
-        <small *ngIf="email.errors.required" class="form-text warning"
-          >To pole jest wymagane.</small
-        >
-        <small *ngIf="email.errors.email" class="form-text warning"
+        <small *ngIf="email.errors.required">To pole jest wymagane.</small>
+        <small *ngIf="email.errors.email"
           >Zły format adresu email. "email@example.com"</small
         >
       </div>
     </div>
 
-    <button class="button-add" (click)="onSubmit($event)">Zapisz</button>
+    <div class="input-group">
+      <button class="list__button" (click)="onSubmit($event)">Zapisz</button>
+    </div>
   </div>
 </form>
 

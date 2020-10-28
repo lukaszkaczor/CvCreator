@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap");
+
+:root {
+  --primary-color: #ffffff;
+  --secondary-color: #1c1c1c;
+}
+
+.content {
+  font-family: "Nunito", sans-serif;
+  color: var(--secondary-color);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0px 0px 5px 1px rgba(120, 120, 120, 0.2);
+
+  margin: 25px 0;
+}
+
+.content__section {
+  width: 100%;
+}
+
+.content__section:not(:first-of-type) {
+  margin-top: 50px;
+}
+
+.section__description {
+  text-align: justify;
+  font-size: 15px;
+  margin-top: 25px;
+}
+
+.button-holder {
+  display: flex;
+  justify-content: space-between;
+
+  padding-top: 50px;
+}
+
+.button-holder--single-btn {
+  justify-content: center;
+}
+
+.button-holder__button {
+  width: 100%;
+  background: var(--primary-color);
+
+  outline: none;
+
+  padding: 20px 30px;
+  border: 1px solid;
+  border-color: var(--secondary-color);
+
+  transition: 0.5s;
+}
+
+.button-holder__button--next {
+  background: #0b6d9d;
+  color: white;
+}
+
+.button-holder__button--prev {
+  background: rgb(92, 92, 92);
+  color: white;
+}
+
+.button-holder__button--single {
+  width: 100%;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .content {
+    padding: 75px 100px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .content {
+    margin: 50px 0;
+    padding: 50px 100px;
+  }
+
+  .button-holder__button {
+    width: 48%;
+  }
+
+  .button-holder__button--single {
+    width: 50%;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .content {
+    padding: 100px 300px;
+  }
+}

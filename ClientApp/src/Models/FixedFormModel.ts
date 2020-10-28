@@ -23,13 +23,14 @@ export abstract class FixedFormModel extends FormModel {
   }
 
   public show(value: string = "flex"): void {
-    this._element.style.display = value;
+    this.element.classList.add("background--active");
+    // this._element.style.display = value;
   }
 
   public hide(event: Event): void {
     event.preventDefault();
     this.form.reset();
-    this._element.style.display = "none";
+    this.element.classList.remove("background--active");
   }
 
   public add(): void {

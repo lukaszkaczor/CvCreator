@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'step-menu',
-  templateUrl: './step-menu.component.html',
-  styleUrls: ['./step-menu.component.css']
+  selector: "step-menu",
+  templateUrl: "./step-menu.component.html",
+  styleUrls: ["./step-menu.component.css"],
 })
-export class StepMenuComponent implements OnInit {
+export class StepMenuComponent {
+  isExpanded = false;
 
-  constructor() { }
-
-
-  ngOnInit() {
-
+  toggleMenu() {
+    this.isExpanded = !this.isExpanded;
   }
 }

@@ -1,65 +1,143 @@
-.content {
-  display: flex;
-  margin-top: 50px;
-  position: relative;
-  justify-content: space-between;
-  align-items: center;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap");
+.menu {
+  font-family: "Nunito", sans-serif;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  /* border: 1px solid red; */
-  margin-bottom: 2rem;
+  height: 105vh;
+  margin-top: 25px;
+  background: white;
+
+  position: fixed;
+  top: -5%;
+  z-index: 99;
+  left: -100vh;
+
+  transition: 0.5s;
 }
 
-.content::before {
-  content: "";
-  position: absolute;
+.menu--show {
   left: 0;
-  background: #1c1c1c;
-  width: 99%;
-  height: 1px;
-  z-index: 1;
+}
+
+.close-btn,
+.open-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: white;
+  border: none;
+  width: 50px;
+  outline: none;
+  height: 50px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 50px;
+  right: 40px;
+}
+
+.open-btn {
+  margin-top: 25px;
+}
+
+.close-btn svg {
+  color: #1c1c1c;
+  width: 50px;
+  height: 50px;
 }
 
 .item {
   display: flex;
-  background: whitesmoke;
-  /* justify-content: space-around; */
+  width: 75%;
+  margin-bottom: 20px;
   align-items: center;
-  /* width: 100%; */
-  /* border: 1px solid blue; */
-  /* padding: 0 1rem; */
-  z-index: 2;
+  cursor: pointer;
+  outline: none;
+}
+
+.item:last-of-type {
+  margin-bottom: 0;
 }
 
 .circle {
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: none;
-  border: 1px solid #1c1c1c;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background: white;
   color: #1c1c1c;
+  border: 2px solid #1c1c1c;
+  border-radius: 50%;
 }
 
-.item:nth-of-type(2),
-.item:nth-of-type(3),
-.item:nth-of-type(4) {
-  padding-left: 1rem;
+.text {
+  font-size: 18px;
+  margin: 0 0 0 10px;
 }
 
-h3 {
-  font-family: "Nunito", sans-serif;
-  font-weight: lighter;
-  display: flex;
-  font-size: 16px;
-  color: #000;
-  margin: 0 1rem;
+@media (min-width: 992px) {
+  .menu {
+    flex-direction: row;
+    align-items: center;
+    position: static;
+    justify-content: space-between;
+    margin-top: 50px;
+    background: transparent;
+
+    left: auto;
+    overflow: hidden;
+    position: relative;
+    height: auto;
+  }
+
+  .menu::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    background: #1c1c1c;
+    width: 99%;
+    height: 1px;
+    z-index: 1;
+  }
+
+  .item {
+    margin: 0;
+    width: auto;
+    background: whitesmoke;
+    padding: 0 20px;
+    z-index: 2;
+  }
+
+  .item:first-of-type {
+    padding-left: 0;
+  }
+  .item:last-of-type {
+    padding-right: 0;
+  }
+
+  .circle {
+    background: whitesmoke;
+  }
+
+  .close-btn,
+  .open-btn {
+    display: none;
+  }
 }
 
-a:hover {
-  text-decoration: none;
+@media (min-width: 1200px) {
+  .circle {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
 }
 
 .active {

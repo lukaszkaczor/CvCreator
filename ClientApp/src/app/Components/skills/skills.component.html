@@ -1,18 +1,18 @@
 <step-menu></step-menu>
 
 <div class="content">
-  <section>
+  <section class="content__section">
     <skills-form></skills-form>
-    <p>
+    <p class="section__description">
       Pokaż swoje mocne strony. Wpisz umiejętności, które pasują do oczekiwań
       pracodawcy opisanych w ogłoszeniu.
     </p>
   </section>
 
-  <section>
+  <section class="content__section">
     <hobby-form class="form"></hobby-form>
 
-    <p>
+    <p class="section__description">
       Zainteresowania i pasje wiele mówią o Twoim charakterze i mogą rekruterowi
       pomóc ocenić, czy łatwo odnajdziesz się w nowym zespole. Pamiętaj: pisz
       konkretnie - lepiej wpisać np. "współczesna literatura francuska" niż
@@ -20,12 +20,18 @@
     </p>
   </section>
 
-  <section>
+  <section class="content__section">
     <div class="button-holder">
-      <button class="previousPageButton" [routerLink]="['/creator/experience']">
+      <button
+        class="button-holder__button button-holder__button--prev"
+        [routerLink]="['/creator/experience']"
+      >
         Wróć
       </button>
-      <button class="nextPageButton" [routerLink]="['/creator/summary']">
+      <button
+        class="button-holder__button button-holder__button--next"
+        [routerLink]="['/creator/summary']"
+      >
         Przejdź dalej
       </button>
     </div>

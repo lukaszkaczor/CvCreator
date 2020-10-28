@@ -81,6 +81,8 @@ export class CvPreviewComponent implements OnInit {
       pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, width, height);
 
       pdf.save(filename);
+      // pdf.autoPrint();
+      // pdf.output("dataurlnewwindow");
     });
   }
 

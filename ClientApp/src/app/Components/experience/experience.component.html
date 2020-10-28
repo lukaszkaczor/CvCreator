@@ -1,10 +1,10 @@
 <step-menu></step-menu>
 
 <div class="content">
-  <section>
+  <section class="content__section">
     <experience-form></experience-form>
 
-    <p>
+    <p class="section__description">
       Wymień najważniejsze obowiązki w danej pracy i podkreśl swoje sukcesy.
       Postaraj się, żeby z Twojej historii zatrudnienia wynikało, że masz
       doświadczenie i kwalifikacje zgodne z wymaganiami potencjalnego
@@ -12,31 +12,34 @@
     </p>
   </section>
 
-  <section>
+  <section class="content__section">
     <education-form></education-form>
-    <p>
+    <p class="section__description">
       Wpisz ostatnio ukończoną szkołę. Jeśli masz wykształcenie wyższe lub
       podyplomowe, podaj nazwę uczelni i kierunek studiów.
     </p>
   </section>
 
-  <section>
+  <section class="content__section">
     <languages-form></languages-form>
   </section>
 
-  <section>
+  <section class="content__section">
     <certificates-form></certificates-form>
   </section>
 
-  <section>
+  <section class="content__section">
     <div class="button-holder">
       <button
-        class="previousPageButton"
+        class="button-holder__button button-holder__button--prev"
         [routerLink]="['/creator/personalData']"
       >
         Wróć
       </button>
-      <button class="nextPageButton" [routerLink]="['/creator/skills']">
+      <button
+        class="button-holder__button button-holder__button--next"
+        [routerLink]="['/creator/skills']"
+      >
         Przejdź dalej
       </button>
     </div>
