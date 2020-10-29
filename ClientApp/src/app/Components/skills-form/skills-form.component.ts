@@ -24,8 +24,6 @@ export class SkillsFormComponent extends FormModel implements OnInit {
       tag: [""],
       skill: ["", Validators.required],
     });
-
-    console.log(this.skillsList);
   }
 
   ngOnInit() {}

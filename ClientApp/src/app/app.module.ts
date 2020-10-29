@@ -29,6 +29,7 @@ import { HobbyFormComponent } from "./Components/hobby-form/hobby-form.component
 import { SummaryComponent } from "./Components/summary/summary.component";
 import { CvPreviewComponent } from './Components/cv-preview/cv-preview.component';
 import { SocialMediaFormComponent } from './Components/social-media-form/social-media-form.component';
+import { DataProtectionFormComponent } from './Components/data-protection-form/data-protection-form.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { SocialMediaFormComponent } from './Components/social-media-form/social-
     SummaryComponent,
     CvPreviewComponent,
     SocialMediaFormComponent,
+    DataProtectionFormComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

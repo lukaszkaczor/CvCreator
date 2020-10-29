@@ -1,0 +1,15 @@
+<h2 class="header">Rozporządzenie o Ochronie Danych Osobowych</h2>
+
+<form class="form" [formGroup]="form">
+  <div class="form__list">
+    <div class="input-group">
+      <textarea
+        class="input-group__input--text"
+        id="text"
+        name="text"
+        formControlName="text"
+        (focusout)="onSubmit($event)"
+      ></textarea>
+    </div>
+  </div>
+</form>

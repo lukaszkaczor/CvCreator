@@ -10,4 +10,5 @@ export class StorageKey {
   public static Certificates = "certificates";
   public static Skills = "skills";
   public static Hobbies = "hobbies";
+  public static DataProtection = "dataProtection";
 }
