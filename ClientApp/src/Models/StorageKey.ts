@@ -3,6 +3,7 @@ export class StorageKey {
   public static PersonalData = "personalData";
   public static Address = "address";
   public static Contact = "contact";
+  public static SocialMedia = "socialMedia";
   public static WorkExperience = "workExperience";
   public static Education = "education";
   public static Languages = "languages";

@@ -1,0 +1,80 @@
+<h2 class="header">Media społecznościowe</h2>
+
+<div class="form">
+  <div class="form__list">
+    <div class="input-group" *ngFor="let item of data; let i = index">
+      <div class="item item--single-line">
+        <div class="item__info">
+          <h5>{{ item.name }} - {{ item.url }}</h5>
+        </div>
+        <button class="btn-icon--single-line" (click)="remove(i)">
+          <svg
+            viewBox="0 0 16 16"
+            class="bi bi-x"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form class="form" [formGroup]="form">
+  <div class="form__list">
+    <div class="single-line">
+      <div class="input-group">
+        <label class="input-group__label" for="name">Serwis *</label>
+        <input
+          type="text"
+          class="input-group__input--text"
+          name="name"
+          id="name"
+          formControlName="name"
+          [class.border-danger]="name.invalid && name.touched"
+        />
+        <div
+          class="input-group__warnings"
+          *ngIf="
+            (name.touched && name.invalid) || (formIsInvalid && name.invalid)
+          "
+        >
+          <small *ngIf="name.errors.required" class="form-text warning"
+            >To pole jest wymagane.</small
+          >
+        </div>
+      </div>
+
+      <div class="space"></div>
+
+      <div class="input-group">
+        <label class="input-group__label" for="url">Link *</label>
+        <input
+          type="text"
+          class="input-group__input--text"
+          name="url"
+          id="url"
+          formControlName="url"
+          [class.border-danger]="url.invalid && url.touched"
+        />
+        <div
+          class="input-group__warnings"
+          *ngIf="(url.touched && url.invalid) || (formIsInvalid && url.invalid)"
+        >
+          <small *ngIf="url.errors.required" class="form-text warning"
+            >To pole jest wymagane.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <button class="list__button" (click)="onSubmit($event)">
+      Dodaj pozycję
+    </button>
+  </div>
+</form>

@@ -91,6 +91,8 @@ export class CvPreviewComponent implements OnInit {
     const education = <IEducation[]>StorageHelper.getItem(StorageKey.Education);
     const skills = <ITagWithSkills[]>StorageHelper.getItem(StorageKey.Skills);
 
+    console.log(skills);
+
     const functionSelectors: IFunctionSelector[] = [
       new ListSelector("@languagesList", languages),
       new ListSelector("@educationList", education),

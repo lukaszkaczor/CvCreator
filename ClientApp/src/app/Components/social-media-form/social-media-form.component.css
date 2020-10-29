@@ -1,0 +1,23 @@
+@import url("../../Style/subpage.css");
+
+.single-line {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.space {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .single-line {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .space {
+    display: block;
+    width: 10px;
+  }
+}

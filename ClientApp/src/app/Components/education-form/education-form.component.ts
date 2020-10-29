@@ -64,7 +64,7 @@ export class EducationFormComponent extends FixedFormModel implements OnInit {
       schoolName: this.schoolName.value,
       degree: this.degree.value,
       startDate: this.startDate.value,
-      endDate: this.endDate.value,
+      endDate: this.stillStudying.value ? "teraz" : this.endDate.value,
       stillStudying: this.stillStudying.value,
       courseOfStudy: this.courseOfStudy.value,
       specialization: this.specialization.value,

@@ -43,7 +43,6 @@ export class WorkExperienceFormComponent
 
   onCheckboxChange() {
     this.stillWorking.value ? this.endDate.disable() : this.endDate.enable();
-    console.log(this.stillWorking.value);
   }
 
   onSubmit(event) {
@@ -61,7 +60,7 @@ export class WorkExperienceFormComponent
     let item: IWorkExperience = {
       workplace: this.workplace.value,
       startDate: this.startDate.value,
-      endDate: this.endDate.value,
+      endDate: this.stillWorking.value ? "teraz" : this.endDate.value,
       business: this.business.value,
       localization: this.localization.value,
       stillWorking: this.stillWorking.value,
