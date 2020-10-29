@@ -1,6 +1,6 @@
 <h2 class="header">Dane kontaktowe</h2>
 
-<form class="form" [formGroup]="form">
+<form class="form" [formGroup]="form" (focusout)="onSubmit($event)">
   <div class="form__list">
     <div class="input-group">
       <label class="input-group__label" for="phoneNumber"
@@ -56,9 +56,9 @@
       </div>
     </div>
 
-    <div class="input-group">
+    <!-- <div class="input-group">
       <button class="list__button" (click)="onSubmit($event)">Zapisz</button>
-    </div>
+    </div> -->
   </div>
 </form>
 

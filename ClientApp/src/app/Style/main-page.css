@@ -98,6 +98,10 @@
   .button-holder__button--single {
     width: 50%;
   }
+
+  .content__section:not(:first-of-type) {
+    margin-top: 125px;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
