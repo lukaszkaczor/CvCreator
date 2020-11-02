@@ -1,4 +1,6 @@
 export class StorageKey {
+  public static Token = "token";
+
   public static PersonalImage = "personalImage";
   public static PersonalData = "personalData";
   public static Address = "address";

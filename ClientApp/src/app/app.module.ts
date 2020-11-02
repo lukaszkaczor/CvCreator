@@ -34,6 +34,8 @@ import { LoginComponent } from "./Components/login/login.component";
 import { JwtModule } from "@auth0/angular-jwt";
 import { CustomersComponent } from "./Components/customers/customers.component";
 import { AuthGuard } from "./Guards/auth.guard";
+import { RegisterComponent } from "./Components/register/register.component";
+import { AdminGuard } from "./Guards/admin.guard";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -64,6 +66,7 @@ export function tokenGetter() {
     DataProtectionFormComponent,
     LoginComponent,
     CustomersComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -78,10 +81,11 @@ export function tokenGetter() {
       { path: "creator/skills", component: SkillsComponent },
       { path: "creator/summary", component: SummaryComponent },
       { path: "login", component: LoginComponent },
+      { path: "register", component: RegisterComponent },
       {
         path: "customers",
         component: CustomersComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AdminGuard],
       },
     ]),
 

@@ -90,10 +90,10 @@ namespace CvCreator.Controllers
                 };
                 await _userManager.CreateAsync(user, creditentials.Password);
 
-                return Ok("Użytkownik został zarejestrowany");
+                return StatusCode(200);
             }
 
-            return Forbid("Taki użytkownik już instnieje.");
+            return StatusCode(403, "Taki użytkownik już instnieje.");
         }
 
 

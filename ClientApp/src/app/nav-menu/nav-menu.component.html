@@ -35,6 +35,20 @@
               >Create CV</a
             >
           </li>
+          <li
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+            *ngIf="!sessionManager.isUserAuthenticated()"
+          >
+            <a class="nav-link text-dark" [routerLink]="['/login']">Zaloguj</a>
+          </li>
+          <li
+            class="nav-item clickable"
+            (click)="sessionManager.LogOut()"
+            *ngIf="sessionManager.isUserAuthenticated()"
+          >
+            <a class="nav-link text-dark">Wyloguj</a>
+          </li>
         </ul>
       </div>
     </div>

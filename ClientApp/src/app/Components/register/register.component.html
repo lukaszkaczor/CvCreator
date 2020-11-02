@@ -2,7 +2,7 @@
   <form class="form" [formGroup]="form">
     <div class="form__list">
       <div class="input-group">
-        <label for="Email">Email</label>
+        <label for="email">Email</label>
 
         <input
           type="email"
@@ -45,60 +45,50 @@
           "
         >
           <small *ngIf="password.errors.required">To pole jest wymagane.</small>
-        </div>
-
-        <div class="input-group__warnings" *ngIf="invalidLogin">
-          <small>Zły email lub hasło</small>
+          <small *ngIf="password.errors.minlength"
+            >Hasło musi zawierać przynajmniej
+            {{ password.errors.minlength.requiredLength }} znaków.</small
+          >
         </div>
       </div>
 
       <div class="input-group">
-        <a class="link" [routerLink]="['../register']"
-          >Nie masz konta? Zarejestruj się!</a
+        <label for="confirmPassword">Powtórz hasło</label>
+
+        <input
+          type="password"
+          class="input-group__input--text"
+          name="confirmPassword"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+        />
+
+        <div class="input-group__warnings" *ngIf="errorMessage != null">
+          <small>{{ errorMessage }}</small>
+        </div>
+
+        <div
+          class="input-group__warnings"
+          *ngIf="
+            (confirmPassword.touched && confirmPassword.invalid) ||
+            (submitted && confirmPassword.invalid)
+          "
         >
+          <small *ngIf="confirmPassword.errors.required"
+            >To pole jest wymagane.</small
+          >
+        </div>
+
+        <small class="input-group__warnings" *ngIf="passwordsAreNotEqual">
+          <small>Podane hasła różnią się od siebie.</small>
+        </small>
       </div>
 
       <div class="input-group">
-        <button class="list__button" (click)="onSubmit($event)">Zaloguj</button>
+        <button class="list__button" (click)="onSubmit($event)">
+          Zarejestruj
+        </button>
       </div>
     </div>
   </form>
 </div>
-<!-- <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-  <div class="container-fluid">
-    <h2 class="form-signin-heading">Login</h2>
-
-    <div *ngIf="invalidLogin" class="alert alert-danger">
-      Invalid username or password
-    </div>
-
-    <br />
-
-    <label for="email" class="sr-only">Email address</label>
-    <input
-      type="text"
-      id="email"
-      name="email"
-      ngModel
-      class="form-control"
-      placeholder="Email"
-      required
-      autofocus
-    />
-
-    <br />
-
-    <label for="email" class="sr-only">Password</label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      ngModel
-      class="form-control"
-      placeholder="Password"
-      required
-    />
-    <br />
-    <button class="btn btn-primary" type="submit">Submit</button>
-  </div>
-</form> -->
