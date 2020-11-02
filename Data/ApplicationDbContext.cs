@@ -12,10 +12,22 @@ namespace CvCreator.Data
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
+
+        public DbSet<Template> Templates { get; set; }
+
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Template>().Property(d => d.Name).IsRequired();
+            builder.Entity<Template>().Property(d => d.Html).IsRequired();
+            builder.Entity<Template>().Property(d => d.Styles).IsRequired();
         }
     }
 }

@@ -60,7 +60,7 @@ namespace CvCreator.Controllers
                     issuer: "https//localhost:5001",
                     audience: "https//localhost:5001",
                     claims: claims,
-                    expires: DateTime.Now.AddMinutes(10),
+                    expires: DateTime.Now.AddMinutes(120), //add autorefresh
                     signingCredentials: signingCreditentials
                 );
 
