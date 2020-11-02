@@ -1,6 +1,12 @@
 <ul>
+  <li [routerLink]="['/login']">Login</li>
+  <li [routerLink]="['/customers']">Customers</li>
+  <li *ngIf="isUserAuthenticated()">
+    <button (click)="logOut()">Log Out</button>
+  </li>
+
   <li [routerLink]="['/creator/personalData']">Personal data</li>
-  <li [routerLink]="['/creator/experience']"> Experience</li>
-  <li [routerLink]="['/creator/skills']"> Skills</li>
-  <li [routerLink]="['/creator/summary']"> Summary</li>
+  <li [routerLink]="['/creator/experience']">Experience</li>
+  <li [routerLink]="['/creator/skills']">Skills</li>
+  <li [routerLink]="['/creator/summary']">Summary</li>
 </ul>

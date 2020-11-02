@@ -7,9 +7,9 @@ import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
-import { ApiAuthorizationModule } from "src/api-authorization/api-authorization.module";
-import { AuthorizeGuard } from "src/api-authorization/authorize.guard";
-import { AuthorizeInterceptor } from "src/api-authorization/authorize.interceptor";
+// import { ApiAuthorizationModule } from "src/api-authorization/api-authorization.module";
+// import { AuthorizeGuard } from "src/api-authorization/authorize.guard";
+// import { AuthorizeInterceptor } from "src/api-authorization/authorize.interceptor";
 import { EducationFormComponent } from "./Components/education-form/education-form.component";
 import { DatePipe } from "@angular/common";
 import { LanguagesFormComponent } from "./Components/languages-form/languages-form.component";
@@ -27,9 +27,17 @@ import { SkillsComponent } from "./Components/skills/skills.component";
 import { SkillsFormComponent } from "./Components/skills-form/skills-form.component";
 import { HobbyFormComponent } from "./Components/hobby-form/hobby-form.component";
 import { SummaryComponent } from "./Components/summary/summary.component";
-import { CvPreviewComponent } from './Components/cv-preview/cv-preview.component';
-import { SocialMediaFormComponent } from './Components/social-media-form/social-media-form.component';
-import { DataProtectionFormComponent } from './Components/data-protection-form/data-protection-form.component';
+import { CvPreviewComponent } from "./Components/cv-preview/cv-preview.component";
+import { SocialMediaFormComponent } from "./Components/social-media-form/social-media-form.component";
+import { DataProtectionFormComponent } from "./Components/data-protection-form/data-protection-form.component";
+import { LoginComponent } from "./Components/login/login.component";
+import { JwtModule } from "@auth0/angular-jwt";
+import { CustomersComponent } from "./Components/customers/customers.component";
+import { AuthGuard } from "./Guards/auth.guard";
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -54,23 +62,39 @@ import { DataProtectionFormComponent } from './Components/data-protection-form/d
     CvPreviewComponent,
     SocialMediaFormComponent,
     DataProtectionFormComponent,
+    LoginComponent,
+    CustomersComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ApiAuthorizationModule,
+    // ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "creator/experience", component: ExperienceComponent },
       { path: "creator/personalData", component: PersonalDataComponent },
       { path: "creator/skills", component: SkillsComponent },
       { path: "creator/summary", component: SummaryComponent },
+      { path: "login", component: LoginComponent },
+      {
+        path: "customers",
+        component: CustomersComponent,
+        canActivate: [AuthGuard],
+      },
     ]),
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:5001"],
+        disallowedRoutes: [],
+      },
+    }),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
     DatePipe,
     DateManager,
   ],
