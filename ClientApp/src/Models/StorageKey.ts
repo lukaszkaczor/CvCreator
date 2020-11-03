@@ -1,5 +1,6 @@
 export class StorageKey {
   public static Token = "token";
+  public static AdminMenuStatus = "adminMenuStatus";
 
   public static PersonalImage = "personalImage";
   public static PersonalData = "personalData";

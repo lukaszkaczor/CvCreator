@@ -40,13 +40,13 @@ namespace CvCreator.Controllers
 
         [HttpPost]
         [Authorize(Roles = Role.Admin)]
-        public async Task<IActionResult> Post(Template template)
+        public async Task<IActionResult> Post(Template model)
         {
             if (ModelState.IsValid)
             {
-                await _context.Templates.AddAsync(template);
+                await _context.Templates.AddAsync(model);
                 await _context.SaveChangesAsync();
-                return Ok();
+                return Ok(model);
             }
             return BadRequest();
         }
@@ -54,19 +54,19 @@ namespace CvCreator.Controllers
         [HttpPut]
         [Route("{id}")]
         [Authorize(Roles = Role.Admin)]
-        public async Task<IActionResult> Put(int id, [FromBody] TemplateDTO template)
+        public async Task<IActionResult> Put(int id, [FromBody] TemplateDTO model)
         {
-            var templateFromDb = await _context.Templates.FirstOrDefaultAsync(d => d.Id == id);
+            var template = await _context.Templates.FirstOrDefaultAsync(d => d.Id == id);
 
-            if (templateFromDb is null)
+            if (template is null)
                 return NotFound();
 
             if (ModelState.IsValid)
             {
-                _mapper.Map<TemplateDTO, Template>(template, templateFromDb);
+                _mapper.Map<TemplateDTO, Template>(model, template);
                 await _context.SaveChangesAsync();
 
-                return Ok(templateFromDb);
+                return Ok(template);
             }
 
             return BadRequest();
@@ -79,8 +79,7 @@ namespace CvCreator.Controllers
         {
             var template = await _context.Templates.FirstOrDefaultAsync(d => d.Id == id);
 
-            if (template is null)
-                return NotFound();
+            if (template is null) return NotFound();
 
             _context.Templates.Remove(template);
             await _context.SaveChangesAsync();

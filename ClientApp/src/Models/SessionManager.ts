@@ -36,6 +36,7 @@ export class SessionManager {
 
   public LogOut() {
     localStorage.removeItem(StorageKey.Token);
+    this.router.navigate(["/"]);
   }
 
   isUserAuthenticated() {
@@ -43,5 +44,24 @@ export class SessionManager {
     return token != null && !this.jwtHelper.isTokenExpired(token)
       ? true
       : false;
+  }
+
+  hasRole(role: string) {
+    let roles: string[] = [];
+
+    const decodedToken = this.jwtHelper.decodeToken(
+      localStorage.getItem(StorageKey.Token)
+    );
+
+    if (decodedToken) {
+      let decodedRoles =
+        decodedToken[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ];
+
+      if (decodedRoles) roles = decodedRoles;
+    }
+
+    return roles.includes(role);
   }
 }

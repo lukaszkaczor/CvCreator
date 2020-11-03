@@ -11,7 +11,7 @@ export class StorageHelper implements IStorage {
     return JSON.parse(localStorage.getItem(this._key));
   }
 
-  set(value) {
+  set(value: any) {
     localStorage.setItem(this._key, JSON.stringify(value));
   }
 
@@ -21,5 +21,9 @@ export class StorageHelper implements IStorage {
 
   static getItem(key: string) {
     return JSON.parse(localStorage.getItem(key));
+  }
+
+  static setItem(key: string, value: any) {
+    return localStorage.setItem(key, JSON.stringify(value));
   }
 }

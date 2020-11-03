@@ -1,0 +1,51 @@
+<nav [class.show]="isExpanded">
+  <h1 class="main-header">Panel admina</h1>
+  <ul>
+    <li>
+      <a [routerLinkActive]="['link-active']" [routerLink]="['/']"
+        >Strona główna</a
+      >
+    </li>
+    <li><a href="#">Użytkownicy</a></li>
+    <li><a href="#">Szablony</a></li>
+  </ul>
+
+  <button class="btn-toggle" (click)="toggleNavbar()" *ngIf="this.isExpanded">
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 16 16"
+      class="bi bi-x"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+      />
+    </svg>
+  </button>
+  <button
+    class="btn-toggle border-none"
+    (click)="toggleNavbar()"
+    *ngIf="!this.isExpanded"
+  >
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 16 16"
+      class="bi bi-chevron-double-right"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
+      />
+      <path
+        fill-rule="evenodd"
+        d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
+      />
+    </svg>
+  </button>
+</nav>

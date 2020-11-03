@@ -36,6 +36,7 @@ import { CustomersComponent } from "./Components/customers/customers.component";
 import { AuthGuard } from "./Guards/auth.guard";
 import { RegisterComponent } from "./Components/register/register.component";
 import { AdminGuard } from "./Guards/admin.guard";
+import { AdminMenuComponent } from './Components/admin-menu/admin-menu.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -67,6 +68,7 @@ export function tokenGetter() {
     LoginComponent,
     CustomersComponent,
     RegisterComponent,
+    AdminMenuComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

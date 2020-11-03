@@ -1,6 +1,6 @@
 <body>
   <app-nav-menu></app-nav-menu>
-
+  <admin-menu *ngIf="this.sessionManager.hasRole('Admin')"></admin-menu>
   <!-- <div class="container content">
     <step-menu></step-menu>
   </div> -->
