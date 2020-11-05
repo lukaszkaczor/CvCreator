@@ -47,7 +47,7 @@
           <small *ngIf="password.errors.required">To pole jest wymagane.</small>
         </div>
 
-        <div class="input-group__warnings" *ngIf="invalidLogin">
+        <div class="input-group__warnings" *ngIf="!isPasswordValid">
           <small>Zły email lub hasło</small>
         </div>
       </div>

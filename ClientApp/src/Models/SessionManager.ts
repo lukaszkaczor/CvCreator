@@ -16,22 +16,24 @@ export class SessionManager {
     this._authService = authService;
   }
 
-  public LogIn(creditentials: ILoginCreditentials): boolean {
+  public async LogIn(creditentials: ILoginCreditentials): Promise<boolean> {
     let result;
-    this._authService.login(creditentials).subscribe(
-      (response) => {
-        const token = (<any>response).token;
-        localStorage.setItem(StorageKey.Token, token);
-        result = true;
-        this.router.navigate(["/"]);
-      },
-      (err) => {
-        console.log(err);
-        result = false;
-      }
-    );
 
-    return result;
+    return new Promise(async (resolve, rejects) => {
+      this._authService.login(creditentials).subscribe(
+        (response) => {
+          const token = (<any>response).token;
+          localStorage.setItem(StorageKey.Token, token);
+          result = true;
+          this.router.navigate(["/"]);
+        },
+        (err) => {
+          console.log(err);
+          result = false;
+          resolve(result);
+        }
+      );
+    });
   }
 
   public LogOut() {

@@ -14,7 +14,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 export class LoginComponent implements OnInit {
   private _sessionManager: SessionManager;
   form: FormGroup;
-  invalidLogin: boolean;
+  isPasswordValid: boolean = true;
   submitted = false;
 
   constructor(
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     // if (this._sessionManager.isUserAuthenticated()) this.router.navigate(["/"]);
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.submitted = true;
 
     if (this.form.status === "INVALID") return 0;
@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
       password: this.password.value,
     };
 
-    this.invalidLogin = this._sessionManager.LogIn(creditentials);
+    this.isPasswordValid = await this._sessionManager.LogIn(creditentials);
+    console.log(this.isPasswordValid);
   }
 
   get email() {
