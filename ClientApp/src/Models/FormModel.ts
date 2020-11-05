@@ -16,7 +16,8 @@ export class FormModel {
     this._modelType = modelType;
     this.data = modelType == ModelType.Array ? [] : null;
 
-    if (this._storage.get() != null) this.data = this._storage.get();
+    if (this._storage && this._storage.get() != null)
+      this.data = this._storage.get();
   }
 
   public onSubmit(event: Event, item: any) {
@@ -37,8 +38,7 @@ export class FormModel {
     // } else if (this._modelType == ModelType.Object) {
     //   this.objectList = item;
     // }
-
-    this._storage.set(this.data);
+    if (this._storage) this._storage.set(this.data);
     if (this.resetFormAfterSubmit) this.form.reset();
   }
 

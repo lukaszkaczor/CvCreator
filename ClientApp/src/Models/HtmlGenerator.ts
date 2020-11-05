@@ -36,18 +36,7 @@ export class HtmlGenerator {
 
   generate(template: string, ...list: SelectorValues[]) {
     let indexes = this.getIndexes(template, ...list);
-    // let s = this.replaceAt(template, list[1][0], "siema");
-    // for (let i = 0; i < list.length; i++) {
-    //   const element = list[i];
-    //   console.log(element.selector);
 
-    //   for (let j = 0; j < indexes[i].length; j++) {
-    //     const element = sec[i][j];
-    //     // console.log(element);
-    //     template = this.replaceAt(template, element, list[i].value);
-    //   }
-
-    // }
     for (let i = 0; i < list.length; i++) {
       const element = list[i];
       console.log(element.selector);
@@ -68,52 +57,6 @@ export class HtmlGenerator {
     //   template = this.gl(template, element.selector, element.value);
     // });
   }
-
-  // mainSelectorIsValid(selector: string): boolean {
-  //   return selector.match("^@[a-zA-Z]+$") != null;
-  // }
-
-  // selectorIsValid(selector: string) {
-  //   return selector.match("^@.+='|\"@.+'|\"$") != null;
-  // }
-
-  // functionSelectorIndex(template: string, selector: string): number[] {
-  //   // var match = /bar/.exec("foobar");
-  //   const re = new RegExp(`@.+=("|')(?:${selector})("|')`, "g");
-  //   let array = [];
-  //   let match;
-
-  //   while ((match = re.exec(template)) != null) {
-  //     let tej = match[0].substr(0, match[0].indexOf(`"`));
-  //     // console.log(tej);
-  //     array.push(match.index + tej.length + 1);
-  //   }
-
-  //   return array;
-  // }
-
-  // mainSelectorIndex(template: string, selector: string) {
-  //   // var match = /bar/.exec("foobar");
-  //   const re = new RegExp(`((?!@.*="))${selector}`, "g");
-  //   let array = [];
-  //   let match;
-
-  //   while ((match = re.exec(template)) != null) array.push(match.index);
-
-  //   return array;
-  // }
-
-  // selectorValuesList(fList: number[], mList: number[]) {
-  //   let array = [];
-
-  //   for (let index = 0; index < mList.length; index++) {
-  //     const element = mList[index];
-
-  //     if (!fList.includes(element)) array.push(element);
-  //   }
-
-  //   return array;
-  // }
 
   isSelector(item: string): boolean {
     let selectors = this.getSelectors();

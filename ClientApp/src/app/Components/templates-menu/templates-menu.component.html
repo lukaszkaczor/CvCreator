@@ -1,0 +1,204 @@
+<h2 class="header margin-top">Szablony</h2>
+
+<button class="list__button admin-btn--add" (click)="create()">
+  Dodaj szablon
+</button>
+
+<div class="content">
+  <!-- <div class="content__section"> -->
+  <div class="grid">
+    <div class="card" *ngFor="let template of this.templates; let i = index">
+      <img src="{{ template.imageUrl }}" />
+
+      <h2 class="caption">{{ template.name }}</h2>
+
+      <div class="btn-holder">
+        <button type="button" (click)="edit(template.id)">
+          <svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 16 16"
+            class="bi bi-pen"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"
+            />
+          </svg>
+        </button>
+
+        <button type="button" (click)="remove(template.id)">
+          <svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 16 16"
+            class="bi bi-x"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>
+
+<form
+  id="templatesForm"
+  class="form background"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit($event)"
+>
+  <div class="form__list solid_background">
+    <div class="input-group">
+      <h2 class="header">Szablon</h2>
+    </div>
+
+    <input type="hidden" name="id" formControlName="id" />
+
+    <div class="input-group">
+      <label class="input-group__label" for="name">Nazwa *</label>
+      <input
+        type="text"
+        class="input-group__input--text"
+        name="name"
+        id="name"
+        formControlName="name"
+        [class.border-danger]="
+          (name.touched && name.invalid) || (formSubmitted && name.invalid)
+        "
+      />
+      <div
+        class="input-group__warnings"
+        *ngIf="
+          (name.touched && name.invalid) || (formSubmitted && name.invalid)
+        "
+      >
+        <small *ngIf="name.errors.required">To pole jest wymagane.</small>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="checkbox-group">
+        <input
+          type="checkbox"
+          class="input-group__input--checkbox"
+          id="isActive"
+          name="isActive"
+          formControlName="isActive"
+        />
+        <label class="checkbox__label" for="isActive">Aktywny</label>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label" for="imageUrl">Link do zdjęcia</label>
+      <input
+        type="text"
+        class="input-group__input--text"
+        name="imageUrl"
+        id="imageUrl"
+        formControlName="imageUrl"
+      />
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label" for="html">HTML *</label>
+
+      <textarea
+        name="html"
+        id="html"
+        cols="30"
+        rows="5"
+        class="input-group__input--text"
+        name="html"
+        id="html"
+        formControlName="html"
+        [class.border-danger]="
+          (html.touched && html.invalid) || (formSubmitted && html.invalid)
+        "
+      >
+      </textarea>
+      <!-- <input
+        type="text"
+        class="input-group__input--text"
+        name="html"
+        id="html"
+        formControlName="html"
+        [class.border-danger]="
+          (html.touched && html.invalid) || (formSubmitted && html.invalid)
+        "
+      /> -->
+      <div
+        class="input-group__warnings"
+        *ngIf="
+          (html.touched && html.invalid) || (formSubmitted && html.invalid)
+        "
+      >
+        <small *ngIf="html.errors.required">To pole jest wymagane.</small>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label" for="styles">CSS *</label>
+
+      <textarea
+        name="styles"
+        id="styles"
+        cols="30"
+        rows="5"
+        class="input-group__input--text"
+        formControlName="styles"
+        [class.border-danger]="
+          (styles.touched && styles.invalid) ||
+          (formSubmitted && styles.invalid)
+        "
+      ></textarea>
+
+      <!-- <input
+        type="text"
+        class="input-group__input--text"
+        name="styles"
+        id="styles"
+        formControlName="styles"
+        [class.border-danger]="
+          (styles.touched && styles.invalid) ||
+          (formSubmitted && styles.invalid)
+        "
+      /> -->
+      <div
+        class="input-group__warnings"
+        *ngIf="
+          (styles.touched && styles.invalid) ||
+          (formSubmitted && styles.invalid)
+        "
+      >
+        <small *ngIf="styles.errors.required">To pole jest wymagane.</small>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="button-holder">
+        <button class="button button--save" type="submit">Zapisz</button>
+        <button class="button button--cancel" (click)="hide($event)">
+          Anuluj
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- <div class="page-navigation">
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>4</button>
+  <button>5</button>
+</div> -->

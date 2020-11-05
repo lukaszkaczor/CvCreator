@@ -36,7 +36,9 @@ import { CustomersComponent } from "./Components/customers/customers.component";
 import { AuthGuard } from "./Guards/auth.guard";
 import { RegisterComponent } from "./Components/register/register.component";
 import { AdminGuard } from "./Guards/admin.guard";
-import { AdminMenuComponent } from './Components/admin-menu/admin-menu.component';
+import { AdminMenuComponent } from "./Components/admin-menu/admin-menu.component";
+import { TemplatesMenuComponent } from "./Components/templates-menu/templates-menu.component";
+import { SessionManager } from "src/Models/SessionManager";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -69,6 +71,7 @@ export function tokenGetter() {
     CustomersComponent,
     RegisterComponent,
     AdminMenuComponent,
+    TemplatesMenuComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -87,6 +90,11 @@ export function tokenGetter() {
       {
         path: "customers",
         component: CustomersComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: "admin/templates",
+        component: TemplatesMenuComponent,
         canActivate: [AdminGuard],
       },
     ]),

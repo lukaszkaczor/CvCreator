@@ -2,12 +2,21 @@
   <h1 class="main-header">Panel admina</h1>
   <ul>
     <li>
-      <a [routerLinkActive]="['link-active']" [routerLink]="['/']"
+      <a
+        [routerLinkActive]="['link-active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['/']"
         >Strona główna</a
       >
     </li>
     <li><a href="#">Użytkownicy</a></li>
-    <li><a href="#">Szablony</a></li>
+    <li>
+      <a
+        [routerLinkActive]="['link-active']"
+        [routerLink]="['/admin/templates']"
+        >Szablony</a
+      >
+    </li>
   </ul>
 
   <button class="btn-toggle" (click)="toggleNavbar()" *ngIf="this.isExpanded">
