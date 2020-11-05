@@ -1,6 +1,11 @@
+import { AuthService } from "./../../Services/auth.service";
+import { SessionManager } from "./../../../Models/SessionManager";
 import { Component, OnInit } from "@angular/core";
 import { StorageHelper } from "../../../Models/StorageHelper";
 import { StorageKey } from "../../../Models/StorageKey";
+import { Router } from "@angular/router";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { IAuthService } from "src/Models/Interfaces/IAuthService";
 
 @Component({
   selector: "admin-menu",
@@ -9,7 +14,19 @@ import { StorageKey } from "../../../Models/StorageKey";
 })
 export class AdminMenuComponent implements OnInit {
   isExpanded = false;
-  constructor() {}
+  isAdmin = false;
+  private _sessionManager: SessionManager;
+
+  constructor(
+    authService: AuthService,
+    router: Router,
+    jwtHelper: JwtHelperService
+    // private authService: IAuthService,
+    // private router: Router,
+    // private jwtHelper: JwtHelperService
+  ) {
+    this._sessionManager = new SessionManager(authService, router, jwtHelper);
+  }
 
   ngOnInit() {
     let status = null;
@@ -17,6 +34,8 @@ export class AdminMenuComponent implements OnInit {
       status = StorageHelper.getItem(StorageKey.AdminMenuStatus);
 
     this.isExpanded = status ? status : false;
+
+    this.isAdmin = this._sessionManager.hasRole("Admin");
   }
 
   toggleNavbar() {

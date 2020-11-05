@@ -1,4 +1,4 @@
-<nav [class.show]="isExpanded">
+<nav [class.show]="isExpanded" *ngIf="isAdmin">
   <h1 class="main-header">Panel admina</h1>
   <ul>
     <li>

@@ -1,3 +1,4 @@
+import { ActionType } from "./../../../Models/Enums/ActionType";
 import { Component, OnInit } from "@angular/core";
 import { FormModel } from "../../../Models/FormModel";
 import { StorageHelper } from "../../../Models/StorageHelper";
@@ -15,6 +16,9 @@ import { ISkill } from "../../../Models/Interfaces/ISkill";
 export class SkillsFormComponent extends FormModel implements OnInit {
   formIsInvalid = false;
   skillsList: ISkill[] = [];
+  actionType: ActionType;
+  editableIndex: number;
+  hiddenIndex = -1;
 
   constructor(builder: FormBuilder) {
     super(new StorageHelper(StorageKey.Skills), ModelType.Array);
@@ -38,7 +42,7 @@ export class SkillsFormComponent extends FormModel implements OnInit {
     let skill: ISkill = { skill: this.skill.value };
     this.skillsList.push(skill);
     this.skill.reset();
-    this.tag.disable();
+    // this.tag.disable();
   }
 
   onSubmit(event) {
@@ -47,14 +51,34 @@ export class SkillsFormComponent extends FormModel implements OnInit {
       skills: this.skillsList,
     };
 
-    super.onSubmit(event, item);
+    if (this.actionType == ActionType.Edit) {
+      this.data[this.editableIndex] = item;
+      StorageHelper.setItem(StorageKey.Skills, this.data);
+    } else {
+      super.onSubmit(event, item);
+    }
 
-    this.tag.enable();
+    this.actionType = ActionType.None;
+    this.form.reset();
+    this.hiddenIndex = -1;
+    // this.tag.enable();
     this.skillsList = [];
   }
 
-  alert() {
-    alert("coming soon");
+  edit(index: number) {
+    this.actionType = ActionType.Edit;
+    this.hiddenIndex = index;
+    this.editableIndex = index;
+    const item: ITagWithSkills = this.data[index];
+    this.tag.setValue(item.tag);
+    this.skillsList.push(...item.skills);
+    console.log(item);
+  }
+
+  removeFromTempList(index: number) {
+    console.log(index);
+    this.skillsList.splice(index, 1);
+    console.log(this.skillsList);
   }
 
   get skill() {

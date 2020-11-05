@@ -3,9 +3,13 @@
 <div class="form">
   <div class="form__list">
     <div class="input-group" *ngIf="data.length > 0">
-      <div class="item" *ngFor="let item of data; let i = index">
+      <div
+        class="item"
+        *ngFor="let item of data; let i = index"
+        [class.hidden]="i == hiddenIndex"
+      >
         <div class="item__settings">
-          <button class="button settings__btn-icon" (click)="alert()">
+          <button class="button settings__btn-icon" (click)="edit(i)">
             <svg
               width="20px"
               height="20px"
@@ -53,15 +57,19 @@
       </div>
     </div>
 
-    <div class="input-group" *ngIf="skillsList.length > 0">
+    <div class="input-group" *ngIf="skillsList.length > 0 || actionType == 2">
       <div class="item border-warning">
         <div class="item__info">
           <h5 class="info__tag">{{ tag.value }}</h5>
+
           <div class="item-desc" *ngFor="let item of skillsList; let i = index">
             <div class="item__desc">
               <div class="item--single-line reset-padding">
                 <p class="temp-desc">{{ item.skill }}</p>
-                <button class="btn-icon--single-line">
+                <button
+                  class="btn-icon--single-line"
+                  (click)="removeFromTempList(i)"
+                >
                   <svg
                     width="30px"
                     height="30px"
@@ -145,91 +153,8 @@
     </div>
 
     <button class="list__button margin-top" (click)="onSubmit($event)">
-      Dodaj pozycję
+      <!-- actionType == ActionType.Edit ? ZapiszZmiany : Dodaj pozycje  -->
+      {{ this.actionType == 2 ? "Zapisz zmiany" : "Dodaj pozycję" }}
     </button>
   </div>
 </form>
-
-<!-- <h2 class="mainHeader">Umiejętności</h2>
-
-<div class="item-list">
-  <div class="item-row" *ngFor="let item of data; let i = index">
-    <h1>{{ item.tag }}</h1>
-
-    <p class="item-info" *ngFor="let i of item.skills">{{ i.skill }}</p>
-
-    <button class="button" (click)="remove(i)">
-      <svg
-        width="1em"
-        height="1em"
-        viewBox="0 0 16 16"
-        class="bi bi-trash"
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-        />
-        <path
-          fill-rule="evenodd"
-          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-        />
-      </svg>
-    </button>
-  </div>
-
-  <div style="border: 2px solid red; width: 100%">
-    <h1>{{ tag.value }}</h1>
-    <p *ngFor="let item of skillsList">{{ item.skill }}</p>
-  </div>
-
-  <form [formGroup]="form">
-    <div class="row">
-      <label class="input-group__label" for="tag">Tag</label>
-      <input
-        type="text"
-        class="form-control"
-        name="tag"
-        id="tag"
-        formControlName="tag"
-        [class.border-danger]="skill.invalid && skill.touched"
-      />
-
-      <label class="input-group__label" for="skill">Wpisz swoje umiejętności *</label>
-      <input
-        type="text"
-        class="form-control"
-        name="skill"
-        id="skill"
-        formControlName="skill"
-        [class.border-danger]="skill.invalid && skill.touched"
-      />
-      <button (click)="addToSkillsList()">dodaj</button>
-      <div
-        *ngIf="
-          (skill.touched && skill.invalid) || (formIsInvalid && skill.invalid)
-        "
-      >
-        <small *ngIf="skill.errors.required" class="form-text warning"
-          >To pole jest wymagane.</small
-        >
-      </div>
-    </div>
-  </form>
-  <button class="button button-add" (click)="onSubmit($event)">
-    <svg
-      width="1.6rem"
-      height="1.6rem"
-      viewBox="0 0 16 16"
-      class="bi bi-plus"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-      />
-    </svg>
-    Zapisz
-  </button>
-</div> -->

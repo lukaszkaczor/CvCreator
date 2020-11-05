@@ -51,17 +51,19 @@ export class SessionManager {
   hasRole(role: string) {
     let roles: string[] = [];
 
-    const decodedToken = this.jwtHelper.decodeToken(
-      localStorage.getItem(StorageKey.Token)
-    );
+    if (this.isUserAuthenticated()) {
+      const decodedToken = this.jwtHelper.decodeToken(
+        localStorage.getItem(StorageKey.Token)
+      );
 
-    if (decodedToken) {
-      let decodedRoles =
-        decodedToken[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ];
+      if (decodedToken) {
+        let decodedRoles =
+          decodedToken[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ];
 
-      if (decodedRoles) roles = decodedRoles;
+        if (decodedRoles) roles = decodedRoles;
+      }
     }
 
     return roles.includes(role);
