@@ -32,13 +32,10 @@ import { SocialMediaFormComponent } from "./Components/social-media-form/social-
 import { DataProtectionFormComponent } from "./Components/data-protection-form/data-protection-form.component";
 import { LoginComponent } from "./Components/login/login.component";
 import { JwtModule } from "@auth0/angular-jwt";
-import { CustomersComponent } from "./Components/customers/customers.component";
-import { AuthGuard } from "./Guards/auth.guard";
 import { RegisterComponent } from "./Components/register/register.component";
 import { AdminGuard } from "./Guards/admin.guard";
 import { AdminMenuComponent } from "./Components/admin-menu/admin-menu.component";
 import { TemplatesMenuComponent } from "./Components/templates-menu/templates-menu.component";
-import { SessionManager } from "src/Models/SessionManager";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -68,7 +65,6 @@ export function tokenGetter() {
     SocialMediaFormComponent,
     DataProtectionFormComponent,
     LoginComponent,
-    CustomersComponent,
     RegisterComponent,
     AdminMenuComponent,
     TemplatesMenuComponent,
@@ -87,11 +83,7 @@ export function tokenGetter() {
       { path: "creator/summary", component: SummaryComponent },
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
-      {
-        path: "customers",
-        component: CustomersComponent,
-        canActivate: [AdminGuard],
-      },
+
       {
         path: "admin/templates",
         component: TemplatesMenuComponent,

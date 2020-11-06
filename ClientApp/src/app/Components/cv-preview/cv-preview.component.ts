@@ -1,3 +1,5 @@
+import { ITemplate } from "./../../../Models/Interfaces/ITemplate";
+import { TemplateService } from "./../../Services/template.service";
 import { Component, OnInit, enableProdMode } from "@angular/core";
 import { IEducation } from "../../../Models/Interfaces/IEducation";
 import { ILanguage } from "../../../Models/Interfaces/ILanguage";
@@ -23,16 +25,39 @@ import { map } from "rxjs/operators";
   styleUrls: ["./cv-preview.component.css"],
 })
 export class CvPreviewComponent implements OnInit {
-  private _template: string;
+  public selectedTemplate: ITemplate;
+  public _template: string;
   private _element: HTMLElement;
+  public templates: ITemplate[];
+  private _styles: string;
+  public selectedId: number;
 
-  constructor() {
-    this._template = HtmlTemplateService.getTemplate();
-    this.setStyles();
-  }
+  //
+  private document__head: HTMLElement;
+  private _dynamicStylesTag;
+
+  constructor(private templateService: TemplateService) {}
 
   async ngOnInit() {
+    this.document__head =
+      document.head || document.getElementsByTagName("head")[0];
     this._element = document.querySelector("#nodeToRenderAsPDF");
+
+    this.templateService.getAll().subscribe((response) => {
+      this.templates = response as ITemplate[];
+
+      this.templates = this.templates.filter((d) => d.isActive);
+
+      const lastChosenTemplateId = StorageHelper.getItem(
+        StorageKey.LastChosenTemplate
+      );
+
+      this.selectedTemplate = lastChosenTemplateId
+        ? this.templates.find((d) => d.id == lastChosenTemplateId)
+        : this.templates[0];
+
+      this.setTemplate();
+    });
 
     // (?<=\s)[^ ]*\s*\{[^\}]+\:[^\}]+\} css filter regex
     // let text = `
@@ -49,17 +74,42 @@ export class CvPreviewComponent implements OnInit {
     // let regex = new RegExp(`(?<=\\s)[^ ]*\\s*\\{[^\\}]+\\:[^\\}]+\\}`, "gm");
     // console.log(regex.exec(text));
     // console.log(text.match(regex));
-
-    await this.prepareContent();
   }
 
-  private setStyles() {
-    let css = HtmlTemplateService.getStyles(),
-      head = document.head || document.getElementsByTagName("head")[0],
-      style = document.createElement("style");
+  public selectTemplate(id: number) {
+    this.setBorderToSelectedTemplate(id);
+    this.selectedTemplate = this.templates.find((d) => d.id == id);
+    StorageHelper.setItem(StorageKey.LastChosenTemplate, id);
+    this.setTemplate();
+  }
 
-    head.appendChild(style);
-    style.appendChild(document.createTextNode(css));
+  private setTemplate() {
+    this.selectedId = this.selectedTemplate.id;
+    this.prepareContent();
+    this.setStyles(this.selectedTemplate.styles);
+  }
+
+  private setBorderToSelectedTemplate(id: number) {
+    const boxes = <NodeListOf<HTMLElement>>(
+      document.querySelectorAll(".template-box")
+    );
+
+    boxes.forEach((box) => {
+      box.classList.remove("border--active");
+    });
+
+    const index = this.templates.findIndex((d) => d.id == id);
+    boxes[index].classList.add("border--active");
+  }
+
+  private setStyles(styles: string) {
+    // if dynamic styles tag already exists
+    if (this._dynamicStylesTag)
+      this.document__head.removeChild(this._dynamicStylesTag);
+
+    this._dynamicStylesTag = document.createElement("style");
+    this.document__head.appendChild(this._dynamicStylesTag);
+    this._dynamicStylesTag.appendChild(document.createTextNode(styles));
   }
 
   public async execute(action: boolean) {
@@ -91,8 +141,6 @@ export class CvPreviewComponent implements OnInit {
     const education = <IEducation[]>StorageHelper.getItem(StorageKey.Education);
     const skills = <ITagWithSkills[]>StorageHelper.getItem(StorageKey.Skills);
 
-    console.log(skills);
-
     const functionSelectors: IFunctionSelector[] = [
       new ListSelector("@languagesList", languages),
       new ListSelector("@educationList", education),
@@ -102,7 +150,7 @@ export class CvPreviewComponent implements OnInit {
     ];
 
     const template = new Template(
-      this._template,
+      this.selectedTemplate.html,
       mainSelectorsWithData,
       ...functionSelectors
     );
@@ -119,13 +167,11 @@ export class CvPreviewComponent implements OnInit {
       : `${person.firstName} ${person.lastName} CV.pdf`;
   }
 
-  scroll(el: HTMLElement) {
-    // el.scrollIntoView({ behavior: "smooth" });
-    // this._element.classList.toggle("hide");
+  toggleCvPreview(el: HTMLElement) {
     el.classList.toggle("show");
   }
 
-  alert() {
-    alert("Work in progress.");
+  alert(i) {
+    alert("Work in progress." + i);
   }
 }

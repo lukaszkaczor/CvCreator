@@ -82,31 +82,29 @@
     </button>
   </div>
 
-  <button class="checkout-button" (click)="scroll(background)">Podgląd</button>
+  <button class="checkout-button" (click)="toggleCvPreview(background)">
+    Podgląd
+  </button>
 
   <div>
     <h1 class="header">Wybierz styl swojego cv</h1>
-    <label for="">
-      <input type="radio" name="" id="" />
-      Typ1
-    </label>
-    <label for="">
-      <input type="radio" name="" id="" />
-      Typ2
-    </label>
-    <label for="">
-      <input type="radio" name="" id="" />
-      Typ3
-    </label>
-    <label for="">
-      <input type="radio" name="" id="" />
-      Typ4
-    </label>
+
+    <div class="box-container">
+      <div
+        class="template-box"
+        *ngFor="let template of this.templates; let i = index"
+        [class.border--active]="template.id == selectedId"
+        (click)="selectTemplate(template.id)"
+      >
+        <img src="{{ template.imageUrl }}" />
+        <h1 class="template-box__header">{{ template.name }}</h1>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="background" #background>
-  <button class="exit-btn" (click)="scroll(background)">
+  <button class="exit-btn" (click)="toggleCvPreview(background)">
     <svg
       width="1em"
       height="1em"

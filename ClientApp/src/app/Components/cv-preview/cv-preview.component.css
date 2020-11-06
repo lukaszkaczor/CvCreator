@@ -112,6 +112,36 @@ svg {
   height: 40px;
 }
 
+.box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(75px, 100px));
+  grid-gap: 10px;
+  width: 100%;
+  /* border: 1px solid red; */
+}
+
+.template-box {
+  display: flex;
+  flex-direction: column;
+  /* align-content: space-between; */
+  border: 2px solid #1c1c1c;
+}
+
+.template-box img {
+  width: 100%;
+}
+
+.template-box__header {
+  font-size: 18px;
+  text-align: center;
+  /* border: 1px solid red; */
+  margin: auto;
+}
+
+.border--active {
+  border: 2px solid green;
+}
+
 @media (min-width: 768px) {
   /* .box {
     width: 50%;
