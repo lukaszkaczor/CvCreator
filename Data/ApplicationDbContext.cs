@@ -14,6 +14,7 @@ namespace CvCreator.Data
     {
 
         public DbSet<Template> Templates { get; set; }
+        public DbSet<UsersDocument> UsersDocuments { get; set; }
 
         public ApplicationDbContext(
             DbContextOptions options,
@@ -28,6 +29,12 @@ namespace CvCreator.Data
             builder.Entity<Template>().Property(d => d.Name).IsRequired();
             builder.Entity<Template>().Property(d => d.Html).IsRequired();
             builder.Entity<Template>().Property(d => d.Styles).IsRequired();
+
+
+            // builder.Entity<UsersDocument>()
+            builder.Entity<UsersDocument>().Property(d => d.Name).IsRequired();
+            builder.Entity<UsersDocument>().Property(d => d.Html).IsRequired();
+            builder.Entity<UsersDocument>().Property(d => d.Styles).IsRequired();
         }
     }
 }

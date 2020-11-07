@@ -10,6 +10,10 @@ namespace CvCreator.Models
         {
             CreateMap<Template, TemplateDTO>();
             CreateMap<TemplateDTO, Template>();
+
+
+            CreateMap<UsersDocument, UsersDocumentDTO>();
+            CreateMap<UsersDocumentDTO, UsersDocument>();
         }
 
     }
