@@ -1,0 +1,19 @@
+@import url("./../../Style/subpage.css");
+
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  border: 1px solid red;
+}
+
+.hidden {
+  display: none;
+}

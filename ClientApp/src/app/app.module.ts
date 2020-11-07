@@ -36,6 +36,7 @@ import { RegisterComponent } from "./Components/register/register.component";
 import { AdminGuard } from "./Guards/admin.guard";
 import { AdminMenuComponent } from "./Components/admin-menu/admin-menu.component";
 import { TemplatesMenuComponent } from "./Components/templates-menu/templates-menu.component";
+import { SaveCvFormComponent } from './Components/save-cv-form/save-cv-form.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -68,6 +69,7 @@ export function tokenGetter() {
     RegisterComponent,
     AdminMenuComponent,
     TemplatesMenuComponent,
+    SaveCvFormComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

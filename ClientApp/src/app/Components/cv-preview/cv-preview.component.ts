@@ -1,20 +1,12 @@
+import { SaveCvFormComponent } from "./../save-cv-form/save-cv-form.component";
 import { ContentGenerator } from "./../../../Models/ContentGenerator";
 import { PdfGeneratorAction } from "./../../../Models/Enums/PdfGeneratorAction";
 import { PdfGenerator } from "./../../../Models/PdfGenerator";
 import { ITemplate } from "./../../../Models/Interfaces/ITemplate";
 import { TemplateService } from "./../../Services/template.service";
-import { Component, OnInit } from "@angular/core";
-import { IEducation } from "../../../Models/Interfaces/IEducation";
-import { ILanguage } from "../../../Models/Interfaces/ILanguage";
-import { TemplateGenerator } from "../../../Models/TemplateGenerator";
-import { MainSelector } from "../../../Models/MainSelector";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { StorageHelper } from "../../../Models/StorageHelper";
 import { StorageKey } from "../../../Models/StorageKey";
-import { CVData } from "../../../Models/CVData";
-import { ListSelector } from "../../../Models/ListSelector";
-import { RemoveIfEmptySelector } from "../../../Models/RemoveIfEmptySelector";
-import { ITagWithSkills } from "../../../Models/Interfaces/ITagWithSkills";
-import { IFunctionSelector } from "../../../Models/Interfaces/IFunctionSelector";
 
 @Component({
   selector: "cv-preview",
@@ -31,6 +23,9 @@ export class CvPreviewComponent implements OnInit {
   public selectedId: number;
 
   private _generator: PdfGenerator;
+
+  @ViewChild(SaveCvFormComponent, { static: true })
+  saveCvFormComponent: SaveCvFormComponent;
 
   constructor(private templateService: TemplateService) {}
 
@@ -77,13 +72,14 @@ export class CvPreviewComponent implements OnInit {
     this._nodeToRenderAsPDF.innerHTML = content.prepareContent(
       this.selectedTemplate.html
     );
-    console.log(content.prepareContent(this.selectedTemplate.html));
   }
 
   private setTemplate() {
     this.selectedId = this.selectedTemplate.id;
     this.prepareContent();
     this.setStyles(this.selectedTemplate.styles);
+    this.saveCvFormComponent.html = this.selectedTemplate.html;
+    this.saveCvFormComponent.styles = this.selectedTemplate.styles;
   }
 
   private setStyles(styles: string) {

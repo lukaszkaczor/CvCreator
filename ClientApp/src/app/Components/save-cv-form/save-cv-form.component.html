@@ -1,0 +1,43 @@
+<form
+  class="form background hidden"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit($event)"
+  #background
+>
+  <div class="form__list solid_background">
+    <div class="input-group">
+      <h2 class="header">Zapisz w chmurze</h2>
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label" for="name">Nazwa *</label>
+      <input
+        type="text"
+        class="input-group__input--text"
+        name="name"
+        id="name"
+        [class.border-danger]="
+          (name.invalid && name.touched) || (formSubmitted && name.invalid)
+        "
+        formControlName="name"
+      />
+      <div
+        class="input-group__warnings"
+        *ngIf="
+          (name.touched && name.invalid) || (formSubmitted && name.invalid)
+        "
+      >
+        <small *ngIf="name.errors.required">To pole jest wymagane.</small>
+      </div>
+    </div>
+
+    <div class="input-group margin-top-s">
+      <div class="button-holder">
+        <button class="button button--save" type="submit">Zapisz</button>
+        <button class="button button--cancel" (click)="this.toggle()">
+          Anuluj
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

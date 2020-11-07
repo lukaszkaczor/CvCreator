@@ -1,3 +1,5 @@
+<save-cv-form></save-cv-form>
+
 <div class="box">
   <h1 class="header">Twoje CV jest już gotowe!</h1>
 
@@ -42,7 +44,7 @@
       </svg>
     </button>
 
-    <button class="btn-icon" (click)="alert()">
+    <button class="btn-icon" (click)="this.saveCvFormComponent.toggle()">
       <svg
         width="1em"
         height="1em"

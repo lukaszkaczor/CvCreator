@@ -87,6 +87,10 @@
   transform: translateX(-50%);
 }
 
+.hidden {
+  display: none;
+}
+
 svg {
   cursor: pointer;
 }
