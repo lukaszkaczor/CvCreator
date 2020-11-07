@@ -13,20 +13,7 @@ export class MainSelector implements ISelector {
     this._value = value;
   }
 
-  private isValid(name: string): boolean {
-    return name.match("^@[a-zA-Z]+$") != null;
-  }
-  private getAllIndexes(template: string) {
-    const regex = new RegExp(`((?!@.*="))${this._name}`, "g");
-    let indexes = [];
-    let match;
-
-    while ((match = regex.exec(template)) != null) indexes.push(match.index);
-
-    return indexes;
-  }
-
-  getFunctionIndexes(template: string): number[] {
+  public getFunctionIndexes(template: string): number[] {
     const regex = new RegExp(`@.+=("|')(?:${this._name})("|')`, "g");
     let indexes = [];
     let match;
@@ -38,9 +25,7 @@ export class MainSelector implements ISelector {
     return indexes;
   }
 
-  getMainIndexes(template: string) {
-    // let allIndexes = this.getAllIndexes();
-    // let functionIndexes = this.getFunctionIndexes();
+  public getMainIndexes(template: string) {
     let mainIndexes = [];
 
     for (let index = 0; index < this.getAllIndexes(template).length; index++) {
@@ -49,6 +34,20 @@ export class MainSelector implements ISelector {
         mainIndexes.push(element);
     }
     return mainIndexes;
+  }
+
+  private isValid(name: string): boolean {
+    return name.match("^@[a-zA-Z]+$") != null;
+  }
+
+  private getAllIndexes(template: string) {
+    const regex = new RegExp(`((?!@.*="))${this._name}`, "g");
+    let indexes = [];
+    let match;
+
+    while ((match = regex.exec(template)) != null) indexes.push(match.index);
+
+    return indexes;
   }
 
   public get name(): string {

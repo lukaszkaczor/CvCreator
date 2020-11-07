@@ -1,7 +1,7 @@
 import { ISelector } from "./Interfaces/ISelector";
 import { IFunctionSelector } from "./Interfaces/IFunctionSelector";
 
-export class Template {
+export class TemplateGenerator {
   private _template: string;
   private _selectors: ISelector[];
   private _functionSelectors: IFunctionSelector[];
@@ -16,34 +16,7 @@ export class Template {
     this._functionSelectors = functionSelectors;
   }
 
-  public get template(): string {
-    return this._template;
-  }
-
-  replaceAt(template: string, index: number, newText: string) {
-    return [
-      template.slice(0, index),
-      newText + "@",
-      template.slice(index),
-    ].join("");
-  }
-
-  deleteSelectors(selector: string) {
-    let reg = new RegExp(`@${selector}`, "g");
-
-    return this._template.replace(reg, "");
-  }
-
-  private updateIndexes() {
-    let indexes = [];
-    this._selectors.forEach((element) => {
-      indexes.push(element.getMainIndexes(this._template));
-    });
-
-    return indexes;
-  }
-
-  generate() {
+  public generate() {
     let indexes = this.updateIndexes();
 
     for (let i = 0; i < this._selectors.length; i++) {
@@ -63,6 +36,37 @@ export class Template {
       this._template = element.execute(this._template);
     });
 
+    return this._template;
+  }
+
+  public setValue(key, val) {
+    this._template = this._template.replace(key, val);
+  }
+
+  private replaceAt(template: string, index: number, newText: string) {
+    return [
+      template.slice(0, index),
+      newText + "@",
+      template.slice(index),
+    ].join("");
+  }
+
+  private deleteSelectors(selector: string) {
+    let reg = new RegExp(`@${selector}`, "g");
+
+    return this._template.replace(reg, "");
+  }
+
+  private updateIndexes() {
+    let indexes = [];
+    this._selectors.forEach((element) => {
+      indexes.push(element.getMainIndexes(this._template));
+    });
+
+    return indexes;
+  }
+
+  public get template(): string {
     return this._template;
   }
 }

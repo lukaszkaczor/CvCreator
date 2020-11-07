@@ -7,8 +7,8 @@ export class StorageHelper implements IStorage {
     this._key = key;
   }
 
-  get() {
-    return JSON.parse(localStorage.getItem(this._key));
+  get(key: string = this._key) {
+    return JSON.parse(localStorage.getItem(key));
   }
 
   set(value: any) {
