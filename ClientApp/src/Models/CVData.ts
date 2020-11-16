@@ -46,6 +46,10 @@ export class CVData {
         "@phoneNumber",
         (<IContact>StorageHelper.getItem(StorageKey.Contact)).phoneNumber
       ),
+      new MainSelector(
+        "@agreement",
+        StorageHelper.getItem(StorageKey.DataProtection).text
+      ),
     ];
   }
 }

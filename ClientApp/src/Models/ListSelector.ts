@@ -12,9 +12,11 @@ export class ListSelector implements IFunctionSelector {
   execute(template: string) {
     let readyElements: string[] = [];
     const headerRegex = new RegExp(
-      `<.*${this.name}.*[\\s\\S]*.*</ ${this.name}.*>`,
+      `<.*${this.name}.*[\\s\\S]*.*<\/.*${this.name}>`,
       "mg"
     );
+
+    // `<.*${this.name}.*[\\s\\S]*.*</ ${this.name}.*>`,
 
     let mainElement = headerRegex.exec(template)[0];
 

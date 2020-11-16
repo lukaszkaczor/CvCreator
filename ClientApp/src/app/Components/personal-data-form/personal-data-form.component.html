@@ -10,18 +10,12 @@
         name="firstName"
         id="firstName"
         formControlName="firstName"
-        [class.border-danger]="
-          (firstName.invalid && firstName.touched) ||
-          (formSubmitted && firstName.invalid)
-        "
+        [class.border-danger]="firstName.invalid && firstName.touched"
       />
 
       <div
         class="input-group__warnings"
-        *ngIf="
-          (firstName.touched && firstName.invalid) ||
-          (formSubmitted && firstName.invalid)
-        "
+        *ngIf="firstName.touched && firstName.invalid"
       >
         <small *ngIf="firstName.errors.required">To pole jest wymagane.</small>
         <small *ngIf="firstName.errors.minlength"
@@ -40,18 +34,12 @@
         name="lastName"
         id="lastName"
         formControlName="lastName"
-        [class.border-danger]="
-          (lastName.invalid && lastName.touched) ||
-          (formSubmitted && lastName.invalid)
-        "
+        [class.border-danger]="lastName.invalid && lastName.touched"
       />
 
       <div
         class="input-group__warnings"
-        *ngIf="
-          (lastName.touched && lastName.invalid) ||
-          (formSubmitted && lastName.invalid)
-        "
+        *ngIf="lastName.touched && lastName.invalid"
       >
         <small *ngIf="lastName.errors.required">To pole jest wymagane.</small>
         <small *ngIf="lastName.errors.minlength"
@@ -72,10 +60,7 @@
         name="dateOfBirth"
         id="dateOfBirth"
         formControlName="dateOfBirth"
-        [class.border-danger]="
-          (dateOfBirth.invalid && dateOfBirth.touched) ||
-          (formSubmitted && dateOfBirth.invalid)
-        "
+        [class.border-danger]="dateOfBirth.invalid && dateOfBirth.touched"
       />
 
       <div class="input-group__warnings">
@@ -85,10 +70,7 @@
       </div>
       <div
         class="input-group__warnings"
-        *ngIf="
-          (dateOfBirth.touched && dateOfBirth.invalid) ||
-          (formSubmitted && dateOfBirth.invalid)
-        "
+        *ngIf="dateOfBirth.touched && dateOfBirth.invalid"
       >
         <small *ngIf="dateOfBirth.errors.required"
           >To pole jest wymagane.</small

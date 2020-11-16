@@ -40,8 +40,7 @@ export class PersonalDataFormComponent extends FormModel implements OnInit {
   }
 
   onSubmit(event) {
-    console.log(this.form);
-    // if ()
+    console.log("tutuaj");
 
     this.formSubmitted = true;
 

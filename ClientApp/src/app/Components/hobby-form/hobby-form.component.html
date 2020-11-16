@@ -1,16 +1,49 @@
 <h2 class="header">Zainteresowania</h2>
 
+<div class="form">
+  <div class="form__list">
+    <div class="input-group" *ngFor="let item of data; let i = index">
+      <div class="item item--single-line">
+        <div class="item__info">
+          <h5>{{ item.hobby }}</h5>
+        </div>
+        <button class="btn-icon--single-line" (click)="remove(i)">
+          <svg
+            viewBox="0 0 16 16"
+            class="bi bi-x"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <form class="form" [formGroup]="form">
   <div class="form__list">
     <div class="input-group">
+      <label class="input-group__label" for="hobby"
+        >Wymień swoje zainteresowania
+      </label>
       <textarea
         class="input-group__input--text"
-        placeholder="Wymień swoje zainteresowania"
+        placeholder=""
         id="hobby"
         name="hobby"
         formControlName="hobby"
-        (focusout)="onSubmit($event)"
       ></textarea>
+    </div>
+
+    <div class="input-group">
+      <button class="list__button margin-top" (click)="onSubmit($event)">
+        Dodaj pozycję
+      </button>
     </div>
   </div>
 </form>

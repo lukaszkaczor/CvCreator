@@ -54,6 +54,7 @@ export class LanguagesFormComponent extends FormModel implements OnInit {
 
   public getLanguageLevels() {
     return [
+      "B2",
       "podstawowy",
       "średni",
       "średnio zaawansowany",

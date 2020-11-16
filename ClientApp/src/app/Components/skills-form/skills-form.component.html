@@ -152,9 +152,11 @@
       </div>
     </div>
 
-    <button class="list__button margin-top" (click)="onSubmit($event)">
-      <!-- actionType == ActionType.Edit ? ZapiszZmiany : Dodaj pozycje  -->
-      {{ this.actionType == 2 ? "Zapisz zmiany" : "Dodaj pozycję" }}
-    </button>
+    <div class="input-group">
+      <button class="list__button" (click)="onSubmit($event)">
+        <!-- actionType == ActionType.Edit ? ZapiszZmiany : Dodaj pozycje  -->
+        {{ this.actionType == 2 ? "Zapisz zmiany" : "Dodaj pozycję" }}
+      </button>
+    </div>
   </div>
 </form>

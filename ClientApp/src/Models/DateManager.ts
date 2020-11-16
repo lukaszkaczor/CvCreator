@@ -24,7 +24,7 @@ export class DateManager {
     return new Date(startDate) > new Date(endDate);
   }
 
-  public transformDate(date: Date, format: string = "yyyy-MM-dd") {
+  public transformDate(date: Date | string, format: string = "yyyy-MM-dd") {
     try {
       return this._datePipe.transform(date, format);
     } catch (error) {

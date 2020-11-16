@@ -12,14 +12,12 @@
         name="phoneNumber"
         id="phoneNumber"
         formControlName="phoneNumber"
+        [class.border-danger]="phoneNumber.touched && phoneNumber.invalid"
       />
 
       <div
         class="input-group__warnings"
-        *ngIf="
-          (phoneNumber.touched && phoneNumber.invalid) ||
-          (formSubmitted && phoneNumber.invalid)
-        "
+        *ngIf="phoneNumber.touched && phoneNumber.invalid"
       >
         <small *ngIf="phoneNumber.errors.required"
           >To pole jest wymagane.</small
@@ -38,17 +36,10 @@
         name="email"
         id="email"
         formControlName="email"
-        [class.border-danger]="
-          (email.invalid && email.touched) || (formSubmitted && email.invalid)
-        "
+        [class.border-danger]="email.invalid && email.touched"
       />
 
-      <div
-        class="input-group__warnings"
-        *ngIf="
-          (email.touched && email.invalid) || (formSubmitted && email.invalid)
-        "
-      >
+      <div class="input-group__warnings" *ngIf="email.touched && email.invalid">
         <small *ngIf="email.errors.required">To pole jest wymagane.</small>
         <small *ngIf="email.errors.email"
           >Zły format adresu email. "email@example.com"</small
